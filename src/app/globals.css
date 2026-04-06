@@ -3,17 +3,18 @@
 :root {
   --background: #ffffff;
   --foreground: #0f172a;
-  --primary: #6366f1;
-  --primary-dark: #4f46e5;
-  --primary-light: #818cf8;
-  --accent: #06b6d4;
-  --accent-dark: #0891b2;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #60a5fa;
+  --accent: #0ea5e9;
+  --accent-dark: #0284c7;
   --surface: #f8fafc;
   --surface-2: #f1f5f9;
   --border: #e2e8f0;
   --muted: #64748b;
   --success: #10b981;
   --warning: #f59e0b;
+  --copper: #c2956b;
 }
 
 @theme inline {
@@ -30,6 +31,7 @@
   --color-muted: var(--muted);
   --color-success: var(--success);
   --color-warning: var(--warning);
+  --color-copper: var(--copper);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains);
 }
@@ -42,28 +44,6 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
-}
-
-/* Code editor styling */
-.code-block {
-  background: #1e293b;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
-.code-block-header {
-  background: #0f172a;
-  padding: 12px 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.code-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
 }
 
 /* Gradient text */
@@ -80,46 +60,7 @@ body {
 }
 
 .gradient-bg-subtle {
-  background: linear-gradient(135deg, #eef2ff 0%, #ecfeff 100%);
-}
-
-/* Animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.6); }
-}
-
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.6s ease-out forwards;
+  background: linear-gradient(135deg, #eff6ff 0%, #ecfeff 100%);
 }
 
 /* Scrollbar */

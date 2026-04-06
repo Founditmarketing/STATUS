@@ -1,72 +1,44 @@
 import Link from "next/link";
 
-const plans = [
+const systems = [
   {
-    name: "Free",
-    price: "$0",
-    period: "forever",
-    description: "Perfect for individual developers exploring AI-powered coding.",
-    features: [
-      "1,000 AI completions/month",
-      "Basic code generation",
-      "Syntax highlighting for 50+ languages",
-      "Community support",
-      "VS Code extension compatibility",
-      "Git integration",
+    category: "Wall Mounted",
+    description: "Most popular. Sleek indoor unit mounts high on any wall.",
+    items: [
+      { name: "9K BTU Wall Mount", seer: "24 SEER2", area: "300-450 sq ft", price: "$1,899", features: ["Hyper Heat to -13°F", "WiFi Control", "Inverter Compressor"] },
+      { name: "12K BTU Wall Mount", seer: "24 SEER2", area: "450-650 sq ft", price: "$2,099", features: ["Hyper Heat to -13°F", "WiFi Control", "Inverter Compressor"] },
+      { name: "18K BTU Wall Mount", seer: "22 SEER2", area: "650-900 sq ft", price: "$2,499", features: ["Hyper Heat to -13°F", "WiFi Control", "Inverter Compressor"] },
+      { name: "24K BTU Wall Mount", seer: "21 SEER2", area: "900-1,200 sq ft", price: "$2,899", features: ["Hyper Heat to -13°F", "WiFi Control", "Inverter Compressor"] },
+      { name: "36K BTU Wall Mount", seer: "20 SEER2", area: "1,200-1,500 sq ft", price: "$3,499", features: ["Hyper Heat to -13°F", "WiFi Control", "Inverter Compressor"] },
     ],
-    cta: "Get Started Free",
-    popular: false,
   },
   {
-    name: "Pro",
-    price: "$29",
-    period: "/month",
-    description: "For professional developers who want unlimited AI power.",
-    features: [
-      "Unlimited AI completions",
-      "Advanced code generation & refactoring",
-      "Real-time AI debugger",
-      "Natural language to code",
-      "Auto-generated tests",
-      "Priority support",
-      "Custom AI model selection",
-      "Local AI processing option",
+    category: "Ceiling Cassette",
+    description: "Flush-mount in ceiling with 360° airflow distribution.",
+    items: [
+      { name: "12K BTU Cassette", seer: "22 SEER2", area: "450-650 sq ft", price: "$2,699", features: ["4-Way Airflow", "WiFi Control", "Auto Swing Louvers"] },
+      { name: "18K BTU Cassette", seer: "21 SEER2", area: "650-900 sq ft", price: "$3,199", features: ["4-Way Airflow", "WiFi Control", "Auto Swing Louvers"] },
+      { name: "24K BTU Cassette", seer: "20 SEER2", area: "900-1,200 sq ft", price: "$3,699", features: ["4-Way Airflow", "WiFi Control", "Auto Swing Louvers"] },
     ],
-    cta: "Start Free Trial",
-    popular: true,
   },
   {
-    name: "Team",
-    price: "$49",
-    period: "/user/month",
-    description: "For teams that want to collaborate with AI superpowers.",
-    features: [
-      "Everything in Pro",
-      "Multiplayer editing",
-      "AI-mediated code reviews",
-      "Shared AI context across team",
-      "Centralized billing & admin",
-      "SSO/SAML authentication",
-      "Custom AI training on your codebase",
-      "Dedicated support engineer",
+    category: "Concealed Ducted",
+    description: "Hidden behind walls/ceilings. Only a discreet vent is visible.",
+    items: [
+      { name: "12K BTU Ducted", seer: "21 SEER2", area: "450-650 sq ft", price: "$2,299", features: ["Low Profile Design", "WiFi Control", "External Static Pressure"] },
+      { name: "18K BTU Ducted", seer: "20 SEER2", area: "650-900 sq ft", price: "$2,799", features: ["Low Profile Design", "WiFi Control", "External Static Pressure"] },
+      { name: "24K BTU Ducted", seer: "20 SEER2", area: "900-1,200 sq ft", price: "$3,299", features: ["Low Profile Design", "WiFi Control", "External Static Pressure"] },
     ],
-    cta: "Contact Sales",
-    popular: false,
   },
 ];
 
-const comparison = [
-  { feature: "AI Code Completion", free: "1K/month", pro: "Unlimited", team: "Unlimited" },
-  { feature: "Languages Supported", free: "50+", pro: "50+", team: "50+" },
-  { feature: "Natural Language to Code", free: "Basic", pro: "Advanced", team: "Advanced" },
-  { feature: "AI Debugger", free: "—", pro: "Full", team: "Full" },
-  { feature: "Auto-Generated Tests", free: "—", pro: "Full", team: "Full" },
-  { feature: "Multiplayer Editing", free: "—", pro: "—", team: "Full" },
-  { feature: "AI Code Reviews", free: "—", pro: "Basic", team: "Full" },
-  { feature: "Custom AI Models", free: "—", pro: "Full", team: "Full" },
-  { feature: "Local Processing", free: "—", pro: "Full", team: "Full" },
-  { feature: "SSO/SAML", free: "—", pro: "—", team: "Full" },
-  { feature: "Support", free: "Community", pro: "Priority", team: "Dedicated" },
+const accessories = [
+  { name: "25ft Pre-Charged Lineset", price: "$249", desc: "Quick-connect, factory sealed with R410A" },
+  { name: "50ft Pre-Charged Lineset", price: "$349", desc: "Extended length for remote outdoor unit placement" },
+  { name: "Wall Mounting Bracket", price: "$79", desc: "Heavy-duty bracket for outdoor condenser unit" },
+  { name: "Line Set Cover Kit", price: "$89", desc: "Paintable PVC cover to hide exterior lines" },
+  { name: "Condensate Pump", price: "$69", desc: "For installations where gravity drain isn't possible" },
+  { name: "WiFi Thermostat Upgrade", price: "$129", desc: "Smart thermostat with scheduling and geofencing" },
 ];
 
 export default function Products() {
@@ -75,121 +47,116 @@ export default function Products() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 gradient-bg-subtle" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 text-center">
           <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight mb-6">
-            Simple, Transparent <span className="gradient-text">Pricing</span>
+            Shop <span className="gradient-text">Mini-Split Systems</span>
           </h1>
-          <p className="text-lg text-muted max-w-2xl mx-auto">
-            Start free, upgrade when you need more power. No hidden fees, no surprise charges.
+          <p className="text-lg text-muted max-w-2xl mx-auto mb-6">
+            Every system ships free in 3 days with everything you need for DIY installation. Pre-charged linesets included.
           </p>
+          <div className="flex flex-wrap justify-center gap-4 text-sm text-muted">
+            {["Free 3-Day Shipping", "45-Day Returns", "7-Year Warranty", "Pre-Charged Linesets"].map((item) => (
+              <span key={item} className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full border border-border">
+                <svg className="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                {item}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Pricing Cards */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {plans.map((plan) => (
-              <div
-                key={plan.name}
-                className={`rounded-2xl p-8 border ${
-                  plan.popular
-                    ? "border-primary shadow-xl shadow-primary/10 relative"
-                    : "border-border"
-                }`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="gradient-bg text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full">
-                      Most Popular
-                    </span>
+      {/* Product Listings */}
+      {systems.map((category) => (
+        <section key={category.category} className="py-16 bg-white border-b border-border last:border-b-0">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-10">
+              <h2 className="text-3xl font-extrabold mb-2">{category.category} <span className="gradient-text">Systems</span></h2>
+              <p className="text-muted">{category.description}</p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {category.items.map((item) => (
+                <div key={item.name} className="bg-surface rounded-2xl border border-border hover:border-primary/30 hover:shadow-lg transition-all overflow-hidden">
+                  {/* Image placeholder */}
+                  <div className="h-44 bg-gradient-to-br from-blue-50 to-sky-100 flex items-center justify-center">
+                    <svg className="w-12 h-12 text-primary/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
                   </div>
-                )}
-                <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
-                <div className="flex items-baseline gap-1 mb-2">
-                  <span className="text-4xl font-extrabold">{plan.price}</span>
-                  <span className="text-muted text-sm">{plan.period}</span>
+
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="font-bold">{item.name}</h3>
+                      <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full">{item.seer}</span>
+                    </div>
+                    <p className="text-sm text-muted mb-4">Covers {item.area}</p>
+
+                    <ul className="space-y-2 mb-6">
+                      {item.features.map((f) => (
+                        <li key={f} className="flex items-center gap-2 text-sm text-muted">
+                          <svg className="w-3.5 h-3.5 text-success shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="flex items-center justify-between">
+                      <span className="text-2xl font-extrabold text-primary">{item.price}</span>
+                      <button className="gradient-bg text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity">
+                        Add to Cart
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-muted text-sm mb-8">{plan.description}</p>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
 
-                <Link
-                  href="#"
-                  className={`block text-center py-3 px-6 rounded-xl font-semibold transition-all ${
-                    plan.popular
-                      ? "gradient-bg text-white hover:opacity-90"
-                      : "bg-surface border border-border text-foreground hover:border-primary/30"
-                  }`}
-                >
-                  {plan.cta}
-                </Link>
+      {/* Accessories */}
+      <section className="py-16 bg-surface">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-extrabold mb-2">Accessories &amp; <span className="gradient-text">Add-Ons</span></h2>
+          <p className="text-muted mb-10">Everything else you might need for your installation.</p>
 
-                <ul className="mt-8 space-y-3">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3 text-sm">
-                      <svg className="w-5 h-5 text-success shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {accessories.map((acc) => (
+              <div key={acc.name} className="bg-white rounded-xl p-6 border border-border hover:border-primary/30 transition-colors">
+                <h3 className="font-bold mb-1">{acc.name}</h3>
+                <p className="text-sm text-muted mb-4">{acc.desc}</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-lg font-bold text-primary">{acc.price}</span>
+                  <button className="text-primary text-sm font-semibold hover:underline">Add to Cart</button>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Feature Comparison */}
-      <section className="py-20 bg-surface">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold text-center mb-12">
-            Compare <span className="gradient-text">Plans</span>
-          </h2>
-
-          <div className="bg-white rounded-2xl border border-border overflow-hidden">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left p-4 text-sm font-semibold">Feature</th>
-                  <th className="text-center p-4 text-sm font-semibold">Free</th>
-                  <th className="text-center p-4 text-sm font-semibold text-primary">Pro</th>
-                  <th className="text-center p-4 text-sm font-semibold">Team</th>
-                </tr>
-              </thead>
-              <tbody>
-                {comparison.map((row, i) => (
-                  <tr key={row.feature} className={i % 2 === 0 ? "bg-surface/50" : ""}>
-                    <td className="p-4 text-sm">{row.feature}</td>
-                    <td className="p-4 text-sm text-center text-muted">{row.free}</td>
-                    <td className="p-4 text-sm text-center font-medium">{row.pro}</td>
-                    <td className="p-4 text-sm text-center text-muted">{row.team}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* Enterprise CTA */}
-      <section className="py-20 bg-white">
+      {/* Bottom CTA */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="gradient-bg rounded-3xl p-12 sm:p-16 text-center text-white relative overflow-hidden">
+          <div className="gradient-bg rounded-3xl p-12 text-center text-white relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
             <div className="relative">
-              <h2 className="text-4xl font-extrabold mb-4">Need Enterprise?</h2>
-              <p className="text-lg text-white/80 max-w-xl mx-auto mb-8">
-                Custom deployment, dedicated infrastructure, SLA guarantees, and hands-on onboarding for large organizations.
+              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">Not Sure Which System?</h2>
+              <p className="text-white/80 max-w-lg mx-auto mb-6">
+                Use our free sizing tool to find the perfect mini-split for your space, or call us for expert advice.
               </p>
-              <Link
-                href="/support"
-                className="bg-white text-primary font-semibold px-8 py-4 rounded-xl hover:bg-white/90 transition-colors inline-flex items-center gap-2"
-              >
-                Talk to Sales
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </Link>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link href="/tools" className="bg-white text-primary font-semibold px-6 py-3 rounded-xl hover:bg-white/90 transition-colors">
+                  Size My System
+                </Link>
+                <a href="tel:+18001234567" className="border-2 border-white/30 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/10 transition-colors">
+                  Call (800) 123-4567
+                </a>
+              </div>
             </div>
           </div>
         </div>

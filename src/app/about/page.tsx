@@ -1,42 +1,26 @@
 import Link from "next/link";
 
-const team = [
-  { name: "Alex Rivera", role: "CEO & Co-Founder", bio: "Former Google Brain researcher. Passionate about making AI accessible to every developer." },
-  { name: "Jordan Kim", role: "CTO & Co-Founder", bio: "Built compiler infrastructure at Meta. Believes the future of coding is conversational." },
-  { name: "Priya Patel", role: "VP of Engineering", bio: "Led developer tools at Stripe. Focused on building tools that developers actually love." },
-  { name: "Sam Okafor", role: "Head of AI Research", bio: "PhD in ML from Stanford. Pioneering context-aware code generation models." },
-];
-
 const values = [
   {
-    title: "Developer First",
-    description: "Every decision starts with the question: does this make developers' lives better? We build tools we want to use ourselves.",
-    icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
+    title: "Quality First",
+    description: "We use the same components as top-tier HVAC brands. Every unit is factory-tested before shipping.",
+    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
   },
   {
-    title: "Open by Default",
-    description: "Open source core, open standards, open community. We believe the best tools are built in the open.",
-    icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064",
+    title: "DIY Empowerment",
+    description: "We believe homeowners shouldn't need to pay thousands for installation. Our systems are built to install yourself.",
+    icon: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z",
   },
   {
-    title: "Privacy Matters",
-    description: "Your code is yours. We never train on your private repositories without explicit consent. Local-first by design.",
-    icon: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z",
-  },
-  {
-    title: "Ship Fast, Stay Reliable",
-    description: "We release weekly but never compromise on stability. Every feature ships with comprehensive testing and monitoring.",
+    title: "Energy Efficiency",
+    description: "Our systems help reduce energy consumption by up to 60% compared to traditional HVAC, saving money and the planet.",
     icon: "M13 10V3L4 14h7v7l9-11h-7z",
   },
-];
-
-const milestones = [
-  { year: "2023", event: "Founded in San Francisco by AI researchers and developer tool veterans" },
-  { year: "2023", event: "Raised $12M seed round led by Sequoia and a16z" },
-  { year: "2024", event: "Launched public beta — 10,000 developers signed up in the first week" },
-  { year: "2024", event: "Series A: $45M to accelerate AI model development and hiring" },
-  { year: "2025", event: "Reached 50,000+ active developers across 120 countries" },
-  { year: "2026", event: "Launched Team & Enterprise plans. Opened European HQ in London" },
+  {
+    title: "Customer Support",
+    description: "Real HVAC experts available by phone during your installation and for the lifetime of your system.",
+    icon: "M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z",
+  },
 ];
 
 export default function About() {
@@ -48,10 +32,10 @@ export default function About() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
           <div className="max-w-3xl">
             <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight mb-6">
-              Building the Future of <span className="gradient-text">Development</span>
+              About <span className="gradient-text">STATUS</span>
             </h1>
             <p className="text-lg text-muted leading-relaxed">
-              We started Antigravity because we believe AI should amplify developers, not replace them. Our mission is to give every developer superpowers — making coding faster, more creative, and more fun.
+              We started STATUS because we believed homeowners deserve professional-grade HVAC at fair prices. No more paying thousands in labor for something you can do yourself in a few hours.
             </p>
           </div>
         </div>
@@ -64,21 +48,21 @@ export default function About() {
             <div>
               <span className="text-primary font-semibold text-sm uppercase tracking-wider">Our Mission</span>
               <h2 className="text-4xl font-extrabold tracking-tight mt-3 mb-6">
-                Make Every Developer <span className="gradient-text">10x More Productive</span>
+                Make Comfort <span className="gradient-text">Affordable</span>
               </h2>
               <p className="text-muted leading-relaxed mb-6">
-                The best developers aren&apos;t just fast typists — they&apos;re great thinkers. Antigravity handles the mechanical parts of coding so you can focus on architecture, creativity, and solving real problems.
+                The HVAC industry has been overcharging homeowners for decades. A system that costs $2,000 in parts shouldn&apos;t cost $8,000 installed. We engineered STATUS systems specifically for DIY installation — pre-charged linesets, quick-connect fittings, and comprehensive guides that make professional-quality installation accessible to anyone.
               </p>
               <p className="text-muted leading-relaxed">
-                We&apos;re building an AI that understands not just syntax, but intent. An IDE that&apos;s not just a text editor, but a true coding partner.
+                Every STATUS system is engineered and assembled in the USA using premium components. We stand behind every unit with a 7-year compressor warranty and live support from real HVAC experts.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-6">
               {[
-                { value: "50K+", label: "Active Developers" },
-                { value: "120+", label: "Countries" },
-                { value: "2M+", label: "AI Completions/Day" },
-                { value: "99.9%", label: "Uptime" },
+                { value: "10,000+", label: "Systems Installed" },
+                { value: "49", label: "States Served" },
+                { value: "$30M+", label: "Customer Savings" },
+                { value: "4.8/5", label: "Customer Rating" },
               ].map((stat) => (
                 <div key={stat.label} className="bg-surface rounded-2xl p-6 text-center border border-border">
                   <div className="text-3xl font-extrabold gradient-text mb-1">{stat.value}</div>
@@ -95,7 +79,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-4xl font-extrabold tracking-tight mb-4">
-              Our <span className="gradient-text">Values</span>
+              What We <span className="gradient-text">Stand For</span>
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
@@ -114,47 +98,28 @@ export default function About() {
         </div>
       </section>
 
-      {/* Team */}
+      {/* Warranty & Guarantees */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-4xl font-extrabold tracking-tight mb-4">
-              Meet the <span className="gradient-text">Team</span>
+              Our <span className="gradient-text">Guarantees</span>
             </h2>
-            <p className="text-lg text-muted">Built by developers, for developers.</p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member) => (
-              <div key={member.name} className="text-center">
-                <div className="w-24 h-24 rounded-full gradient-bg mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-white">
-                    {member.name.split(" ").map((n) => n[0]).join("")}
-                  </span>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { title: "7-Year Compressor Warranty", description: "Our compressors are built to last. If anything goes wrong in the first 7 years, we replace it free.", icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
+              { title: "45-Day Satisfaction Guarantee", description: "Not happy? Return your system within 45 days for a full refund. No questions asked.", icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" },
+              { title: "Free 3-Day Shipping", description: "Every system ships free via expedited 3-day delivery anywhere in the continental US.", icon: "M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" },
+            ].map((item) => (
+              <div key={item.title} className="text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mb-4">
+                  <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
+                  </svg>
                 </div>
-                <h3 className="font-bold">{member.name}</h3>
-                <p className="text-primary text-sm font-medium mb-2">{member.role}</p>
-                <p className="text-muted text-sm leading-relaxed">{member.bio}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section className="py-20 bg-surface">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-extrabold tracking-tight text-center mb-16">
-            Our <span className="gradient-text">Journey</span>
-          </h2>
-          <div className="space-y-8">
-            {milestones.map((milestone, i) => (
-              <div key={i} className="flex gap-6">
-                <div className="shrink-0">
-                  <span className="inline-block bg-primary/10 text-primary font-bold text-sm px-3 py-1 rounded-full">
-                    {milestone.year}
-                  </span>
-                </div>
-                <p className="text-muted leading-relaxed pt-0.5">{milestone.event}</p>
+                <h3 className="text-lg font-bold mb-2">{item.title}</h3>
+                <p className="text-muted text-sm leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>
@@ -162,20 +127,20 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="gradient-bg rounded-3xl p-12 sm:p-16 text-center text-white relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
             <div className="relative">
-              <h2 className="text-4xl font-extrabold mb-4">Join Our Team</h2>
+              <h2 className="text-4xl font-extrabold mb-4">Ready to Save Thousands?</h2>
               <p className="text-lg text-white/80 max-w-xl mx-auto mb-8">
-                We&apos;re hiring engineers, researchers, and designers who want to shape the future of software development.
+                Join 10,000+ homeowners who&apos;ve installed STATUS mini-splits and saved an average of $3,000+.
               </p>
               <Link
-                href="#"
+                href="/products"
                 className="bg-white text-primary font-semibold px-8 py-4 rounded-xl hover:bg-white/90 transition-colors inline-flex items-center gap-2"
               >
-                View Open Positions
+                Shop Systems
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>

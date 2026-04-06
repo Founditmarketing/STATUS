@@ -2,38 +2,38 @@ import Link from "next/link";
 
 const supportOptions = [
   {
-    title: "Documentation",
-    description: "Comprehensive guides, API references, and tutorials to help you get the most out of Antigravity.",
-    icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253",
-    cta: "Browse Docs",
+    title: "Installation Guides",
+    description: "Step-by-step video and written guides for every system type. Watch before, during, or after your install.",
+    icon: "M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z",
+    cta: "Watch Guides",
   },
   {
-    title: "Community Discord",
-    description: "Join 10,000+ developers sharing tips, getting help, and building together.",
-    icon: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z",
-    cta: "Join Discord",
+    title: "Live Phone Support",
+    description: "Talk to a real HVAC expert. Available Monday-Friday, 9am-5pm MST. We'll walk you through your install.",
+    icon: "M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z",
+    cta: "Call (800) 123-4567",
   },
   {
-    title: "GitHub Issues",
-    description: "Report bugs, request features, and contribute to Antigravity's open-source core.",
-    icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
-    cta: "Open Issue",
+    title: "Warranty Registration",
+    description: "Register your system to activate your 7-year compressor warranty and 5-year parts warranty.",
+    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+    cta: "Register Warranty",
   },
   {
     title: "Email Support",
-    description: "Pro and Team subscribers get priority email support with guaranteed response times.",
+    description: "Send us a detailed question or issue and we'll respond within 24 hours with a solution.",
     icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
-    cta: "Contact Support",
+    cta: "Email Us",
   },
 ];
 
-const guides = [
-  { title: "Getting Started", description: "Install and configure Antigravity in under 5 minutes." },
-  { title: "AI Code Completion", description: "Master context-aware suggestions and boost your productivity." },
-  { title: "Natural Language Coding", description: "Learn to describe features in English and let AI build them." },
-  { title: "Debugging with AI", description: "Use the AI debugger to find and fix bugs automatically." },
-  { title: "Team Collaboration", description: "Set up multiplayer editing and AI-powered code reviews." },
-  { title: "Extensions & Plugins", description: "Extend Antigravity with custom integrations and tools." },
+const troubleshooting = [
+  { title: "System won't turn on", description: "Check breaker, verify power connections at disconnect, confirm indoor/outdoor wiring." },
+  { title: "Flashing error codes", description: "Look up your specific error code in your manual or contact us for diagnostic help." },
+  { title: "Not cooling/heating enough", description: "Verify correct sizing for your space. Check filters, airflow, and outdoor unit clearance." },
+  { title: "Water leaking from indoor unit", description: "Inspect condensate drain line for clogs. Ensure proper installation angle for drainage." },
+  { title: "Unusual noise from outdoor unit", description: "Check for debris around the unit. Verify mounting bracket is secure and level." },
+  { title: "WiFi module not connecting", description: "Reset the module, ensure your router is on 2.4GHz, and re-pair through the app." },
 ];
 
 export default function Support() {
@@ -46,23 +46,12 @@ export default function Support() {
           <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight mb-6">
             How Can We <span className="gradient-text">Help?</span>
           </h1>
-          <p className="text-lg text-muted max-w-2xl mx-auto mb-8">
-            Get the support you need to build amazing things with Antigravity.
+          <p className="text-lg text-muted max-w-2xl mx-auto mb-4">
+            Real HVAC experts ready to help you size, install, and maintain your STATUS system.
           </p>
-
-          {/* Search bar */}
-          <div className="max-w-xl mx-auto">
-            <div className="relative">
-              <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-              <input
-                type="text"
-                placeholder="Search docs, guides, and FAQs..."
-                className="w-full pl-12 pr-4 py-4 rounded-xl border border-border bg-white text-foreground placeholder-muted focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all"
-              />
-            </div>
-          </div>
+          <p className="text-primary font-semibold">
+            Available Mon-Fri, 9am-5pm MST &mdash; (800) 123-4567
+          </p>
         </div>
       </section>
 
@@ -71,10 +60,7 @@ export default function Support() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {supportOptions.map((option) => (
-              <div
-                key={option.title}
-                className="bg-surface rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-lg transition-all"
-              >
+              <div key={option.title} className="bg-surface rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-lg transition-all">
                 <div className="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d={option.icon} />
@@ -91,22 +77,18 @@ export default function Support() {
         </div>
       </section>
 
-      {/* Popular Guides */}
+      {/* Troubleshooting */}
       <section className="py-20 bg-surface">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-center mb-12">
-            Popular <span className="gradient-text">Guides</span>
+            Common <span className="gradient-text">Troubleshooting</span>
           </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {guides.map((guide) => (
-              <Link
-                key={guide.title}
-                href="#"
-                className="bg-white rounded-xl p-6 border border-border hover:border-primary/30 hover:shadow-md transition-all group"
-              >
-                <h3 className="font-bold mb-2 group-hover:text-primary transition-colors">{guide.title}</h3>
-                <p className="text-muted text-sm leading-relaxed">{guide.description}</p>
-              </Link>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {troubleshooting.map((item) => (
+              <div key={item.title} className="bg-white rounded-xl p-6 border border-border">
+                <h3 className="font-bold mb-2">{item.title}</h3>
+                <p className="text-muted text-sm leading-relaxed">{item.description}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -117,10 +99,10 @@ export default function Support() {
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-extrabold mb-4">
-              Get in <span className="gradient-text">Touch</span>
+              Send Us a <span className="gradient-text">Message</span>
             </h2>
             <p className="text-muted">
-              Can&apos;t find what you need? Send us a message and we&apos;ll get back to you within 24 hours.
+              Can&apos;t find what you need? We&apos;ll get back to you within 24 hours.
             </p>
           </div>
 
@@ -128,63 +110,35 @@ export default function Support() {
             <div className="grid sm:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-2">Name</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-white focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all"
-                  placeholder="Your name"
-                />
+                <input type="text" className="w-full px-4 py-3 rounded-xl border border-border bg-white focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Your name" />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2">Email</label>
-                <input
-                  type="email"
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-white focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all"
-                  placeholder="you@company.com"
-                />
+                <input type="email" className="w-full px-4 py-3 rounded-xl border border-border bg-white focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="you@email.com" />
               </div>
             </div>
             <div>
               <label className="block text-sm font-medium mb-2">Subject</label>
               <select className="w-full px-4 py-3 rounded-xl border border-border bg-white focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all text-muted">
-                <option>General Question</option>
-                <option>Bug Report</option>
-                <option>Feature Request</option>
-                <option>Enterprise Inquiry</option>
-                <option>Partnership</option>
+                <option>Pre-Purchase Question</option>
+                <option>Installation Help</option>
+                <option>Troubleshooting</option>
+                <option>Warranty Claim</option>
+                <option>Return / Exchange</option>
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Message</label>
-              <textarea
-                rows={5}
-                className="w-full px-4 py-3 rounded-xl border border-border bg-white focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all resize-none"
-                placeholder="Tell us how we can help..."
-              />
+              <label className="block text-sm font-medium mb-2">Order Number (optional)</label>
+              <input type="text" className="w-full px-4 py-3 rounded-xl border border-border bg-white focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="e.g. STATUS-12345" />
             </div>
-            <button
-              type="submit"
-              className="w-full gradient-bg text-white py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
-            >
+            <div>
+              <label className="block text-sm font-medium mb-2">Message</label>
+              <textarea rows={5} className="w-full px-4 py-3 rounded-xl border border-border bg-white focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all resize-none" placeholder="Tell us how we can help..." />
+            </div>
+            <button type="submit" className="w-full gradient-bg text-white py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity">
               Send Message
             </button>
           </form>
-        </div>
-      </section>
-
-      {/* Status */}
-      <section className="py-16 bg-surface border-t border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 bg-success/10 text-success px-4 py-2 rounded-full text-sm font-medium mb-4">
-            <span className="w-2 h-2 bg-success rounded-full animate-pulse" />
-            All Systems Operational
-          </div>
-          <p className="text-muted text-sm">
-            99.9% uptime over the last 90 days. Check our{" "}
-            <Link href="#" className="text-primary hover:underline">
-              status page
-            </Link>{" "}
-            for real-time updates.
-          </p>
         </div>
       </section>
     </>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,15 +9,10 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const jetbrains = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "Antigravity - AI-Powered IDE",
+  title: "STATUS — Professional HVAC. DIY Prices.",
   description:
-    "The AI-powered IDE that writes, debugs, and ships code with you. Build 10x faster with intelligent code completion, real-time debugging, and seamless collaboration.",
+    "DIY ductless mini-split heat pump systems. Up to 24 SEER2 efficiency. Save $3,000+ vs professional installation. Pre-charged linesets. Free 3-day shipping. 7-year warranty.",
 };
 
 export default function RootLayout({
@@ -26,10 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${jetbrains.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <Navbar />
         <main className="flex-1">{children}</main>

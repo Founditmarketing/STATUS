@@ -4,44 +4,44 @@ import { useState } from "react";
 
 const faqs = [
   {
-    question: "What is Antigravity?",
+    question: "What is a ductless mini-split system?",
     answer:
-      "Antigravity is an AI-powered integrated development environment (IDE) that combines traditional code editing with advanced AI capabilities. It helps you write, debug, test, and ship code faster using natural language prompts, intelligent code completion, and automated debugging.",
+      "A ductless mini-split is a heating and cooling system that doesn't require ductwork. It consists of an outdoor compressor/condenser unit connected to one or more indoor air-handling units via a small conduit. They're incredibly efficient, quiet, and perfect for homes without existing ductwork.",
   },
   {
-    question: "Is my code secure with Antigravity?",
+    question: "Can I really install this myself?",
     answer:
-      "Absolutely. Antigravity is SOC 2 compliant and your code never leaves your local machine by default. AI processing can be configured to run locally or through our encrypted cloud — you're always in control of your data.",
+      "Yes! STATUS systems are engineered specifically for DIY installation. Our pre-charged linesets use quick-connect fittings that require no special tools, vacuum pumps, or HVAC certifications. Most homeowners complete the installation in 2-3 hours with basic hand tools. We also provide step-by-step video guides and live phone support.",
   },
   {
-    question: "Which programming languages are supported?",
+    question: "How do I know what size system I need?",
     answer:
-      "Antigravity supports 50+ programming languages including TypeScript, JavaScript, Python, Rust, Go, Java, C++, Ruby, PHP, Swift, Kotlin, and many more. Our AI models are trained on production code across all major languages and frameworks.",
+      "System sizing depends on your room's square footage, ceiling height, insulation quality, climate zone, and sun exposure. Use our free BTU Calculator tool or our Manual J sizing guide to determine the perfect system size. Our support team is also available to help you choose the right system.",
   },
   {
-    question: "How does the free tier work?",
+    question: "What SEER2 rating do your systems have?",
     answer:
-      "The free tier gives you full access to the IDE with 1,000 AI completions per month, basic debugging, and community support. No credit card required. You can upgrade to Pro or Team plans anytime for unlimited AI completions and advanced features.",
+      "Our systems range from 20 to 24 SEER2, making them among the most efficient on the market. Higher SEER2 ratings mean lower energy bills — our 24 SEER2 units can save you up to 60% on heating and cooling costs compared to traditional HVAC systems.",
   },
   {
-    question: "Can I use Antigravity with my existing tools?",
+    question: "What is a pre-charged lineset?",
     answer:
-      "Yes! Antigravity integrates with Git, GitHub, GitLab, Bitbucket, Docker, Kubernetes, and hundreds of other tools through our extension marketplace. It also supports VS Code extensions for a seamless transition.",
+      "A pre-charged lineset comes factory-filled with refrigerant and uses quick-connect fittings. This eliminates the need for a vacuum pump, manifold gauges, or an HVAC technician. Simply connect the lineset between the indoor and outdoor units, tighten the fittings, and you're ready to go.",
   },
   {
-    question: "How accurate is the AI code generation?",
+    question: "What warranty do you offer?",
     answer:
-      "Our AI generates production-ready code with proper types, error handling, and tests. It learns your codebase's patterns and conventions to match your team's style. You always review and approve generated code before it's committed.",
+      "All STATUS systems come with a 7-year compressor warranty and a 5-year parts warranty. We also offer a 45-day satisfaction guarantee — if you're not happy with your system, return it for a full refund.",
   },
   {
-    question: "Is there a team plan for organizations?",
+    question: "Do mini-splits work in cold climates?",
     answer:
-      "Yes, our Team and Enterprise plans include multiplayer editing, shared AI context, centralized billing, SSO/SAML authentication, admin controls, and priority support. Contact our sales team for custom enterprise pricing.",
+      "Absolutely. Our hyper-heat models are rated to operate efficiently down to -13°F (-25°C). They use advanced inverter compressor technology to maintain full heating capacity even in extreme cold, making them suitable for virtually any climate in the US and Canada.",
   },
   {
-    question: "How does Antigravity compare to GitHub Copilot or Cursor?",
+    question: "How much can I save vs professional installation?",
     answer:
-      "Antigravity goes beyond code completion. While Copilot focuses on inline suggestions and Cursor on AI chat, Antigravity provides a fully integrated experience — from natural language code generation to automated debugging, testing, and deployment. It's an entire AI-native IDE, not just a plugin.",
+      "On average, STATUS customers save $3,000 or more compared to hiring an HVAC contractor for a similar system. Professional installations typically cost $4,000-$8,000+ for a single-zone system. With STATUS, you get the same professional-grade equipment at a fraction of the cost.",
   },
 ];
 
@@ -56,37 +56,26 @@ export default function FAQ() {
             Frequently Asked <span className="gradient-text">Questions</span>
           </h2>
           <p className="text-lg text-muted">
-            Everything you need to know about Antigravity.
+            Everything you need to know about STATUS mini-split systems.
           </p>
         </div>
 
         <div className="space-y-3">
           {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl border border-border overflow-hidden"
-            >
+            <div key={index} className="bg-white rounded-xl border border-border overflow-hidden">
               <button
                 className="w-full flex items-center justify-between p-6 text-left hover:bg-surface/50 transition-colors"
-                onClick={() =>
-                  setOpenIndex(openIndex === index ? null : index)
-                }
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
                 <span className="font-semibold pr-4">{faq.question}</span>
                 <svg
-                  className={`w-5 h-5 text-muted shrink-0 transition-transform duration-200 ${
-                    openIndex === index ? "rotate-180" : ""
-                  }`}
+                  className={`w-5 h-5 text-muted shrink-0 transition-transform duration-200 ${openIndex === index ? "rotate-180" : ""}`}
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   strokeWidth={2}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M19 9l-7 7-7-7"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               {openIndex === index && (

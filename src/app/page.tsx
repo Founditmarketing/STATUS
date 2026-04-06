@@ -2,84 +2,87 @@ import Link from "next/link";
 import FAQ from "@/components/FAQ";
 
 const stats = [
-  { value: "10x", label: "Faster Development", icon: "M13 10V3L4 14h7v7l9-11h-7z" },
-  { value: "85%", label: "Less Debugging Time", icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" },
-  { value: "50+", label: "Languages Supported", icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" },
-  { value: "99.9%", label: "Uptime Guarantee", icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" },
+  { value: "$3,000+", label: "Average Savings", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
+  { value: "2-3 Hrs", label: "Install Time", icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" },
+  { value: "24 SEER2", label: "Peak Efficiency", icon: "M13 10V3L4 14h7v7l9-11h-7z" },
+  { value: "7 Year", label: "Compressor Warranty", icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
 ];
 
-const features = [
+const products = [
   {
-    title: "AI Code Completion",
-    description: "Context-aware suggestions that understand your entire codebase, not just the current file. Autocomplete that feels like mind-reading.",
-    icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z",
-    tag: "Core",
+    title: "Wall Mounted Systems",
+    description: "Our most popular option. Sleek, quiet, and efficient. Perfect for bedrooms, living rooms, and home offices.",
+    price: "Starting at $1,899",
+    specs: ["9K–36K BTU", "Up to 24 SEER2", "WiFi Control Included"],
+    image: "Wall Mount",
   },
   {
-    title: "Real-Time Debugger",
-    description: "AI-powered debugging that identifies root causes, suggests fixes, and can auto-patch issues before they reach production.",
-    icon: "M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
-    tag: "Pro",
+    title: "Ceiling Cassette Systems",
+    description: "Flush-mount design that blends seamlessly with your ceiling. 360° airflow for even temperature distribution.",
+    price: "Starting at $2,699",
+    specs: ["12K–48K BTU", "Up to 22 SEER2", "4-Way Airflow"],
+    image: "Cassette",
   },
   {
-    title: "Seamless Collaboration",
-    description: "Built-in multiplayer editing, AI-mediated code reviews, and real-time pair programming with your team or AI.",
-    icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
-    tag: "Team",
+    title: "Concealed Ducted Systems",
+    description: "Hidden behind walls or ceilings with only a discreet vent visible. Ideal for whole-home solutions.",
+    price: "Starting at $2,299",
+    specs: ["12K–36K BTU", "Up to 21 SEER2", "Low Profile Design"],
+    image: "Ducted",
   },
 ];
 
 const howItWorks = [
   {
     step: "01",
-    title: "Install in Seconds",
-    description: "Download Antigravity or use it in-browser. Connect your repos and you're ready to go.",
+    title: "Size Your Space",
+    description: "Use our free BTU calculator or Manual J sizing tool to find the perfect system for your room or home.",
   },
   {
     step: "02",
-    title: "Let AI Understand Your Code",
-    description: "Our AI indexes your entire codebase, learning patterns, dependencies, and architecture.",
+    title: "Shop & Order",
+    description: "Choose your system type and configuration. Everything ships free in 3 days with all parts included.",
   },
   {
     step: "03",
-    title: "Code with Superpowers",
-    description: "Get intelligent suggestions, auto-refactoring, natural language code generation, and more.",
+    title: "Install Yourself",
+    description: "Follow our step-by-step video guides. Pre-charged linesets mean no special tools or certifications needed.",
   },
   {
     step: "04",
-    title: "Ship with Confidence",
-    description: "AI-powered testing, security scanning, and deployment checks ensure quality at every step.",
+    title: "Save Year-Round",
+    description: "Enjoy lower energy bills with up to 24 SEER2 efficiency. Heat and cool for a fraction of the cost.",
   },
 ];
 
 const testimonials = [
   {
-    quote: "Antigravity completely changed how our team writes code. The AI suggestions are scarily accurate.",
-    name: "Sarah Chen",
-    role: "Engineering Lead",
+    quote: "Installed the 12K BTU wall unit in my garage workshop in about 2 hours. Works flawlessly even at -5°F. Incredible value.",
+    name: "Mike T.",
+    location: "Denver, CO",
     rating: 5,
   },
   {
-    quote: "I went from spending 40% of my time debugging to almost zero. The real-time debugger is magic.",
-    name: "Marcus Johnson",
-    role: "Senior Developer",
+    quote: "Saved over $4,000 compared to the quotes I got from local HVAC companies. The pre-charged lineset made installation a breeze.",
+    name: "Sarah L.",
+    location: "Minneapolis, MN",
     rating: 5,
   },
   {
-    quote: "The collaboration features alone are worth it. Add AI code generation and it's a no-brainer.",
-    name: "Elena Rodriguez",
-    role: "CTO, Startup",
+    quote: "We've installed 3 STATUS units in our home now. The ceiling cassette in the living room is whisper quiet and looks amazing.",
+    name: "Carlos R.",
+    location: "Seattle, WA",
     rating: 5,
   },
 ];
 
 const resources = [
-  { title: "Getting Started Guide", description: "Set up Antigravity and write your first AI-assisted code in minutes.", icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" },
-  { title: "API Documentation", description: "Extend Antigravity with custom plugins and integrations using our API.", icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" },
-  { title: "Video Tutorials", description: "Watch step-by-step walkthroughs of every feature and workflow.", icon: "M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" },
-  { title: "Language Support", description: "See the full list of 50+ supported languages and frameworks.", icon: "M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" },
-  { title: "Blog & Updates", description: "Stay up to date with new features, tips, and engineering insights.", icon: "M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" },
-  { title: "Community Forum", description: "Join thousands of developers sharing tips, plugins, and workflows.", icon: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" },
+  { title: "Sizing Guide", description: "Learn how to properly size your mini-split system for maximum efficiency and comfort.", icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" },
+  { title: "Installation Guide", description: "Step-by-step instructions with photos and video for every system type we sell.", icon: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" },
+  { title: "Brand Comparison", description: "See how STATUS stacks up against MrCool, Senville, Pioneer, and other DIY brands.", icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" },
+  { title: "BTU Calculator", description: "Input your room dimensions and get an instant BTU recommendation for your space.", icon: "M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" },
+  { title: "Blog & Guides", description: "Tips on energy efficiency, maintenance, rebate programs, and getting the most from your system.", icon: "M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" },
+  { title: "FAQ", description: "Answers to the most common questions about our systems, installation, and warranties.", icon: "M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
 ];
 
 export default function Home() {
@@ -88,86 +91,56 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 gradient-bg-subtle" />
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-28">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-                <span className="w-2 h-2 bg-success rounded-full animate-pulse" />
-                Now with GPT-5 &amp; Claude 4 Integration
-              </div>
-
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
-                Code at the
-                <br />
-                <span className="gradient-text">Speed of Thought</span>
-              </h1>
-
-              <p className="text-lg text-muted max-w-lg mb-8 leading-relaxed">
-                Antigravity is the AI-powered IDE that writes, debugs, and ships
-                code with you. Build 10x faster with intelligent code completion,
-                real-time debugging, and seamless collaboration.
-              </p>
-
-              <div className="flex flex-wrap gap-4 mb-8">
-                <Link
-                  href="/products"
-                  className="gradient-bg text-white px-8 py-4 rounded-xl text-base font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-2"
-                >
-                  Start Building Free
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </Link>
-                <Link
-                  href="/tools"
-                  className="bg-white border-2 border-border text-foreground px-8 py-4 rounded-xl text-base font-semibold hover:border-primary/30 transition-colors inline-flex items-center gap-2"
-                >
-                  Watch Demo
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </Link>
-              </div>
-
-              <div className="flex items-center gap-6 text-sm text-muted">
-                {["Free tier forever", "No credit card", "Cancel anytime"].map((item) => (
-                  <span key={item} className="flex items-center gap-1.5">
-                    <svg className="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    {item}
-                  </span>
-                ))}
-              </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <span className="w-2 h-2 bg-success rounded-full animate-pulse" />
+              Up to 24 SEER2 Efficiency
             </div>
 
-            {/* Code editor mockup */}
-            <div className="relative">
-              <div className="code-block animate-float">
-                <div className="code-block-header">
-                  <div className="code-dot bg-red-500" />
-                  <div className="code-dot bg-yellow-500" />
-                  <div className="code-dot bg-green-500" />
-                  <span className="text-white/40 text-xs ml-3 font-mono">app.tsx — Antigravity</span>
-                </div>
-                <div className="p-6 font-mono text-sm leading-7">
-                  <div><span className="text-purple-400">import</span> <span className="text-cyan-300">{"{ useAI }"}</span> <span className="text-purple-400">from</span> <span className="text-green-400">&apos;antigravity&apos;</span></div>
-                  <div className="mt-2"><span className="text-purple-400">const</span> <span className="text-blue-300">assistant</span> = <span className="text-yellow-300">useAI</span>()</div>
-                  <div className="mt-4"><span className="text-gray-500">{"// AI suggests the rest..."}</span></div>
-                  <div className="mt-2"><span className="text-purple-400">const</span> <span className="text-blue-300">result</span> = <span className="text-purple-400">await</span> <span className="text-blue-300">assistant</span>.<span className="text-yellow-300">generate</span>({"{"}</div>
-                  <div className="ml-4"><span className="text-cyan-300">prompt</span>: <span className="text-green-400">&apos;Build auth flow&apos;</span>,</div>
-                  <div className="ml-4"><span className="text-cyan-300">context</span>: <span className="text-green-400">&apos;full-project&apos;</span>,</div>
-                  <div className="ml-4"><span className="text-cyan-300">tests</span>: <span className="text-orange-400">true</span>,</div>
-                  <div>{"}"}</div>
-                  <div className="mt-4 bg-green-500/10 border border-green-500/20 rounded px-3 py-2">
-                    <span className="text-green-400">&#10003; AI generated 12 files, 47 tests passing</span>
-                  </div>
-                </div>
-              </div>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
+              Professional HVAC.
+              <br />
+              <span className="gradient-text">DIY Prices.</span>
+            </h1>
+
+            <p className="text-lg sm:text-xl text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
+              Save $3,000+ with our pre-charged, easy-install ductless mini-split systems. No HVAC certification needed. No special tools. Just comfort.
+            </p>
+
+            <div className="flex flex-wrap justify-center gap-4 mb-10">
+              <Link
+                href="/products"
+                className="gradient-bg text-white px-8 py-4 rounded-xl text-base font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-2"
+              >
+                Shop Mini Splits
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </Link>
+              <Link
+                href="/tools"
+                className="bg-white border-2 border-border text-foreground px-8 py-4 rounded-xl text-base font-semibold hover:border-primary/30 transition-colors inline-flex items-center gap-2"
+              >
+                Size My System
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+              </Link>
+            </div>
+
+            <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-muted">
+              {["Free 3-Day Shipping", "45-Day Satisfaction Guarantee", "7-Year Warranty"].map((item) => (
+                <span key={item} className="flex items-center gap-1.5">
+                  <svg className="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  {item}
+                </span>
+              ))}
             </div>
           </div>
         </div>
@@ -192,145 +165,172 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Product Categories */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">
-              Everything You Need to <span className="gradient-text">Build Faster</span>
+              Choose Your <span className="gradient-text">System</span>
             </h2>
             <p className="text-lg text-muted">
-              Antigravity combines the best of traditional IDEs with cutting-edge AI to supercharge every part of your workflow.
+              Every STATUS system comes complete with everything you need for a DIY installation. No extras to buy.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {features.map((feature) => (
+            {products.map((product) => (
               <div
-                key={feature.title}
-                className="group relative bg-surface rounded-2xl p-8 border border-border hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+                key={product.title}
+                className="group bg-surface rounded-2xl border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 overflow-hidden"
               >
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center">
-                    <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d={feature.icon} />
+                {/* Image placeholder */}
+                <div className="h-56 bg-gradient-to-br from-blue-50 to-sky-100 flex items-center justify-center">
+                  <div className="text-center">
+                    <svg className="w-16 h-16 text-primary/30 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
+                    <span className="text-primary/40 font-medium text-sm">{product.image}</span>
                   </div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-primary bg-primary/10 px-3 py-1 rounded-full">
-                    {feature.tag}
-                  </span>
                 </div>
-                <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                <p className="text-muted leading-relaxed">{feature.description}</p>
+
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">{product.title}</h3>
+                  <p className="text-muted text-sm leading-relaxed mb-4">{product.description}</p>
+
+                  <ul className="space-y-2 mb-6">
+                    {product.specs.map((spec) => (
+                      <li key={spec} className="flex items-center gap-2 text-sm">
+                        <svg className="w-4 h-4 text-success shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        {spec}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg font-bold text-primary">{product.price}</span>
+                    <Link href="/products" className="text-primary text-sm font-semibold hover:underline">
+                      Shop Now &rarr;
+                    </Link>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* AI-Powered Section */}
+      {/* DIY Installation Section */}
       <section className="py-24 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <span className="text-primary font-semibold text-sm uppercase tracking-wider">AI-First Development</span>
+              <span className="text-primary font-semibold text-sm uppercase tracking-wider">DIY Installation</span>
               <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight mt-3 mb-6">
-                Write Code in <span className="gradient-text">Natural Language</span>
+                Save Thousands. <span className="gradient-text">Install Yourself.</span>
               </h2>
               <p className="text-lg text-muted mb-8 leading-relaxed">
-                Stop context-switching between documentation and your editor. Just describe what you want in plain English and Antigravity builds it — with proper types, tests, and error handling.
+                Why pay $4,000–$8,000 for professional installation when you can do it yourself in a few hours? STATUS systems are engineered from the ground up for homeowner installation.
               </p>
               <ul className="space-y-4">
                 {[
-                  "Natural language to production-ready code",
-                  "Auto-generates unit and integration tests",
-                  "Understands your project's patterns and conventions",
-                  "Supports 50+ languages and frameworks",
+                  "Pre-charged linesets — no vacuum pump or gauges needed",
+                  "Quick-connect fittings — just tighten and go",
+                  "Step-by-step video installation guides",
+                  "Live phone support during your install",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-success mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-foreground">{item}</span>
+                    <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="code-block">
-              <div className="code-block-header">
-                <div className="code-dot bg-red-500" />
-                <div className="code-dot bg-yellow-500" />
-                <div className="code-dot bg-green-500" />
-                <span className="text-white/40 text-xs ml-3 font-mono">AI Chat — Antigravity</span>
-              </div>
-              <div className="p-6 space-y-4">
-                <div className="bg-primary/20 rounded-lg p-4">
-                  <p className="text-white/60 text-xs mb-1">You</p>
-                  <p className="text-white text-sm">Build a REST API for user management with JWT auth, rate limiting, and input validation</p>
-                </div>
-                <div className="bg-white/5 rounded-lg p-4">
-                  <p className="text-accent text-xs mb-1">Antigravity AI</p>
-                  <p className="text-white/80 text-sm mb-3">Generated 8 files with full test coverage:</p>
-                  <div className="font-mono text-xs space-y-1 text-white/50">
-                    <div>&#10003; routes/users.ts</div>
-                    <div>&#10003; middleware/auth.ts</div>
-                    <div>&#10003; middleware/rateLimit.ts</div>
-                    <div>&#10003; validators/user.schema.ts</div>
-                    <div>&#10003; tests/users.test.ts</div>
-                    <div className="text-green-400 mt-2">All 23 tests passing</div>
+            <div className="bg-white rounded-2xl border border-border p-8">
+              <h3 className="text-lg font-bold mb-6">What&apos;s In the Box</h3>
+              <div className="space-y-4">
+                {[
+                  { item: "Indoor Unit (Evaporator)", desc: "Wall mount, cassette, or ducted" },
+                  { item: "Outdoor Unit (Condenser)", desc: "Inverter compressor with hyper heat" },
+                  { item: "Pre-Charged Lineset", desc: "Quick-connect, factory sealed" },
+                  { item: "Mounting Hardware", desc: "Bracket, bolts, anchors, and template" },
+                  { item: "WiFi Control Module", desc: "Control from anywhere via app" },
+                  { item: "Remote Control", desc: "Backlit with timer and sleep mode" },
+                ].map((box) => (
+                  <div key={box.item} className="flex items-start gap-3 p-3 bg-surface rounded-lg">
+                    <svg className="w-5 h-5 text-primary mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                    <div>
+                      <p className="font-semibold text-sm">{box.item}</p>
+                      <p className="text-xs text-muted">{box.desc}</p>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Smart Debugging Section */}
+      {/* Pre-Charged Linesets Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1">
               <div className="bg-surface rounded-2xl border border-border p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse" />
-                  <span className="text-sm font-mono text-red-500">Bug Detected — Line 42</span>
-                </div>
-                <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4 mb-4 font-mono text-sm">
-                  <span className="text-red-400">TypeError: Cannot read property &apos;map&apos; of undefined</span>
-                </div>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full" />
-                  <span className="text-sm font-mono text-yellow-600">AI Analyzing Root Cause...</span>
-                </div>
-                <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4 font-mono text-sm">
-                  <p className="text-green-600 font-semibold mb-2">&#10003; Fix Applied</p>
-                  <p className="text-muted text-xs">Added null check and fallback empty array. Data fetching race condition resolved.</p>
+                <h3 className="text-lg font-bold mb-4">Traditional vs STATUS Install</h3>
+                <div className="space-y-4">
+                  {[
+                    { traditional: "Hire licensed HVAC tech ($150+/hr)", status: "DIY with basic hand tools" },
+                    { traditional: "Vacuum pump & manifold gauges", status: "Pre-charged quick-connect" },
+                    { traditional: "Brazing copper lines", status: "Tighten fittings by hand" },
+                    { traditional: "8-12 hours install time", status: "2-3 hours install time" },
+                    { traditional: "$4,000-$8,000+ total cost", status: "Starting at $1,899" },
+                  ].map((row, i) => (
+                    <div key={i} className="grid grid-cols-2 gap-4 text-sm">
+                      <div className="flex items-start gap-2 p-2 bg-red-50 rounded-lg">
+                        <svg className="w-4 h-4 text-red-400 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                        <span className="text-red-700">{row.traditional}</span>
+                      </div>
+                      <div className="flex items-start gap-2 p-2 bg-green-50 rounded-lg">
+                        <svg className="w-4 h-4 text-success mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        <span className="text-green-700">{row.status}</span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
 
             <div className="order-1 lg:order-2">
-              <span className="text-primary font-semibold text-sm uppercase tracking-wider">Smart Debugging</span>
+              <span className="text-primary font-semibold text-sm uppercase tracking-wider">Pre-Charged Technology</span>
               <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight mt-3 mb-6">
-                Bugs Found &amp; Fixed <span className="gradient-text">Automatically</span>
+                Quick-Connect <span className="gradient-text">Linesets</span>
               </h2>
               <p className="text-lg text-muted mb-8 leading-relaxed">
-                Our AI debugger doesn&apos;t just find problems — it understands why they happen and how to fix them. Get root cause analysis and one-click patches in real-time.
+                Our pre-charged linesets come factory-filled with R410A refrigerant and use quick-connect fittings. No vacuum pump. No manifold gauges. No HVAC certification. Just connect, tighten, and enjoy.
               </p>
               <ul className="space-y-4">
                 {[
-                  "Real-time error detection before runtime",
-                  "Root cause analysis with full stack traces",
-                  "One-click AI-generated patches",
-                  "Learn from fixes to prevent future bugs",
+                  "Factory-sealed with R410A refrigerant",
+                  "No brazing, soldering, or special tools",
+                  "Leak-tested at the factory",
+                  "Available in 16ft, 25ft, and 50ft lengths",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-success mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-foreground">{item}</span>
+                    <span>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -344,9 +344,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { title: "SOC 2 Compliant", description: "Enterprise-grade security. Your code never leaves your machine unless you want it to.", icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
-              { title: "Open Source Core", description: "Built on open standards with a thriving community of contributors and plugin developers.", icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" },
-              { title: "Trusted by 50K+ Devs", description: "Used by engineers at leading tech companies worldwide, from startups to Fortune 500.", icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" },
+              { title: "Energy Star Certified", description: "All STATUS systems meet or exceed Energy Star requirements for maximum efficiency and rebate eligibility.", icon: "M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" },
+              { title: "ETL Safety Listed", description: "Every unit is independently tested and certified to UL safety standards by Intertek (ETL).", icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
+              { title: "Assembled in the USA", description: "Engineered and assembled in our state-of-the-art facility, ensuring quality control at every step.", icon: "M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" },
             ].map((item) => (
               <div key={item.title} className="text-center">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mb-4">
@@ -367,10 +367,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">
-              Up and Running in <span className="gradient-text">Minutes</span>
+              How It <span className="gradient-text">Works</span>
             </h2>
             <p className="text-lg text-muted">
-              No complex setup. No steep learning curve. Just download and start coding with AI superpowers.
+              From sizing to saving — the whole process takes just a few hours.
             </p>
           </div>
 
@@ -391,19 +391,16 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">
-              Loved by <span className="gradient-text">Developers</span>
+              What Our Customers <span className="gradient-text">Say</span>
             </h2>
             <p className="text-lg text-muted">
-              Join thousands of developers who ship faster with Antigravity.
+              Thousands of homeowners have already made the switch to STATUS.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((t) => (
-              <div
-                key={t.name}
-                className="bg-white rounded-2xl p-8 border border-border hover:shadow-lg transition-shadow"
-              >
+              <div key={t.name} className="bg-white rounded-2xl p-8 border border-border hover:shadow-lg transition-shadow">
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: t.rating }).map((_, i) => (
                     <svg key={i} className="w-5 h-5 text-warning" fill="currentColor" viewBox="0 0 20 20">
@@ -414,7 +411,7 @@ export default function Home() {
                 <p className="text-foreground leading-relaxed mb-6">&ldquo;{t.quote}&rdquo;</p>
                 <div>
                   <p className="font-semibold">{t.name}</p>
-                  <p className="text-sm text-muted">{t.role}</p>
+                  <p className="text-sm text-muted">{t.location}</p>
                 </div>
               </div>
             ))}
@@ -422,7 +419,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Rebates CTA */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="gradient-bg rounded-3xl p-12 sm:p-16 text-center text-white relative overflow-hidden">
@@ -430,17 +427,17 @@ export default function Home() {
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
             <div className="relative">
               <h2 className="text-4xl sm:text-5xl font-extrabold mb-4">
-                Start Building for Free
+                Up to $8,000 in Rebates
               </h2>
               <p className="text-lg text-white/80 max-w-xl mx-auto mb-8">
-                No credit card required. Get 1,000 AI completions per month on the free tier. Upgrade anytime for unlimited power.
+                Federal tax credits and state rebates can cover a huge portion of your system cost. Heat pumps qualify for the 25C tax credit and many state incentive programs.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
-                  href="/products"
+                  href="/tools"
                   className="bg-white text-primary font-semibold px-8 py-4 rounded-xl hover:bg-white/90 transition-colors inline-flex items-center gap-2"
                 >
-                  Get Started Free
+                  Check Your Rebates
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
@@ -449,7 +446,7 @@ export default function Home() {
                   href="/products"
                   className="border-2 border-white/30 text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10 transition-colors"
                 >
-                  View Pricing
+                  Shop Systems
                 </Link>
               </div>
             </div>
@@ -465,7 +462,7 @@ export default function Home() {
               Resources &amp; <span className="gradient-text">Guides</span>
             </h2>
             <p className="text-lg text-muted">
-              Everything you need to get the most out of Antigravity.
+              Everything you need to choose, install, and maintain your system.
             </p>
           </div>
 
@@ -473,7 +470,7 @@ export default function Home() {
             {resources.map((resource) => (
               <Link
                 key={resource.title}
-                href="#"
+                href="/tools"
                 className="group bg-surface rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
