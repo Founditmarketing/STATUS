@@ -16,12 +16,12 @@ export default function HVACParticles() {
   const [particles, setParticles] = useState<Particle[]>([]);
 
   useEffect(() => {
-    // Generate 35 floating particles to represent HVAC air circulation
-    const generated = Array.from({ length: 35 }).map((_, i) => ({
+    // Generate 60 highly visible floating particles to represent intense HVAC air circulation
+    const generated = Array.from({ length: 60 }).map((_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 5 + 2,
+      size: Math.random() * 8 + 3,
       // Stagger animations
       delay: Math.random() * 5,
       // Random float duration between 12s and 25s
@@ -40,10 +40,10 @@ export default function HVACParticles() {
         return (
           <div
             key={p.id}
-            className={`absolute rounded-full animate-particle-float ${
+            className={`absolute rounded-full animate-particle-float blur-[1px] ${
               isCold
-                ? "bg-cyan-400/30 shadow-[0_0_15px_rgba(34,211,238,0.4)]"
-                : "bg-orange-500/20 shadow-[0_0_15px_rgba(249,115,22,0.3)]"
+                ? "bg-cyan-300/80 shadow-[0_0_25px_rgba(34,211,238,1)]"
+                : "bg-orange-400/80 shadow-[0_0_25px_rgba(249,115,22,0.9)]"
             }`}
             style={{
               left: `${p.x}%`,

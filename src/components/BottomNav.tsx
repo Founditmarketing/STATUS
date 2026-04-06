@@ -8,15 +8,25 @@ import { useState, useEffect } from "react";
 export default function BottomNav() {
   const pathname = usePathname();
   const { cartCount, setCartOpen } = useCart();
-  const [showNav, setShowNav] = useState(true);
+  // Start hidden so the hero section is completely unblocked
+  const [showNav, setShowNav] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
+    // Initial check on mount in case they loaded halfway down
+    if (window.scrollY > 150) setShowNav(true);
+    
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+      
+      // Hide completely if at the very top
+      if (currentScrollY < 150) {
+        setShowNav(false);
+      } else if (currentScrollY > lastScrollY) {
+        // Scrolling down: hide
         setShowNav(false);
       } else if (currentScrollY < lastScrollY) {
+        // Scrolling up: show
         setShowNav(true);
       }
       setLastScrollY(currentScrollY);
