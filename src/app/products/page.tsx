@@ -1,4 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
+
+const categoryImages: Record<string, string> = {
+  "Wall Mounted": "/wall-mount.png",
+  "Ceiling Cassette": "/ceiling-cassette.png",
+  "Concealed Ducted": "/ducted-system.png",
+};
 
 const systems = [
   {
@@ -79,11 +86,14 @@ export default function Products() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {category.items.map((item) => (
                 <div key={item.name} className="bg-surface rounded-2xl border border-border hover:border-primary/30 hover:shadow-lg transition-all overflow-hidden">
-                  {/* Image placeholder */}
-                  <div className="h-44 bg-gradient-to-br from-blue-50 to-sky-100 flex items-center justify-center">
-                    <svg className="w-12 h-12 text-primary/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
+                  <div className="h-44 relative overflow-hidden">
+                    <Image
+                      src={categoryImages[category.category] || "/wall-mount.png"}
+                      alt={item.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
                   </div>
 
                   <div className="p-6">

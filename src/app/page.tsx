@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import FAQ from "@/components/FAQ";
 
 const stats = [
@@ -14,21 +15,21 @@ const products = [
     description: "Our most popular option. Sleek, quiet, and efficient. Perfect for bedrooms, living rooms, and home offices.",
     price: "Starting at $1,899",
     specs: ["9K–36K BTU", "Up to 24 SEER2", "WiFi Control Included"],
-    image: "Wall Mount",
+    image: "/wall-mount.png",
   },
   {
     title: "Ceiling Cassette Systems",
     description: "Flush-mount design that blends seamlessly with your ceiling. 360° airflow for even temperature distribution.",
     price: "Starting at $2,699",
     specs: ["12K–48K BTU", "Up to 22 SEER2", "4-Way Airflow"],
-    image: "Cassette",
+    image: "/ceiling-cassette.png",
   },
   {
     title: "Concealed Ducted Systems",
     description: "Hidden behind walls or ceilings with only a discreet vent visible. Ideal for whole-home solutions.",
     price: "Starting at $2,299",
     specs: ["12K–36K BTU", "Up to 21 SEER2", "Low Profile Design"],
-    image: "Ducted",
+    image: "/ducted-system.png",
   },
 ];
 
@@ -183,14 +184,14 @@ export default function Home() {
                 key={product.title}
                 className="group bg-surface rounded-2xl border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 overflow-hidden"
               >
-                {/* Image placeholder */}
-                <div className="h-56 bg-gradient-to-br from-blue-50 to-sky-100 flex items-center justify-center">
-                  <div className="text-center">
-                    <svg className="w-16 h-16 text-primary/30 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    <span className="text-primary/40 font-medium text-sm">{product.image}</span>
-                  </div>
+                <div className="h-56 relative overflow-hidden">
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
                 </div>
 
                 <div className="p-6">
