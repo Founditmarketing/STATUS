@@ -19,7 +19,7 @@ const products = [
     price: "Starting at $1,899",
     priceNote: "Based on 9K BTU / 300-450 sq ft",
     specs: ["9K–36K BTU", "Up to 24 SEER2", "WiFi Control Included"],
-    image: "/wall-mount.png",
+    image: "/pomelli-image (15).png",
   },
   {
     title: "Ceiling Cassette Systems",
@@ -110,65 +110,119 @@ export default function Home() {
       <ProductSchema />
       <FAQSchema />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 gradient-bg-subtle" />
+      {/* Hero Section — Split Layout with Lifestyle Photography */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-sky-50/20">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <span className="w-2 h-2 bg-success rounded-full animate-pulse" />
-              Up to 24 SEER2 Efficiency
-            </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 items-center min-h-[calc(100vh-106px)] py-12 lg:py-0">
+            {/* Left — Copy */}
+            <div className="max-w-xl">
+              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <span className="w-2 h-2 bg-success rounded-full animate-pulse" />
+                Up to 24 SEER2 Efficiency
+              </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
-              DIY Ductless Mini-Split Systems.
-              <br />
-              <span className="gradient-text">Professional HVAC. DIY Prices.</span>
-            </h1>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6">
+                DIY Ductless Mini-Split Systems.
+                <br />
+                <span className="gradient-text">Professional HVAC. DIY Prices.</span>
+              </h1>
 
-            <p className="text-lg sm:text-xl text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
-              Save $3,000+ with our pre-charged, easy-install ductless mini-split systems. No HVAC certification needed. No special tools. Just comfort.
-            </p>
+              <p className="text-lg text-muted max-w-lg mb-8 leading-relaxed">
+                Save $3,000+ with our pre-charged, easy-install ductless mini-split systems. No HVAC certification needed. No special tools. Just comfort.
+              </p>
 
-            <div className="flex flex-wrap justify-center gap-4 mb-10">
-              <Link
-                href="/products"
-                className="gradient-bg text-white px-8 py-4 rounded-xl text-base font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-2"
-              >
-                Shop Mini Splits
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </Link>
-              <Link
-                href="/tools#calculator"
-                className="bg-white border-2 border-border text-foreground px-8 py-4 rounded-xl text-base font-semibold hover:border-primary/30 transition-colors inline-flex items-center gap-2"
-              >
-                Size My System
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
-              </Link>
-            </div>
-
-            <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-muted">
-              {["Free 3-Day Shipping", "45-Day Satisfaction Guarantee", "7-Year Warranty"].map((item) => (
-                <span key={item} className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              <div className="flex flex-wrap gap-4 mb-8">
+                <Link
+                  href="/products"
+                  className="gradient-bg text-white px-8 py-4 rounded-xl text-base font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-2"
+                >
+                  Shop Mini Splits
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                  {item}
-                </span>
-              ))}
+                </Link>
+                <Link
+                  href="/tools#calculator"
+                  className="bg-white border-2 border-border text-foreground px-8 py-4 rounded-xl text-base font-semibold hover:border-primary/30 transition-colors inline-flex items-center gap-2"
+                >
+                  Size My System
+                </Link>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-6 text-sm text-muted">
+                {["Free 3-Day Shipping", "45-Day Guarantee", "7-Year Warranty"].map((item) => (
+                  <span key={item} className="flex items-center gap-1.5">
+                    <svg className="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Right — Lifestyle Hero Image */}
+            <div className="relative hidden lg:block">
+              <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl shadow-primary/10">
+                <Image
+                  src="/pomelli-image (11).png"
+                  alt="STATUS mini-split system installed in a modern home — homeowner using remote control"
+                  fill
+                  className="object-cover"
+                  sizes="50vw"
+                  priority
+                />
+              </div>
+              {/* Floating stats card */}
+              <div className="absolute -left-8 bottom-12 bg-white/95 backdrop-blur-sm rounded-2xl p-5 shadow-xl border border-border">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-extrabold gradient-text">$3,000+</div>
+                    <div className="text-xs text-muted">Average Savings vs Pro Install</div>
+                  </div>
+                </div>
+              </div>
+              {/* Floating rating card */}
+              <div className="absolute -right-4 top-12 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-xl border border-border">
+                <div className="flex gap-0.5 mb-1">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg key={i} className="w-4 h-4 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <div className="text-xs font-bold">4.8/5 · 2,300+ reviews</div>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Sentinel for ScrollCTA IntersectionObserver */}
         <div id="hero-sentinel" className="absolute bottom-0 h-1 w-full" aria-hidden="true" />
+      </section>
+
+      {/* Mobile hero image (shown only on small screens) */}
+      <section className="lg:hidden relative -mt-4">
+        <div className="mx-4 rounded-2xl overflow-hidden shadow-lg">
+          <div className="relative w-full aspect-[16/10]">
+            <Image
+              src="/pomelli-image (11).png"
+              alt="STATUS mini-split installed in modern home"
+              fill
+              className="object-cover object-top"
+              sizes="100vw"
+              priority
+            />
+          </div>
+        </div>
       </section>
 
       {/* ScrollCTA - appears when hero scrolls out of view */}
@@ -255,7 +309,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* DIY Installation Section */}
+      {/* DIY Installation — Image-First Split Layout */}
       <section className="py-24 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -284,8 +338,47 @@ export default function Home() {
               </ul>
             </div>
 
-            <div className="bg-white rounded-2xl border border-border p-8">
-              <h3 className="text-lg font-bold mb-6">What&apos;s In the Box</h3>
+            {/* Lifestyle image: hand with remote controlling unit */}
+            <div className="relative rounded-2xl overflow-hidden shadow-xl">
+              <div className="relative w-full aspect-[4/5]">
+                <Image
+                  src="/pomelli-asset-4.png"
+                  alt="Homeowner using remote control to adjust STATUS wall-mounted mini-split"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What's In the Box — with product kit photo */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Product kit photo */}
+            <div className="relative rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-gray-50 to-white">
+              <div className="relative w-full aspect-[4/5]">
+                <Image
+                  src="/pomelli-asset-2.png"
+                  alt="STATUS mini-split complete kit — indoor unit, outdoor condenser, pre-charged lineset, and remote control"
+                  fill
+                  className="object-contain p-4"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+            </div>
+
+            <div>
+              <span className="text-primary font-semibold text-sm uppercase tracking-wider">Everything Included</span>
+              <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight mt-3 mb-6">
+                What&apos;s In the <span className="gradient-text">Box</span>
+              </h2>
+              <p className="text-lg text-muted mb-8 leading-relaxed">
+                No hidden costs. No extra parts to buy. Every STATUS system ships with the complete kit.
+              </p>
               <div className="space-y-4">
                 {[
                   { item: "Indoor Unit (Evaporator)", desc: "Wall mount, cassette, or ducted" },
@@ -311,41 +404,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pre-Charged Linesets Section */}
-      <section className="py-24 bg-white">
+      {/* Traditional vs STATUS — Comparison */}
+      <section className="py-24 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="order-2 lg:order-1">
-              <div className="bg-surface rounded-2xl border border-border p-8">
-                <h3 className="text-lg font-bold mb-4">Traditional vs STATUS Install</h3>
-                <div className="space-y-4">
-                  {[
-                    { traditional: "Hire licensed HVAC tech ($150+/hr)", status: "DIY with basic hand tools" },
-                    { traditional: "Vacuum pump & manifold gauges", status: "Pre-charged quick-connect" },
-                    { traditional: "Brazing copper lines", status: "Tighten fittings by hand" },
-                    { traditional: "8-12 hours install time", status: "2-3 hours install time" },
-                    { traditional: "$4,000-$8,000+ total cost", status: "Starting at $1,899" },
-                  ].map((row, i) => (
-                    <div key={i} className="grid grid-cols-2 gap-4 text-sm">
-                      <div className="flex items-start gap-2 p-2 bg-red-50 rounded-lg">
-                        <svg className="w-4 h-4 text-red-400 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                        <span className="text-red-700">{row.traditional}</span>
-                      </div>
-                      <div className="flex items-start gap-2 p-2 bg-green-50 rounded-lg">
-                        <svg className="w-4 h-4 text-success mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                        <span className="text-green-700">{row.status}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="order-1 lg:order-2">
+            <div>
               <span className="text-primary font-semibold text-sm uppercase tracking-wider">Pre-Charged Technology</span>
               <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight mt-3 mb-6">
                 Quick-Connect <span className="gradient-text">Linesets</span>
@@ -369,12 +432,40 @@ export default function Home() {
                 ))}
               </ul>
             </div>
+
+            <div className="bg-white rounded-2xl border border-border p-8">
+              <h3 className="text-lg font-bold mb-4">Traditional vs STATUS Install</h3>
+              <div className="space-y-4">
+                {[
+                  { traditional: "Hire licensed HVAC tech ($150+/hr)", status: "DIY with basic hand tools" },
+                  { traditional: "Vacuum pump & manifold gauges", status: "Pre-charged quick-connect" },
+                  { traditional: "Brazing copper lines", status: "Tighten fittings by hand" },
+                  { traditional: "8-12 hours install time", status: "2-3 hours install time" },
+                  { traditional: "$4,000-$8,000+ total cost", status: "Starting at $1,899" },
+                ].map((row, i) => (
+                  <div key={i} className="grid grid-cols-2 gap-4 text-sm">
+                    <div className="flex items-start gap-2 p-2 bg-red-50 rounded-lg">
+                      <svg className="w-4 h-4 text-red-400 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-red-700">{row.traditional}</span>
+                    </div>
+                    <div className="flex items-start gap-2 p-2 bg-green-50 rounded-lg">
+                      <svg className="w-4 h-4 text-success mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-green-700">{row.status}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Trust Signals */}
-      <section className="py-16 border-y border-border bg-surface">
+      <section className="py-16 border-y border-border bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             {[
@@ -448,7 +539,6 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((t) => (
               <div key={t.name} className="bg-white rounded-2xl p-8 border border-border hover:shadow-lg transition-shadow">
-                {/* Verified badge & product tag */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex gap-1">
                     {Array.from({ length: t.rating }).map((_, i) => (
@@ -469,7 +559,6 @@ export default function Home() {
 
                 <p className="text-foreground leading-relaxed mb-6">&ldquo;{t.quote}&rdquo;</p>
 
-                {/* Product & install time tags */}
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="text-xs bg-primary/10 text-primary font-medium px-2 py-1 rounded-full">{t.product}</span>
                   <span className="text-xs bg-surface-2 text-muted font-medium px-2 py-1 rounded-full">Installed in {t.installTime}</span>
