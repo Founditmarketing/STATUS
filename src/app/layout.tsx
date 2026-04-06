@@ -14,6 +14,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://statushvac.com"),
   title: "STATUS — DIY Ductless Mini-Split Heat Pump Systems | Save $3,000+",
   description:
     "Save $3,000+ on DIY ductless mini-split systems. Pre-charged linesets — no HVAC certification needed. Up to 24 SEER2 efficiency. Free 3-day shipping. 7-year compressor warranty. Assembled in the USA.",

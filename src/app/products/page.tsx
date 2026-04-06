@@ -213,8 +213,8 @@ export default function Products() {
                 <Link href="/tools" className="bg-white text-primary font-semibold px-6 py-3 rounded-xl hover:bg-white/90 transition-colors">
                   Size My System
                 </Link>
-                <a href="tel:+18001234567" className="border-2 border-white/30 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/10 transition-colors">
-                  Call (800) 123-4567
+                <a href="tel:+18887828871" className="border-2 border-white/30 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/10 transition-colors">
+                  Call 1-888-STATUS-1
                 </a>
               </div>
             </div>

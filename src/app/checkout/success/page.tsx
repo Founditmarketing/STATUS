@@ -121,7 +121,7 @@ function SuccessContent() {
 
       <div className="mt-8 text-xs text-muted">
         <p>A confirmation email will be sent to your account email address.</p>
-        <p className="mt-1">Questions? Call us at <a href="tel:+18001234567" className="text-primary font-medium">(800) 123-4567</a></p>
+        <p className="mt-1">Questions? Call us at <a href="tel:+18887828871" className="text-primary font-medium">1-888-STATUS-1</a></p>
       </div>
     </div>
   );

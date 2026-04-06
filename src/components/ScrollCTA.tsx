@@ -28,7 +28,7 @@ export default function ScrollCTA() {
       <div
         ref={sentinelRef}
         id="scroll-cta-sentinel"
-        className="absolute bottom-0 h-1 w-full pointer-events-none"
+        className="h-1 w-full pointer-events-none"
         aria-hidden="true"
       />
 

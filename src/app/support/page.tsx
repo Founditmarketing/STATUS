@@ -17,7 +17,7 @@ const supportOptions = [
     title: "Live Phone Support",
     description: "Talk to a real HVAC expert. Available Monday-Friday, 9am-5pm MST. We'll walk you through your install.",
     icon: "M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z",
-    cta: "Call (800) 123-4567",
+    cta: "Call 1-888-STATUS-1",
   },
   {
     title: "Warranty Registration",
@@ -56,7 +56,7 @@ export default function Support() {
             Real HVAC experts ready to help you size, install, and maintain your STATUS system.
           </p>
           <p className="text-primary font-semibold">
-            Available Mon-Fri, 9am-5pm MST &mdash; (800) 123-4567
+            Available Mon-Fri, 9am-5pm MST &mdash; 1-888-STATUS-1
           </p>
         </div>
       </section>
