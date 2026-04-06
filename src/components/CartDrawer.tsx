@@ -54,8 +54,8 @@ export default function CartDrawer() {
       {/* Drawer */}
       <div
         ref={drawerRef}
-        className={`fixed top-0 right-0 z-[101] h-full w-full max-w-md bg-white shadow-2xl flex flex-col transition-transform duration-300 ease-out ${
-          cartOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed top-0 right-0 z-[101] h-full w-full max-w-md bg-white shadow-2xl flex flex-col transition-all duration-300 ease-out ${
+          cartOpen ? "translate-x-0 opacity-100 pointer-events-auto" : "translate-x-full opacity-0 pointer-events-none"
         }`}
         role="dialog"
         aria-modal="true"

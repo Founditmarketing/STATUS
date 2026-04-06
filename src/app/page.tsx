@@ -110,71 +110,85 @@ export default function Home() {
       <ProductSchema />
       <FAQSchema />
 
-      {/* Hero Section — Video Background with Overlay Copy */}
-      <section className="relative overflow-hidden min-h-[85vh] sm:min-h-[90vh] flex items-center">
-        {/* Video background */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/pomelli-image (11).png"
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/status-hero.mp4" type="video/mp4" />
-        </video>
+      {/* Hero Section — Stacked on Mobile, Video Background on Desktop */}
+      <section className="relative flex flex-col sm:block sm:min-h-[90vh] bg-foreground text-white overflow-hidden">
+        {/* Video wrapper: Specific height on mobile, absolute full-viewport on desktop */}
+        <div className="relative w-full h-[50vh] sm:absolute sm:inset-0 sm:h-full order-1 sm:order-none">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/pomelli-image (11).png"
+            className="hidden sm:block absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="/status-hero.mp4" type="video/mp4" />
+          </video>
+          {/* Mobile Image replacement to save 2.5MB on cellular */}
+          <div className="sm:hidden absolute inset-0">
+            <Image
+              src="/pomelli-image (11).png"
+              alt="STATUS Mini-Split DIY HVAC"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+          {/* Dark overlay specifically for desktop text readability */}
+          <div className="hidden sm:block absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
+        </div>
 
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
+        {/* Content wrapper: solid dark bg on mobile, flows naturally down. Padded center on desktop */}
+        <div className="relative z-10 w-full sm:h-full sm:flex sm:items-center order-2 sm:order-none">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+            <div className="max-w-2xl text-center sm:text-left mx-auto sm:mx-0">
+              <div className="inline-flex items-center gap-2 bg-white/10 sm:bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <span className="w-2 h-2 bg-success rounded-full animate-pulse" />
+                Up to 24 SEER2 Efficiency
+              </div>
 
-        <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <span className="w-2 h-2 bg-success rounded-full animate-pulse" />
-              Up to 24 SEER2 Efficiency
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6 text-white">
-              DIY Ductless
-              <br className="hidden sm:block" />
-              {" "}Mini-Split Systems.
-              <br />
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Professional HVAC. DIY Prices.
-              </span>
-            </h1>
-
-            <p className="text-base sm:text-lg text-white/80 max-w-lg mb-8 leading-relaxed">
-              Save $3,000+ with our pre-charged, easy-install ductless mini-split systems. No HVAC certification needed. No special tools. Just comfort.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8">
-              <Link
-                href="/products"
-                className="gradient-bg text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-base font-semibold hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2 min-h-[48px]"
-              >
-                Shop Mini Splits
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </Link>
-              <Link
-                href="/tools#calculator"
-                className="bg-white/15 backdrop-blur-sm border border-white/30 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-base font-semibold hover:bg-white/25 transition-colors inline-flex items-center justify-center gap-2 min-h-[48px]"
-              >
-                Size My System
-              </Link>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm text-white/70">
-              {["Free 3-Day Shipping", "45-Day Guarantee", "7-Year Warranty"].map((item) => (
-                <span key={item} className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  {item}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6 text-white">
+                DIY Ductless
+                <br className="hidden sm:block" />
+                {" "}Mini-Split Systems.
+                <br />
+                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                  Professional HVAC. DIY Prices.
                 </span>
-              ))}
+              </h1>
+
+              <p className="text-lg text-white/80 max-w-lg mb-8 leading-relaxed mx-auto sm:mx-0">
+                Save $3,000+ with our pre-charged, easy-install ductless mini-split systems. No HVAC certification needed. No special tools. Just comfort.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8">
+                <Link
+                  href="/products"
+                  className="gradient-bg text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-base font-semibold hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2 min-h-[48px]"
+                >
+                  Shop Mini Splits
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </Link>
+                <Link
+                  href="/tools#calculator"
+                  className="bg-white/10 sm:bg-white/15 backdrop-blur-sm border border-white/30 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-base font-semibold hover:bg-white/25 transition-colors inline-flex items-center justify-center gap-2 min-h-[48px]"
+                >
+                  Size My System
+                </Link>
+              </div>
+
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-6 text-sm text-white/70">
+                {["Free 3-Day Shipping", "45-Day Guarantee", "7-Year Warranty"].map((item) => (
+                  <span key={item} className="flex items-center gap-1.5">
+                    <svg className="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -244,11 +258,11 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 overflow-x-auto sm:overflow-visible pb-8 sm:pb-0 snap-x snap-mandatory hide-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 scroll-pl-4">
             {products.map((product) => (
               <div
                 key={product.title}
-                className="group bg-surface rounded-2xl border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 overflow-hidden"
+                className="group w-[85vw] sm:w-auto shrink-0 snap-center sm:snap-none bg-surface rounded-2xl border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 overflow-hidden flex flex-col"
               >
                 <div className="h-48 sm:h-56 relative overflow-hidden">
                   <Image

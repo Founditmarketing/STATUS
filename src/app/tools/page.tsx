@@ -25,10 +25,22 @@ const comparison = [
 ];
 
 export default function Tools() {
-  const [sqft, setSqft] = useState("");
-  const [result, setResult] = useState<string | null>(null);
+  type Mode = "guided" | "quick";
+  type RoomSize = "small" | "medium" | "large";
 
-  function calculateBTU() {
+  const [mode, setMode] = useState<Mode>("guided");
+  
+  // Quick Mode
+  const [sqft, setSqft] = useState("");
+  const [quickResult, setQuickResult] = useState<string | null>(null);
+
+  // Guided Mode
+  const [rooms, setRooms] = useState<{ id: number; size: RoomSize }[]>([
+    { id: 1, size: "medium" },
+  ]);
+  const [guidedResult, setGuidedResult] = useState<string | null>(null);
+
+  function calculateQuick() {
     const area = parseInt(sqft);
     if (isNaN(area) || area <= 0) return;
     let btu: number;
@@ -38,7 +50,41 @@ export default function Tools() {
     else if (area <= 900) btu = 24000;
     else if (area <= 1200) btu = 30000;
     else btu = 36000;
-    setResult(`For ${area} sq ft, we recommend a ${btu.toLocaleString()} BTU system.`);
+    setQuickResult(`For ${area} sq ft, we recommend a ${btu.toLocaleString()} BTU system.`);
+  }
+
+  function calculateGuided() {
+    let totalSqft = 0;
+    rooms.forEach(r => {
+      if (r.size === "small") totalSqft += 150;
+      else if (r.size === "medium") totalSqft += 300;
+      else if (r.size === "large") totalSqft += 500;
+    });
+    
+    let btu: number;
+    if (totalSqft <= 300) btu = 9000;
+    else if (totalSqft <= 450) btu = 12000;
+    else if (totalSqft <= 650) btu = 18000;
+    else if (totalSqft <= 900) btu = 24000;
+    else if (totalSqft <= 1200) btu = 30000;
+    else btu = 36000;
+
+    const systemType = rooms.length > 1 ? "Multi-Zone" : "Single-Zone";
+    setGuidedResult(`For ${rooms.length} room${rooms.length !== 1 ? 's' : ''} (~${totalSqft} sq ft), we recommend a ${btu.toLocaleString()} BTU ${systemType} system.`);
+  }
+
+  function addRoom() {
+    setRooms([...rooms, { id: Date.now(), size: "medium" }]);
+  }
+
+  function removeRoom(id: number) {
+    if (rooms.length > 1) {
+      setRooms(rooms.filter(r => r.id !== id));
+    }
+  }
+
+  function updateRoom(id: number, size: RoomSize) {
+    setRooms(rooms.map(r => r.id === id ? { ...r, size } : r));
   }
 
   return (
@@ -63,37 +109,113 @@ export default function Tools() {
             BTU <span className="gradient-text">Calculator</span>
           </h2>
           <p className="text-muted text-center mb-10">
-            Enter your room&apos;s square footage for an instant sizing recommendation.
+            Enter your room details or total space for an instant sizing recommendation.
           </p>
 
           <div className="bg-surface rounded-2xl border border-border p-8">
-            <div className="flex flex-col sm:flex-row gap-4 mb-6">
-              <div className="flex-1">
-                <label className="block text-sm font-medium mb-2">Room Square Footage</label>
-                <input
-                  type="number"
-                  value={sqft}
-                  onChange={(e) => setSqft(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-white focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all"
-                  placeholder="e.g. 500"
-                />
-              </div>
-              <div className="flex items-end">
-                <button
-                  onClick={calculateBTU}
-                  className="gradient-bg text-white px-8 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity w-full sm:w-auto"
-                >
-                  Calculate
-                </button>
-              </div>
+            {/* Tabs */}
+            <div className="flex bg-white rounded-xl p-1 mb-8 shadow-sm border border-border/50">
+              <button
+                onClick={() => setMode("guided")}
+                className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-colors ${mode === "guided" ? "bg-primary text-white shadow-sm" : "text-muted hover:text-foreground"}`}
+              >
+                Guided (By Room)
+              </button>
+              <button
+                onClick={() => setMode("quick")}
+                className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-colors ${mode === "quick" ? "bg-primary text-white shadow-sm" : "text-muted hover:text-foreground"}`}
+              >
+                Quick (Total area)
+              </button>
             </div>
 
-            {result && (
-              <div className="bg-primary/10 border border-primary/20 rounded-xl p-4 text-center">
-                <p className="text-primary font-semibold">{result}</p>
-                <Link href="/products" className="text-primary text-sm hover:underline mt-1 inline-block">
-                  Shop this size &rarr;
-                </Link>
+            {mode === "guided" ? (
+              <div className="animate-fade-in space-y-4">
+                {rooms.map((room, index) => (
+                  <div key={room.id} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-white p-4 rounded-xl border border-border">
+                    <div className="font-semibold text-sm w-20">Room {index + 1}</div>
+                    <select
+                      value={room.size}
+                      onChange={(e) => updateRoom(room.id, e.target.value as RoomSize)}
+                      className="flex-1 w-full px-4 py-2.5 rounded-lg border border-border bg-surface focus:outline-none focus:border-primary/50 text-sm"
+                    >
+                      <option value="small">Small (~150 sq ft)</option>
+                      <option value="medium">Medium (~300 sq ft)</option>
+                      <option value="large">Large (~500 sq ft)</option>
+                    </select>
+                    <div className="flex w-full sm:w-auto justify-end">
+                      <button
+                        onClick={() => removeRoom(room.id)}
+                        disabled={rooms.length === 1}
+                        className="text-red-400 hover:text-red-600 disabled:opacity-30 p-2 transition-colors flex items-center justify-center min-w-[44px] min-h-[44px]"
+                        aria-label="Remove room"
+                      >
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                ))}
+
+                <div className="flex flex-col sm:flex-row items-center justify-between pt-4 border-t border-border mt-6 gap-4">
+                  <button
+                    onClick={addRoom}
+                    className="text-primary font-semibold text-sm flex flex-1 w-full sm:w-auto items-center justify-center sm:justify-start gap-1.5 hover:underline min-h-[44px]"
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                    </svg>
+                    Add Another Room
+                  </button>
+                  <button
+                    onClick={calculateGuided}
+                    className="gradient-bg text-white px-8 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity w-full sm:w-auto"
+                  >
+                    Calculate System
+                  </button>
+                </div>
+
+                {guidedResult && (
+                  <div className="bg-primary/10 border border-primary/20 rounded-xl p-4 text-center mt-6 animate-fade-in">
+                    <p className="text-primary font-semibold">{guidedResult}</p>
+                    <Link href="/products" className="text-primary text-sm hover:underline mt-2 inline-flex items-center min-h-[44px]">
+                      Shop Systems &rarr;
+                    </Link>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="animate-fade-in">
+                <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                  <div className="flex-1">
+                    <label className="block text-sm font-medium mb-2">Total Square Footage</label>
+                    <input
+                      type="number"
+                      value={sqft}
+                      onChange={(e) => setSqft(e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl border border-border bg-white focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all"
+                      placeholder="e.g. 1000"
+                    />
+                  </div>
+                  <div className="flex items-end">
+                    <button
+                      onClick={calculateQuick}
+                      className="gradient-bg text-white px-8 py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity w-full sm:w-auto"
+                    >
+                      Calculate
+                    </button>
+                  </div>
+                </div>
+
+                {quickResult && (
+                  <div className="bg-primary/10 border border-primary/20 rounded-xl p-4 text-center animate-fade-in">
+                    <p className="text-primary font-semibold">{quickResult}</p>
+                    <Link href="/products" className="text-primary text-sm hover:underline mt-2 inline-flex items-center min-h-[44px]">
+                      Shop this size &rarr;
+                    </Link>
+                  </div>
+                )}
               </div>
             )}
           </div>

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import BottomNav from "@/components/BottomNav";
 import CartDrawer from "@/components/CartDrawer";
 import { OrganizationSchema } from "@/components/SchemaMarkup";
 import { CartProvider } from "@/lib/cart-context";
@@ -11,6 +12,7 @@ import { ToastProvider } from "@/components/Toast";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -74,8 +76,9 @@ export default function RootLayout({
               Skip to main content
             </a>
             <Navbar />
-            <main id="main-content" className="flex-1">{children}</main>
+            <main id="main-content" className="flex-1 pb-16 md:pb-0">{children}</main>
             <Footer />
+            <BottomNav />
             <CartDrawer />
           </ToastProvider>
         </CartProvider>

@@ -1,12 +1,28 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCart } from "@/lib/cart-context";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [showPromo, setShowPromo] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const { cartCount, setCartOpen, user } = useCart();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setShowPromo(false);
+      } else if (currentScrollY < lastScrollY) {
+        setShowPromo(true);
+      }
+      setLastScrollY(currentScrollY);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   const links = [
     { href: "/", label: "Home" },
@@ -19,8 +35,10 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-border">
       {/* Top banner */}
-      <div className="gradient-bg text-white text-center py-2 px-4 text-sm font-medium">
-        Free 3-Day Shipping on All Systems &mdash; Order Today
+      <div className={`transition-all duration-300 overflow-hidden ${showPromo ? "max-h-12 opacity-100" : "max-h-0 opacity-0"}`}>
+        <div className="gradient-bg text-white text-center py-2 px-4 text-sm font-medium">
+          Free 3-Day Shipping on All Systems &mdash; Order Today
+        </div>
       </div>
 
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
