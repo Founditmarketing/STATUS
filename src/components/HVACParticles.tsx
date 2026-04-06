@@ -23,14 +23,14 @@ export default function HVACParticles() {
       // Start randomly off-screen left and top
       x: (Math.random() * 120) - 40,
       y: (Math.random() * 60) - 50,
-      // Thin streaks
-      size: Math.random() * 2 + 1,
-      // Length of streak
-      length: Math.random() * 80 + 30,
-      // Stagger animations tightly for rapid fire
-      delay: Math.random() * 3,
-      // Fast blowing duration (between 1s and 3s)
-      duration: Math.random() * 2 + 1,
+      // Wider, more cinematic streaks
+      size: Math.random() * 3 + 2,
+      // Longer trailing streaks
+      length: Math.random() * 120 + 40,
+      // Stagger animations
+      delay: Math.random() * 8,
+      // Significantly slower blowing duration (between 7s and 15s) for a majestic, beautiful look
+      duration: Math.random() * 8 + 7,
       // 80% blue/cyan (AC), 20% orange (Heating pump) 
       type: (Math.random() > 0.2 ? "cold" : "hot") as "cold" | "hot",
     }));
@@ -55,14 +55,17 @@ export default function HVACParticles() {
           >
             {/* The rotated wind streak */}
             <div
-              className={`rounded-full blur-[1px] transform -rotate-[50deg] ${
+              className={`rounded-full blur-[2px] transform -rotate-[45deg] ${
                 isCold
-                  ? "bg-cyan-300/90 shadow-[0_0_20px_rgba(34,211,238,1)]"
-                  : "bg-orange-400/90 shadow-[0_0_20px_rgba(249,115,22,1)]"
+                  ? "bg-cyan-200/90 shadow-[0_0_35px_rgba(34,211,238,1)]"
+                  : "bg-orange-300/90 shadow-[0_0_35px_rgba(249,115,22,1)]"
               }`}
               style={{
                 width: `${p.size}px`,
                 height: `${p.length}px`,
+                background: isCold 
+                  ? 'linear-gradient(to bottom, rgba(34,211,238,0) 0%, rgba(34,211,238,1) 50%, rgba(34,211,238,0) 100%)'
+                  : 'linear-gradient(to bottom, rgba(249,115,22,0) 0%, rgba(249,115,22,1) 50%, rgba(249,115,22,0) 100%)'
               }}
             />
           </div>
