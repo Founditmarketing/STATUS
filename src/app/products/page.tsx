@@ -1,11 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "DIY Mini-Split Systems & Accessories | STATUS",
-  description: "Shop wall mounted, ceiling cassette, and concealed ducted mini-split heat pump systems. Starting at $1,899 with free 3-day shipping. Pre-charged linesets included — no HVAC certification needed.",
-};
+import { useCart } from "@/lib/cart-context";
+import { useToast } from "@/components/Toast";
 
 const categoryImages: Record<string, string> = {
   "Wall Mounted": "/wall-mount.png",
@@ -19,11 +17,11 @@ const systems = [
     slug: "wall-mounted",
     description: "Most popular. Sleek indoor unit mounts high on any wall.",
     items: [
-      { name: "9K BTU Wall Mount", seer: "24 SEER2", area: "300-450 sq ft", price: "$1,899", features: ["Hyper Heat to -13°F", "WiFi Control", "Inverter Compressor"] },
-      { name: "12K BTU Wall Mount", seer: "24 SEER2", area: "450-650 sq ft", price: "$2,099", features: ["Hyper Heat to -13°F", "WiFi Control", "Inverter Compressor"] },
-      { name: "18K BTU Wall Mount", seer: "22 SEER2", area: "650-900 sq ft", price: "$2,499", features: ["Hyper Heat to -13°F", "WiFi Control", "Inverter Compressor"] },
-      { name: "24K BTU Wall Mount", seer: "21 SEER2", area: "900-1,200 sq ft", price: "$2,899", features: ["Hyper Heat to -13°F", "WiFi Control", "Inverter Compressor"] },
-      { name: "36K BTU Wall Mount", seer: "20 SEER2", area: "1,200-1,500 sq ft", price: "$3,499", features: ["Hyper Heat to -13°F", "WiFi Control", "Inverter Compressor"] },
+      { name: "9K BTU Wall Mount", seer: "24 SEER2", area: "300-450 sq ft", price: 1899, features: ["Hyper Heat to -13°F", "WiFi Control", "Inverter Compressor"] },
+      { name: "12K BTU Wall Mount", seer: "24 SEER2", area: "450-650 sq ft", price: 2099, features: ["Hyper Heat to -13°F", "WiFi Control", "Inverter Compressor"] },
+      { name: "18K BTU Wall Mount", seer: "22 SEER2", area: "650-900 sq ft", price: 2499, features: ["Hyper Heat to -13°F", "WiFi Control", "Inverter Compressor"] },
+      { name: "24K BTU Wall Mount", seer: "21 SEER2", area: "900-1,200 sq ft", price: 2899, features: ["Hyper Heat to -13°F", "WiFi Control", "Inverter Compressor"] },
+      { name: "36K BTU Wall Mount", seer: "20 SEER2", area: "1,200-1,500 sq ft", price: 3499, features: ["Hyper Heat to -13°F", "WiFi Control", "Inverter Compressor"] },
     ],
   },
   {
@@ -31,9 +29,9 @@ const systems = [
     slug: "ceiling-cassette",
     description: "Flush-mount in ceiling with 360° airflow distribution.",
     items: [
-      { name: "12K BTU Cassette", seer: "22 SEER2", area: "450-650 sq ft", price: "$2,699", features: ["4-Way Airflow", "WiFi Control", "Auto Swing Louvers"] },
-      { name: "18K BTU Cassette", seer: "21 SEER2", area: "650-900 sq ft", price: "$3,199", features: ["4-Way Airflow", "WiFi Control", "Auto Swing Louvers"] },
-      { name: "24K BTU Cassette", seer: "20 SEER2", area: "900-1,200 sq ft", price: "$3,699", features: ["4-Way Airflow", "WiFi Control", "Auto Swing Louvers"] },
+      { name: "12K BTU Cassette", seer: "22 SEER2", area: "450-650 sq ft", price: 2699, features: ["4-Way Airflow", "WiFi Control", "Auto Swing Louvers"] },
+      { name: "18K BTU Cassette", seer: "21 SEER2", area: "650-900 sq ft", price: 3199, features: ["4-Way Airflow", "WiFi Control", "Auto Swing Louvers"] },
+      { name: "24K BTU Cassette", seer: "20 SEER2", area: "900-1,200 sq ft", price: 3699, features: ["4-Way Airflow", "WiFi Control", "Auto Swing Louvers"] },
     ],
   },
   {
@@ -41,23 +39,50 @@ const systems = [
     slug: "concealed-ducted",
     description: "Hidden behind walls/ceilings. Only a discreet vent is visible.",
     items: [
-      { name: "12K BTU Ducted", seer: "21 SEER2", area: "450-650 sq ft", price: "$2,299", features: ["Low Profile Design", "WiFi Control", "External Static Pressure"] },
-      { name: "18K BTU Ducted", seer: "20 SEER2", area: "650-900 sq ft", price: "$2,799", features: ["Low Profile Design", "WiFi Control", "External Static Pressure"] },
-      { name: "24K BTU Ducted", seer: "20 SEER2", area: "900-1,200 sq ft", price: "$3,299", features: ["Low Profile Design", "WiFi Control", "External Static Pressure"] },
+      { name: "12K BTU Ducted", seer: "21 SEER2", area: "450-650 sq ft", price: 2299, features: ["Low Profile Design", "WiFi Control", "External Static Pressure"] },
+      { name: "18K BTU Ducted", seer: "20 SEER2", area: "650-900 sq ft", price: 2799, features: ["Low Profile Design", "WiFi Control", "External Static Pressure"] },
+      { name: "24K BTU Ducted", seer: "20 SEER2", area: "900-1,200 sq ft", price: 3299, features: ["Low Profile Design", "WiFi Control", "External Static Pressure"] },
     ],
   },
 ];
 
 const accessories = [
-  { name: "25ft Pre-Charged Lineset", price: "$249", desc: "Quick-connect, factory sealed with R410A" },
-  { name: "50ft Pre-Charged Lineset", price: "$349", desc: "Extended length for remote outdoor unit placement" },
-  { name: "Wall Mounting Bracket", price: "$79", desc: "Heavy-duty bracket for outdoor condenser unit" },
-  { name: "Line Set Cover Kit", price: "$89", desc: "Paintable PVC cover to hide exterior lines" },
-  { name: "Condensate Pump", price: "$69", desc: "For installations where gravity drain isn't possible" },
-  { name: "WiFi Thermostat Upgrade", price: "$129", desc: "Smart thermostat with scheduling and geofencing" },
+  { name: "25ft Pre-Charged Lineset", price: 249, desc: "Quick-connect, factory sealed with R410A", id: "acc-lineset-25" },
+  { name: "50ft Pre-Charged Lineset", price: 349, desc: "Extended length for remote outdoor unit placement", id: "acc-lineset-50" },
+  { name: "Wall Mounting Bracket", price: 79, desc: "Heavy-duty bracket for outdoor condenser unit", id: "acc-bracket" },
+  { name: "Line Set Cover Kit", price: 89, desc: "Paintable PVC cover to hide exterior lines", id: "acc-cover" },
+  { name: "Condensate Pump", price: 69, desc: "For installations where gravity drain isn't possible", id: "acc-pump" },
+  { name: "WiFi Thermostat Upgrade", price: 129, desc: "Smart thermostat with scheduling and geofencing", id: "acc-thermostat" },
 ];
 
+function slugify(name: string) {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
 export default function Products() {
+  const { addToCart, setCartOpen } = useCart();
+  const { addToast } = useToast();
+
+  function handleAddToCart(name: string, price: number, imageUrl: string) {
+    addToCart({
+      product_id: slugify(name),
+      product_name: name,
+      price,
+      image_url: imageUrl,
+    });
+    addToast(`${name} added to cart`, "success");
+    setCartOpen(true);
+  }
+
+  function handleAddAccessory(acc: typeof accessories[0]) {
+    addToCart({
+      product_id: acc.id,
+      product_name: acc.name,
+      price: acc.price,
+    });
+    addToast(`${acc.name} added to cart`, "success");
+  }
+
   return (
     <>
       {/* Hero */}
@@ -124,8 +149,16 @@ export default function Products() {
                     </ul>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-2xl font-extrabold text-primary">{item.price}</span>
-                      <button className="gradient-bg text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity">
+                      <span className="text-2xl font-extrabold text-primary">
+                        ${item.price.toLocaleString()}
+                      </span>
+                      <button
+                        onClick={() => handleAddToCart(item.name, item.price, categoryImages[category.category] || "/wall-mount.png")}
+                        className="gradient-bg text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity min-h-[44px] inline-flex items-center gap-1.5"
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
                         Add to Cart
                       </button>
                     </div>
@@ -149,8 +182,16 @@ export default function Products() {
                 <h3 className="font-bold mb-1">{acc.name}</h3>
                 <p className="text-sm text-muted mb-4">{acc.desc}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-lg font-bold text-primary">{acc.price}</span>
-                  <button className="text-primary text-sm font-semibold hover:underline">Add to Cart</button>
+                  <span className="text-lg font-bold text-primary">${acc.price}</span>
+                  <button
+                    onClick={() => handleAddAccessory(acc)}
+                    className="text-primary text-sm font-semibold hover:underline min-h-[44px] inline-flex items-center gap-1"
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                    </svg>
+                    Add to Cart
+                  </button>
                 </div>
               </div>
             ))}

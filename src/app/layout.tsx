@@ -3,7 +3,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CartDrawer from "@/components/CartDrawer";
 import { OrganizationSchema } from "@/components/SchemaMarkup";
+import { CartProvider } from "@/lib/cart-context";
+import { ToastProvider } from "@/components/Toast";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -60,16 +63,21 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col overflow-x-hidden">
         <OrganizationSchema />
-        {/* Skip navigation — accessibility */}
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-semibold"
-        >
-          Skip to main content
-        </a>
-        <Navbar />
-        <main id="main-content" className="flex-1">{children}</main>
-        <Footer />
+        <CartProvider>
+          <ToastProvider>
+            {/* Skip navigation — accessibility */}
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-semibold"
+            >
+              Skip to main content
+            </a>
+            <Navbar />
+            <main id="main-content" className="flex-1">{children}</main>
+            <Footer />
+            <CartDrawer />
+          </ToastProvider>
+        </CartProvider>
       </body>
     </html>
   );

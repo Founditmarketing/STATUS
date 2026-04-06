@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useCart } from "@/lib/cart-context";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { cartCount, setCartOpen, user } = useCart();
 
   const links = [
     { href: "/", label: "Home" },
@@ -46,17 +48,47 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* CTA + Phone */}
-          <div className="hidden md:flex items-center gap-4">
-            <a
-              href="tel:+18001234567"
-              className="text-sm font-medium text-muted hover:text-foreground transition-colors flex items-center gap-1.5 min-h-[44px] px-2"
+          {/* CTA + Cart + Auth */}
+          <div className="hidden md:flex items-center gap-2">
+            {/* Account link */}
+            {user ? (
+              <Link
+                href="/account"
+                className="text-sm font-medium text-muted hover:text-foreground transition-colors px-3 py-3 min-h-[44px] inline-flex items-center gap-1.5"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                Account
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                className="text-sm font-medium text-muted hover:text-foreground transition-colors px-3 py-3 min-h-[44px] inline-flex items-center gap-1.5"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                Sign In
+              </Link>
+            )}
+
+            {/* Cart button */}
+            <button
+              onClick={() => setCartOpen(true)}
+              className="relative text-muted hover:text-foreground transition-colors px-3 py-3 min-h-[44px] min-w-[44px] inline-flex items-center justify-center"
+              aria-label={`Shopping cart, ${cartCount} items`}
             >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>
-              (800) 123-4567
-            </a>
+              {cartCount > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-primary text-white text-[10px] font-bold rounded-full flex items-center justify-center animate-bounce-in">
+                  {cartCount > 9 ? "9+" : cartCount}
+                </span>
+              )}
+            </button>
+
             <Link
               href="/products"
               className="gradient-bg text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity min-h-[44px] inline-flex items-center"
@@ -65,24 +97,43 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile menu button — 44px touch target */}
-          <button
-            className="md:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              {mobileOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          {/* Mobile: Cart + Menu */}
+          <div className="md:hidden flex items-center gap-1">
+            {/* Mobile cart button */}
+            <button
+              onClick={() => setCartOpen(true)}
+              className="relative p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
+              aria-label={`Shopping cart, ${cartCount} items`}
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+              {cartCount > 0 && (
+                <span className="absolute top-0.5 right-0.5 w-5 h-5 bg-primary text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                  {cartCount > 9 ? "9+" : cartCount}
+                </span>
               )}
-            </svg>
-          </button>
+            </button>
+
+            {/* Mobile menu button */}
+            <button
+              className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+            >
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                {mobileOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
-        {/* Mobile menu — 44px min touch targets on all links */}
+        {/* Mobile menu */}
         {mobileOpen && (
           <div className="md:hidden py-4 border-t border-border">
             <div className="flex flex-col">
@@ -96,12 +147,29 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <a
-                href="tel:+18001234567"
-                className="text-base font-medium text-primary py-3 min-h-[44px] flex items-center"
-              >
-                (800) 123-4567
-              </a>
+              {user ? (
+                <Link
+                  href="/account"
+                  className="text-base font-medium text-primary py-3 min-h-[44px] flex items-center gap-2"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                  My Account
+                </Link>
+              ) : (
+                <Link
+                  href="/login"
+                  className="text-base font-medium text-primary py-3 min-h-[44px] flex items-center gap-2"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                  Sign In
+                </Link>
+              )}
               <Link
                 href="/products"
                 className="gradient-bg text-white px-5 py-3 rounded-lg text-base font-semibold text-center mt-2 min-h-[44px] flex items-center justify-center"

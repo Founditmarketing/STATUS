@@ -121,7 +121,7 @@ export default function Home() {
           poster="/pomelli-image (11).png"
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/hero-video.mp4" type="video/mp4" />
+          <source src="/status-hero.mp4" type="video/mp4" />
         </video>
 
         {/* Dark overlay for text readability */}
