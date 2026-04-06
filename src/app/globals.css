@@ -132,19 +132,24 @@ body {
   }
 }
 
-/* Particle Floating Animation */
-@keyframes particle-float {
-  0%, 100% {
-    transform: translateY(0) translateX(0) scale(1);
+/* Particle Blowing Animation */
+@keyframes particle-blow {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
   }
-  33% {
-    transform: translateY(-20px) translateX(15px) scale(1.05);
+  15% {
+    opacity: 1;
   }
-  66% {
-    transform: translateY(15px) translateX(-15px) scale(0.95);
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(100vw, 120vh) scale(1.5);
+    opacity: 0;
   }
 }
 
-.animate-particle-float {
-  animation: particle-float ease-in-out infinite;
+.animate-particle-blow {
+  animation: particle-blow linear infinite;
 }
