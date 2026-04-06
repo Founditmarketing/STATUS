@@ -56,7 +56,7 @@ export default function Support() {
       </section>
 
       {/* Support Options */}
-      <section className="py-20 bg-white">
+      <section id="guides" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {supportOptions.map((option) => (
@@ -78,7 +78,7 @@ export default function Support() {
       </section>
 
       {/* Troubleshooting */}
-      <section className="py-20 bg-surface">
+      <section id="troubleshooting" className="py-20 bg-surface">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-center mb-12">
             Common <span className="gradient-text">Troubleshooting</span>
@@ -95,7 +95,7 @@ export default function Support() {
       </section>
 
       {/* Contact Form */}
-      <section className="py-20 bg-white">
+      <section id="contact" className="py-20 bg-white">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-extrabold mb-4">

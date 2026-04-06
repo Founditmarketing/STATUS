@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import FAQ from "@/components/FAQ";
+import ScrollCTA from "@/components/ScrollCTA";
 
 const stats = [
   { value: "$3,000+", label: "Average Savings", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
@@ -12,22 +13,28 @@ const stats = [
 const products = [
   {
     title: "Wall Mounted Systems",
+    slug: "wall-mounted",
     description: "Our most popular option. Sleek, quiet, and efficient. Perfect for bedrooms, living rooms, and home offices.",
     price: "Starting at $1,899",
+    priceNote: "Based on 9K BTU / 300-450 sq ft",
     specs: ["9K–36K BTU", "Up to 24 SEER2", "WiFi Control Included"],
     image: "/wall-mount.png",
   },
   {
     title: "Ceiling Cassette Systems",
+    slug: "ceiling-cassette",
     description: "Flush-mount design that blends seamlessly with your ceiling. 360° airflow for even temperature distribution.",
     price: "Starting at $2,699",
+    priceNote: "Based on 12K BTU / 450-650 sq ft",
     specs: ["12K–48K BTU", "Up to 22 SEER2", "4-Way Airflow"],
     image: "/ceiling-cassette.png",
   },
   {
     title: "Concealed Ducted Systems",
+    slug: "concealed-ducted",
     description: "Hidden behind walls or ceilings with only a discreet vent visible. Ideal for whole-home solutions.",
     price: "Starting at $2,299",
+    priceNote: "Based on 12K BTU / 450-650 sq ft",
     specs: ["12K–36K BTU", "Up to 21 SEER2", "Low Profile Design"],
     image: "/ducted-system.png",
   },
@@ -62,28 +69,37 @@ const testimonials = [
     name: "Mike T.",
     location: "Denver, CO",
     rating: 5,
+    product: "12K BTU Wall Mount",
+    installTime: "2 hours",
+    verified: true,
   },
   {
     quote: "Saved over $4,000 compared to the quotes I got from local HVAC companies. The pre-charged lineset made installation a breeze.",
     name: "Sarah L.",
     location: "Minneapolis, MN",
     rating: 5,
+    product: "18K BTU Wall Mount",
+    installTime: "3 hours",
+    verified: true,
   },
   {
     quote: "We've installed 3 STATUS units in our home now. The ceiling cassette in the living room is whisper quiet and looks amazing.",
     name: "Carlos R.",
     location: "Seattle, WA",
     rating: 5,
+    product: "12K BTU Ceiling Cassette",
+    installTime: "2.5 hours",
+    verified: true,
   },
 ];
 
 const resources = [
-  { title: "Sizing Guide", description: "Learn how to properly size your mini-split system for maximum efficiency and comfort.", icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" },
-  { title: "Installation Guide", description: "Step-by-step instructions with photos and video for every system type we sell.", icon: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" },
-  { title: "Brand Comparison", description: "See how STATUS stacks up against MrCool, Senville, Pioneer, and other DIY brands.", icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" },
-  { title: "BTU Calculator", description: "Input your room dimensions and get an instant BTU recommendation for your space.", icon: "M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" },
-  { title: "Blog & Guides", description: "Tips on energy efficiency, maintenance, rebate programs, and getting the most from your system.", icon: "M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" },
-  { title: "FAQ", description: "Answers to the most common questions about our systems, installation, and warranties.", icon: "M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
+  { title: "Sizing Guide", description: "Learn how to properly size your mini-split system for maximum efficiency and comfort.", icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z", href: "/tools#sizing" },
+  { title: "Installation Guide", description: "Step-by-step instructions with photos and video for every system type we sell.", icon: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z", href: "/support#guides" },
+  { title: "Brand Comparison", description: "See how STATUS stacks up against MrCool, Senville, Pioneer, and other DIY brands.", icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z", href: "/tools#comparison" },
+  { title: "BTU Calculator", description: "Input your room dimensions and get an instant BTU recommendation for your space.", icon: "M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z", href: "/tools#calculator" },
+  { title: "Blog & Guides", description: "Tips on energy efficiency, maintenance, rebate programs, and getting the most from your system.", icon: "M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z", href: "/support" },
+  { title: "FAQ", description: "Answers to the most common questions about our systems, installation, and warranties.", icon: "M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z", href: "#faq" },
 ];
 
 export default function Home() {
@@ -123,7 +139,7 @@ export default function Home() {
                 </svg>
               </Link>
               <Link
-                href="/tools"
+                href="/tools#calculator"
                 className="bg-white border-2 border-border text-foreground px-8 py-4 rounded-xl text-base font-semibold hover:border-primary/30 transition-colors inline-flex items-center gap-2"
               >
                 Size My System
@@ -145,7 +161,13 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Sentinel for ScrollCTA IntersectionObserver */}
+        <div id="hero-sentinel" className="absolute bottom-0 h-1 w-full" aria-hidden="true" />
       </section>
+
+      {/* ScrollCTA - appears when hero scrolls out of view */}
+      <ScrollCTA />
 
       {/* Stats Section */}
       <section className="border-y border-border bg-white">
@@ -209,10 +231,16 @@ export default function Home() {
                     ))}
                   </ul>
 
-                  <div className="flex items-center justify-between">
+                  <div className="mb-3">
                     <span className="text-lg font-bold text-primary">{product.price}</span>
-                    <Link href="/products" className="text-primary text-sm font-semibold hover:underline">
+                    <p className="text-xs text-muted mt-0.5">{product.priceNote}</p>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <Link href={`/products#${product.slug}`} className="gradient-bg text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity">
                       Shop Now &rarr;
+                    </Link>
+                    <Link href="/tools#calculator" className="text-primary text-xs font-medium hover:underline">
+                      Size my room
                     </Link>
                   </div>
                 </div>
@@ -390,7 +418,7 @@ export default function Home() {
       {/* Testimonials */}
       <section className="py-24 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-6">
             <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">
               What Our Customers <span className="gradient-text">Say</span>
             </h2>
@@ -399,17 +427,49 @@ export default function Home() {
             </p>
           </div>
 
+          {/* Aggregate review score */}
+          <div className="flex items-center justify-center gap-3 mb-12">
+            <div className="flex gap-0.5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <svg key={i} className="w-5 h-5 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <span className="font-bold text-lg">4.8/5</span>
+            <span className="text-muted text-sm">from 2,300+ verified reviews</span>
+          </div>
+
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((t) => (
               <div key={t.name} className="bg-white rounded-2xl p-8 border border-border hover:shadow-lg transition-shadow">
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-warning" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
+                {/* Verified badge & product tag */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex gap-1">
+                    {Array.from({ length: t.rating }).map((_, i) => (
+                      <svg key={i} className="w-5 h-5 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  {t.verified && (
+                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-success bg-green-50 px-2 py-1 rounded-full">
+                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                      Verified Purchase
+                    </span>
+                  )}
                 </div>
+
                 <p className="text-foreground leading-relaxed mb-6">&ldquo;{t.quote}&rdquo;</p>
+
+                {/* Product & install time tags */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <span className="text-xs bg-primary/10 text-primary font-medium px-2 py-1 rounded-full">{t.product}</span>
+                  <span className="text-xs bg-surface-2 text-muted font-medium px-2 py-1 rounded-full">Installed in {t.installTime}</span>
+                </div>
+
                 <div>
                   <p className="font-semibold">{t.name}</p>
                   <p className="text-sm text-muted">{t.location}</p>
@@ -435,7 +495,7 @@ export default function Home() {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
-                  href="/tools"
+                  href="/tools#rebates"
                   className="bg-white text-primary font-semibold px-8 py-4 rounded-xl hover:bg-white/90 transition-colors inline-flex items-center gap-2"
                 >
                   Check Your Rebates
@@ -471,7 +531,7 @@ export default function Home() {
             {resources.map((resource) => (
               <Link
                 key={resource.title}
-                href="/tools"
+                href={resource.href}
                 className="group bg-surface rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
@@ -488,7 +548,9 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <FAQ />
+      <div id="faq">
+        <FAQ />
+      </div>
     </>
   );
 }

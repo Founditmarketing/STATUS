@@ -10,6 +10,7 @@ const categoryImages: Record<string, string> = {
 const systems = [
   {
     category: "Wall Mounted",
+    slug: "wall-mounted",
     description: "Most popular. Sleek indoor unit mounts high on any wall.",
     items: [
       { name: "9K BTU Wall Mount", seer: "24 SEER2", area: "300-450 sq ft", price: "$1,899", features: ["Hyper Heat to -13°F", "WiFi Control", "Inverter Compressor"] },
@@ -21,6 +22,7 @@ const systems = [
   },
   {
     category: "Ceiling Cassette",
+    slug: "ceiling-cassette",
     description: "Flush-mount in ceiling with 360° airflow distribution.",
     items: [
       { name: "12K BTU Cassette", seer: "22 SEER2", area: "450-650 sq ft", price: "$2,699", features: ["4-Way Airflow", "WiFi Control", "Auto Swing Louvers"] },
@@ -30,6 +32,7 @@ const systems = [
   },
   {
     category: "Concealed Ducted",
+    slug: "concealed-ducted",
     description: "Hidden behind walls/ceilings. Only a discreet vent is visible.",
     items: [
       { name: "12K BTU Ducted", seer: "21 SEER2", area: "450-650 sq ft", price: "$2,299", features: ["Low Profile Design", "WiFi Control", "External Static Pressure"] },
@@ -76,7 +79,7 @@ export default function Products() {
 
       {/* Product Listings */}
       {systems.map((category) => (
-        <section key={category.category} className="py-16 bg-white border-b border-border last:border-b-0">
+        <section key={category.category} id={category.slug} className="py-16 bg-white border-b border-border last:border-b-0">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-10">
               <h2 className="text-3xl font-extrabold mb-2">{category.category} <span className="gradient-text">Systems</span></h2>
@@ -129,7 +132,7 @@ export default function Products() {
       ))}
 
       {/* Accessories */}
-      <section className="py-16 bg-surface">
+      <section id="accessories" className="py-16 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold mb-2">Accessories &amp; <span className="gradient-text">Add-Ons</span></h2>
           <p className="text-muted mb-10">Everything else you might need for your installation.</p>

@@ -57,7 +57,7 @@ export default function Tools() {
       </section>
 
       {/* BTU Calculator */}
-      <section className="py-20 bg-white">
+      <section id="calculator" className="py-20 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-center mb-4">
             BTU <span className="gradient-text">Calculator</span>
@@ -101,7 +101,7 @@ export default function Tools() {
       </section>
 
       {/* Sizing Guide Table */}
-      <section className="py-20 bg-surface">
+      <section id="sizing" className="py-20 bg-surface">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-center mb-4">
             Quick Sizing <span className="gradient-text">Guide</span>
@@ -134,7 +134,7 @@ export default function Tools() {
       </section>
 
       {/* Brand Comparison */}
-      <section className="py-20 bg-white">
+      <section id="comparison" className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-center mb-4">
             Brand <span className="gradient-text">Comparison</span>
@@ -180,7 +180,7 @@ export default function Tools() {
       </section>
 
       {/* Rebates Info */}
-      <section className="py-20 bg-surface">
+      <section id="rebates" className="py-20 bg-surface">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-center mb-4">
             Rebates &amp; <span className="gradient-text">Tax Credits</span>
