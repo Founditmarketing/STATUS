@@ -1,87 +1,156 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
-interface Particle {
-  id: number;
-  x: number;
-  y: number;
-  size: number;
-  length: number;
-  delay: number;
-  duration: number;
-  type: "cold" | "hot";
-}
+import { useEffect, useRef } from "react";
 
 export default function HVACParticles() {
-  const [particles, setParticles] = useState<Particle[]>([]);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    // Generate fast blowing "wind" streaks for the HVAC effect
-    const generated = Array.from({ length: 60 }).map((_, i) => ({
-      id: i,
-      // Start randomly off-screen left and top
-      x: (Math.random() * 120) - 40,
-      y: (Math.random() * 60) - 50,
-      // Wider, more cinematic streaks
-      size: Math.random() * 3 + 2,
-      // Longer trailing streaks
-      length: Math.random() * 120 + 40,
-      // Stagger animations
-      delay: Math.random() * 8,
-      // Significantly slower blowing duration (between 7s and 15s) for a majestic, beautiful look
-      duration: Math.random() * 8 + 7,
-      // 80% blue/cyan (AC), 20% orange (Heating pump) 
-      type: (Math.random() > 0.2 ? "cold" : "hot") as "cold" | "hot",
-    }));
-    setParticles(generated);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animationId: number;
+    let particles: Array<{
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+      opacity: number;
+      fadeSpeed: number;
+      color: string;
+    }> = [];
+
+    function resize() {
+      if (!canvas) return;
+      canvas.width = canvas.offsetWidth * 2;
+      canvas.height = canvas.offsetHeight * 2;
+    }
+    resize();
+    window.addEventListener("resize", resize);
+
+    // Spawn a new cold-air particle from the top-right area (like a wall-mounted unit blowing)
+    function spawnParticle() {
+      if (!canvas) return;
+      const w = canvas.width;
+      const h = canvas.height;
+
+      // Spawn from the top-right quadrant (where a mini-split would be mounted)
+      const spawnX = w * (0.6 + Math.random() * 0.4);
+      const spawnY = h * (0.05 + Math.random() * 0.15);
+
+      // Blow downward and to the left (like cold air falling and spreading)
+      const angle = Math.PI * (0.55 + Math.random() * 0.35); // ~100° to ~160°
+      const speed = 0.4 + Math.random() * 0.8;
+
+      // Pick a frosty blue/white color
+      const colors = [
+        "rgba(147, 220, 255,",  // light ice blue
+        "rgba(96, 200, 255,",   // medium cyan
+        "rgba(200, 235, 255,",  // frost white
+        "rgba(56, 182, 255,",   // vivid blue
+        "rgba(180, 230, 250,",  // pale frost
+        "rgba(220, 245, 255,",  // near-white cold
+      ];
+
+      particles.push({
+        x: spawnX,
+        y: spawnY,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        radius: 1.5 + Math.random() * 3.5,
+        opacity: 0.5 + Math.random() * 0.5,
+        fadeSpeed: 0.001 + Math.random() * 0.003,
+        color: colors[Math.floor(Math.random() * colors.length)],
+      });
+    }
+
+    function animate() {
+      if (!canvas || !ctx) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Spawn 2-3 particles per frame for a dense, continuous airflow
+      for (let i = 0; i < 3; i++) {
+        if (particles.length < 200) spawnParticle();
+      }
+
+      // Update and draw each particle
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+
+        // Drift with slight turbulence (simulates air mixing)
+        p.x += p.vx + (Math.random() - 0.5) * 0.3;
+        p.y += p.vy + (Math.random() - 0.5) * 0.2;
+
+        // Gravity: cold air sinks slowly
+        p.vy += 0.005;
+
+        // Slow down over time (air losing momentum)
+        p.vx *= 0.999;
+        p.vy *= 0.999;
+
+        // Fade out
+        p.opacity -= p.fadeSpeed;
+
+        // Remove dead particles
+        if (p.opacity <= 0 || p.x < -20 || p.y > canvas.height + 20) {
+          particles.splice(i, 1);
+          continue;
+        }
+
+        // Draw the particle with a soft glow
+        ctx.beginPath();
+        const gradient = ctx.createRadialGradient(
+          p.x, p.y, 0,
+          p.x, p.y, p.radius * 3
+        );
+        gradient.addColorStop(0, `${p.color}${p.opacity})`);
+        gradient.addColorStop(0.4, `${p.color}${p.opacity * 0.6})`);
+        gradient.addColorStop(1, `${p.color}0)`);
+        ctx.fillStyle = gradient;
+        ctx.arc(p.x, p.y, p.radius * 3, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Bright core
+        ctx.beginPath();
+        ctx.fillStyle = `${p.color}${Math.min(p.opacity * 1.2, 1)})`;
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      animationId = requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener("resize", resize);
+    };
   }, []);
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none md:hidden bg-gradient-to-br from-slate-900 via-slate-800 to-black">
-      {/* Dynamic HVAC blowing particles */}
-      {particles.map((p) => {
-        const isCold = p.type === "cold";
-        return (
-          <div
-            key={p.id}
-            className="absolute animate-particle-blow"
-            style={{
-              left: `${p.x}%`,
-              top: `${p.y}%`,
-              animationDuration: `${p.duration}s`,
-              animationDelay: `${p.delay}s`,
-            }}
-          >
-            {/* The rotated wind streak */}
-            <div
-              className={`rounded-full blur-[2px] transform -rotate-[45deg] ${
-                isCold
-                  ? "bg-cyan-200/90 shadow-[0_0_35px_rgba(34,211,238,1)]"
-                  : "bg-orange-300/90 shadow-[0_0_35px_rgba(249,115,22,1)]"
-              }`}
-              style={{
-                width: `${p.size}px`,
-                height: `${p.length}px`,
-                background: isCold 
-                  ? 'linear-gradient(to bottom, rgba(34,211,238,0) 0%, rgba(34,211,238,1) 50%, rgba(34,211,238,0) 100%)'
-                  : 'linear-gradient(to bottom, rgba(249,115,22,0) 0%, rgba(249,115,22,1) 50%, rgba(249,115,22,0) 100%)'
-              }}
-            />
-          </div>
-        );
-      })}
+    <div className="absolute inset-0 overflow-hidden pointer-events-none md:hidden">
+      {/* Deep dark background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0a1628] via-[#0d1f3c] to-[#081020]" />
+      
+      {/* Canvas for particle rendering */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full"
+        style={{ opacity: 0.85 }}
+      />
 
-      {/* Aggressive airflow grid overlay to match fan concept */}
+      {/* Subtle cold-mist radial glow from the "unit" location */}
       <div 
-        className="absolute inset-0 opacity-[0.2] mix-blend-overlay"
+        className="absolute top-0 right-0 w-[60%] h-[40%] opacity-30"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 20h20v20H20V20zM0 20h20v20H0V20z' fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+          background: "radial-gradient(ellipse at 80% 10%, rgba(56,182,255,0.4) 0%, transparent 70%)",
         }}
       />
-      
-      {/* Soft vignette */}
-      <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%)' }} />
     </div>
   );
 }
