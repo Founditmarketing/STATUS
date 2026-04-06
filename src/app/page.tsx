@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import FAQ from "@/components/FAQ";
 import ScrollCTA from "@/components/ScrollCTA";
+import HVACParticles from "@/components/HVACParticles";
 import { ProductSchema, FAQSchema } from "@/components/SchemaMarkup";
 
 const stats = [
@@ -113,34 +114,26 @@ export default function Home() {
       {/* Hero Section — Stacked on Mobile, Video Background on Desktop */}
       <section className="relative flex flex-col sm:block sm:min-h-[90vh] bg-foreground text-white overflow-hidden">
         {/* Video wrapper: Specific height on mobile, absolute full-viewport on desktop */}
-        <div className="relative w-full h-[50vh] sm:absolute sm:inset-0 sm:h-full order-1 sm:order-none">
+        <div className="hidden sm:block relative w-full h-[50vh] sm:absolute sm:inset-0 sm:h-full order-1 sm:order-none">
           <video
             autoPlay
             muted
             loop
             playsInline
             poster="/pomelli-image (11).png"
-            className="hidden sm:block absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover"
           >
             <source src="/status-hero.mp4" type="video/mp4" />
           </video>
-          {/* Mobile Image replacement to save 2.5MB on cellular */}
-          <div className="sm:hidden absolute inset-0">
-            <Image
-              src="/pomelli-image (11).png"
-              alt="STATUS Mini-Split DIY HVAC"
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
           {/* Dark overlay specifically for desktop text readability */}
           <div className="hidden sm:block absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
         </div>
 
         {/* Content wrapper: solid dark bg on mobile, flows naturally down. Padded center on desktop */}
-        <div className="relative z-10 w-full sm:h-full sm:flex sm:items-center order-2 sm:order-none">
-          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <div className="relative w-full sm:h-full sm:flex sm:items-center order-2 sm:order-none">
+          {/* Custom Particle Effect specifically for Mobile */}
+          <HVACParticles />
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
             <div className="max-w-2xl text-center sm:text-left mx-auto sm:mx-0">
               <div className="inline-flex items-center gap-2 bg-white/10 sm:bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <span className="w-2 h-2 bg-success rounded-full animate-pulse" />
