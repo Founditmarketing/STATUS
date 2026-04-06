@@ -1,4 +1,10 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Support & Installation Help | STATUS Mini-Split Systems",
+  description: "Get installation guides, live phone support, warranty registration, and troubleshooting help for your STATUS DIY mini-split system. Real HVAC experts available Monday-Friday.",
+};
 
 const supportOptions = [
   {

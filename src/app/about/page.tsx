@@ -1,5 +1,10 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "About STATUS | Our Mission, Team & Guarantees",
+  description: "STATUS was founded by HVAC engineers who believed homeowners deserve professional-grade mini-split systems at fair prices. Assembled in the USA. 7-year warranty. 10,000+ systems installed.",
+};
 const values = [
   {
     title: "Quality First",
@@ -92,6 +97,54 @@ export default function About() {
                 </div>
                 <h3 className="text-xl font-bold mb-2">{value.title}</h3>
                 <p className="text-muted leading-relaxed">{value.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership & Team - E-E-A-T */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-4xl font-extrabold tracking-tight mb-4">
+              Our <span className="gradient-text">Leadership</span>
+            </h2>
+            <p className="text-muted">
+              STATUS was founded by HVAC engineers and manufacturing veterans who saw an industry overcharging homeowners for simple installations.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "David Chen",
+                role: "Co-Founder & CEO",
+                credentials: "15+ years in HVAC manufacturing",
+                bio: "Former VP of Engineering at a Fortune 500 HVAC manufacturer. Led the development of the first consumer-grade pre-charged lineset system. Holds 3 patents in refrigerant line technology.",
+              },
+              {
+                name: "Rachel Martinez",
+                role: "Co-Founder & COO",
+                credentials: "MBA, Stanford | EPA 608 Certified",
+                bio: "Spent a decade in supply chain operations for major appliance brands. Built STATUS's direct-to-consumer model that eliminates distributor markups and passes savings to homeowners.",
+              },
+              {
+                name: "James Park",
+                role: "VP of Engineering",
+                credentials: "P.E., Mechanical Engineering | ASHRAE Member",
+                bio: "20 years designing residential and commercial HVAC systems. Oversees product testing, quality control, and the engineering team at STATUS's assembly facility.",
+              },
+            ].map((person) => (
+              <div key={person.name} className="bg-surface rounded-2xl p-8 border border-border text-center">
+                <div className="w-20 h-20 rounded-full gradient-bg flex items-center justify-center mx-auto mb-4">
+                  <span className="text-white text-2xl font-bold">
+                    {person.name.split(" ").map((n) => n[0]).join("")}
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold">{person.name}</h3>
+                <p className="text-primary text-sm font-medium mb-1">{person.role}</p>
+                <p className="text-xs text-muted mb-4">{person.credentials}</p>
+                <p className="text-sm text-muted leading-relaxed">{person.bio}</p>
               </div>
             ))}
           </div>

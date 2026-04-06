@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import FAQ from "@/components/FAQ";
 import ScrollCTA from "@/components/ScrollCTA";
+import { ProductSchema, FAQSchema } from "@/components/SchemaMarkup";
 
 const stats = [
   { value: "$3,000+", label: "Average Savings", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
@@ -105,6 +106,10 @@ const resources = [
 export default function Home() {
   return (
     <>
+      {/* Structured Data */}
+      <ProductSchema />
+      <FAQSchema />
+
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 gradient-bg-subtle" />
@@ -119,9 +124,9 @@ export default function Home() {
             </div>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
-              Professional HVAC.
+              DIY Ductless Mini-Split Systems.
               <br />
-              <span className="gradient-text">DIY Prices.</span>
+              <span className="gradient-text">Professional HVAC. DIY Prices.</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-muted max-w-2xl mx-auto mb-10 leading-relaxed">

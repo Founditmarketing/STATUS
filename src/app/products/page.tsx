@@ -1,5 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "DIY Mini-Split Systems & Accessories | STATUS",
+  description: "Shop wall mounted, ceiling cassette, and concealed ducted mini-split heat pump systems. Starting at $1,899 with free 3-day shipping. Pre-charged linesets included — no HVAC certification needed.",
+};
 
 const categoryImages: Record<string, string> = {
   "Wall Mounted": "/wall-mount.png",
