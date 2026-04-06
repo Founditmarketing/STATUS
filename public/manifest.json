@@ -1,0 +1,17 @@
+{
+  "name": "STATUS — DIY Ductless Mini-Split Systems",
+  "short_name": "STATUS",
+  "description": "Professional HVAC at DIY prices. Save $3,000+ with pre-charged, easy-install ductless mini-split systems.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
