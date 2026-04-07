@@ -43,7 +43,6 @@ export default function BottomNav() {
         transform: showNav ? "translateY(0)" : "translateY(100%)",
         transition: "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
         willChange: "transform",
-        paddingBottom: "env(safe-area-inset-bottom, 0px)",
       }}
       aria-label="Mobile navigation"
     >
@@ -56,13 +55,14 @@ export default function BottomNav() {
         }}
       />
 
-      {/* Main bar — solid dark bg, flush to bottom edge */}
+      {/* Main bar — flush to true screen bottom, safe area handled inside */}
       <div>
         <div
-          className="border-t border-white/[0.08] px-1 py-1"
+          className="border-t border-white/[0.08] px-1 pt-1"
           style={{
             backgroundColor: "rgba(12, 15, 20, 0.97)",
             boxShadow: "0 -4px 30px rgba(0,0,0,0.4)",
+            paddingBottom: "max(4px, env(safe-area-inset-bottom, 4px))",
           }}
         >
           <div className="flex items-center justify-around">
