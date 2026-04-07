@@ -3,129 +3,122 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/lib/cart-context";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export default function BottomNav() {
   const pathname = usePathname();
   const { cartCount, setCartOpen } = useCart();
   const [showNav, setShowNav] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
+  // Simple threshold-based visibility — no scroll-direction detection
+  // which causes iOS momentum scroll jank
   useEffect(() => {
-    if (window.scrollY > 150) setShowNav(true);
+    let ticking = false;
 
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY < 150) {
-        setShowNav(false);
-      } else if (currentScrollY > lastScrollY) {
-        setShowNav(false);
-      } else if (currentScrollY < lastScrollY) {
-        setShowNav(true);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setShowNav(window.scrollY > 200);
+          ticking = false;
+        });
+        ticking = true;
       }
-      setLastScrollY(currentScrollY);
     };
+
+    // Check on mount
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
-  const isActive = (path: string) => pathname?.startsWith(path);
+  const isActive = useCallback(
+    (path: string) => pathname?.startsWith(path),
+    [pathname]
+  );
 
   return (
-    <div
-      className={`md:hidden fixed bottom-0 left-0 right-0 z-40 transition-all duration-300 ease-out ${
-        showNav ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
-      }`}
+    <nav
+      className="md:hidden fixed bottom-0 left-0 right-0 z-40"
+      style={{
+        transform: showNav ? "translateY(0)" : "translateY(100%)",
+        transition: "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        willChange: "transform",
+        paddingBottom: "env(safe-area-inset-bottom, 0px)",
+      }}
+      aria-label="Mobile navigation"
     >
-      {/* Gradient glow behind the bar */}
-      <div className="absolute -top-8 left-0 right-0 h-8 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+      {/* Shadow fade above the bar */}
+      <div
+        className="h-6 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(0,0,0,0.15), transparent)",
+        }}
+      />
 
-      {/* Main nav container */}
-      <div className="relative mx-3 mb-3">
-        {/* Frosted glass bar */}
-        <div className="bg-foreground/90 backdrop-blur-2xl rounded-2xl border border-white/[0.08] shadow-2xl shadow-black/40 px-2 py-1.5">
+      {/* Main bar — solid dark bg, NO backdrop-blur (causes iOS Safari flicker) */}
+      <div className="mx-2.5 mb-1.5">
+        <div
+          className="rounded-2xl border border-white/[0.08] px-1 py-1"
+          style={{
+            backgroundColor: "rgba(12, 15, 20, 0.97)",
+            boxShadow: "0 -2px 30px rgba(0,0,0,0.4)",
+          }}
+        >
           <div className="flex items-center justify-around">
             {/* Shop */}
-            <Link
+            <NavItem
               href="/products"
-              className={`relative flex flex-col items-center justify-center py-2 px-4 min-w-[72px] min-h-[52px] rounded-xl transition-all duration-200 ${
-                isActive("/products")
-                  ? "text-white"
-                  : "text-white/50 active:scale-95"
-              }`}
-            >
-              {isActive("/products") && (
-                <div className="absolute inset-0 rounded-xl bg-primary/20 border border-primary/30" />
-              )}
-              <svg
-                className={`w-[22px] h-[22px] relative ${
-                  isActive("/products") ? "text-primary-light" : ""
-                }`}
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={isActive("/products") ? 2.5 : 1.8}
-              >
+              active={isActive("/products")}
+              icon={
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
                 />
-              </svg>
-              <span
-                className={`text-[10px] font-semibold tracking-wide relative mt-0.5 ${
-                  isActive("/products") ? "text-primary-light" : ""
-                }`}
-              >
-                Shop
-              </span>
-            </Link>
+              }
+              label="Shop"
+            />
 
-            {/* Size System */}
-            <Link
+            {/* Size */}
+            <NavItem
               href="/tools"
-              className={`relative flex flex-col items-center justify-center py-2 px-4 min-w-[72px] min-h-[52px] rounded-xl transition-all duration-200 ${
-                isActive("/tools")
-                  ? "text-white"
-                  : "text-white/50 active:scale-95"
-              }`}
-            >
-              {isActive("/tools") && (
-                <div className="absolute inset-0 rounded-xl bg-primary/20 border border-primary/30" />
-              )}
-              <svg
-                className={`w-[22px] h-[22px] relative ${
-                  isActive("/tools") ? "text-primary-light" : ""
-                }`}
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={isActive("/tools") ? 2.5 : 1.8}
-              >
+              active={isActive("/tools")}
+              icon={
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
                 />
-              </svg>
-              <span
-                className={`text-[10px] font-semibold tracking-wide relative mt-0.5 ${
-                  isActive("/tools") ? "text-primary-light" : ""
-                }`}
-              >
-                Size
-              </span>
-            </Link>
+              }
+              label="Size"
+            />
 
-            {/* Center CTA Button — elevated, prominent */}
+            {/* Center CTA — the lightning bolt */}
             <Link
               href="/products"
-              className="relative -mt-5 flex items-center justify-center"
+              className="relative flex items-center justify-center -mt-5"
+              aria-label="Shop STATUS systems"
             >
-              <div className="absolute inset-0 rounded-full bg-primary blur-lg opacity-40 scale-110" />
-              <div className="relative w-14 h-14 rounded-full gradient-bg flex items-center justify-center shadow-lg shadow-primary/30 border-2 border-primary-light/30 active:scale-95 transition-transform">
+              <div
+                className="absolute w-16 h-16 rounded-full"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(0,102,255,0.35) 0%, transparent 70%)",
+                  filter: "blur(8px)",
+                }}
+              />
+              <div
+                className="relative w-[52px] h-[52px] rounded-full flex items-center justify-center active:scale-95"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #0066ff 0%, #0044cc 50%, #00d4aa 100%)",
+                  boxShadow: "0 4px 20px rgba(0,102,255,0.35)",
+                  transition: "transform 0.15s ease",
+                }}
+              >
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="w-5 h-5 text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -140,50 +133,30 @@ export default function BottomNav() {
               </div>
             </Link>
 
-            {/* Support */}
-            <Link
+            {/* Help */}
+            <NavItem
               href="/support"
-              className={`relative flex flex-col items-center justify-center py-2 px-4 min-w-[72px] min-h-[52px] rounded-xl transition-all duration-200 ${
-                isActive("/support")
-                  ? "text-white"
-                  : "text-white/50 active:scale-95"
-              }`}
-            >
-              {isActive("/support") && (
-                <div className="absolute inset-0 rounded-xl bg-primary/20 border border-primary/30" />
-              )}
-              <svg
-                className={`w-[22px] h-[22px] relative ${
-                  isActive("/support") ? "text-primary-light" : ""
-                }`}
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={isActive("/support") ? 2.5 : 1.8}
-              >
+              active={isActive("/support")}
+              icon={
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
-              </svg>
-              <span
-                className={`text-[10px] font-semibold tracking-wide relative mt-0.5 ${
-                  isActive("/support") ? "text-primary-light" : ""
-                }`}
-              >
-                Help
-              </span>
-            </Link>
+              }
+              label="Help"
+            />
 
             {/* Cart */}
             <button
               onClick={() => setCartOpen(true)}
-              className="relative flex flex-col items-center justify-center py-2 px-4 min-w-[72px] min-h-[52px] rounded-xl text-white/50 active:scale-95 transition-all duration-200"
+              className="flex flex-col items-center justify-center py-2 px-3 min-w-[60px] min-h-[48px] rounded-xl text-white/50 active:scale-95"
+              style={{ transition: "transform 0.15s ease" }}
+              aria-label={`Shopping cart, ${cartCount} items`}
             >
               <div className="relative">
                 <svg
-                  className="w-[22px] h-[22px]"
+                  className="w-[21px] h-[21px]"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -196,7 +169,13 @@ export default function BottomNav() {
                   />
                 </svg>
                 {cartCount > 0 && (
-                  <span className="absolute -top-1.5 -right-2.5 min-w-[18px] h-[18px] px-1 bg-primary text-white text-[9px] font-bold rounded-full flex items-center justify-center ring-2 ring-foreground/90 animate-bounce-in">
+                  <span
+                    className="absolute -top-1.5 -right-2.5 min-w-[17px] h-[17px] px-0.5 text-white text-[9px] font-bold rounded-full flex items-center justify-center"
+                    style={{
+                      backgroundColor: "var(--primary)",
+                      boxShadow: "0 0 0 2px rgba(12, 15, 20, 0.97)",
+                    }}
+                  >
                     {cartCount > 9 ? "9+" : cartCount}
                   </span>
                 )}
@@ -208,6 +187,58 @@ export default function BottomNav() {
           </div>
         </div>
       </div>
-    </div>
+    </nav>
+  );
+}
+
+/* ─── Extracted NavItem for cleaner code ─── */
+
+function NavItem({
+  href,
+  active,
+  icon,
+  label,
+}: {
+  href: string;
+  active: boolean | undefined;
+  icon: React.ReactNode;
+  label: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className={`relative flex flex-col items-center justify-center py-2 px-3 min-w-[60px] min-h-[48px] rounded-xl active:scale-95 ${
+        active ? "text-white" : "text-white/50"
+      }`}
+      style={{ transition: "transform 0.15s ease" }}
+    >
+      {active && (
+        <div
+          className="absolute inset-0 rounded-xl"
+          style={{
+            backgroundColor: "rgba(0,102,255,0.15)",
+            border: "1px solid rgba(0,102,255,0.25)",
+          }}
+        />
+      )}
+      <svg
+        className={`w-[21px] h-[21px] relative ${
+          active ? "text-[#4d94ff]" : ""
+        }`}
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={active ? 2.5 : 1.8}
+      >
+        {icon}
+      </svg>
+      <span
+        className={`text-[10px] font-semibold tracking-wide relative mt-0.5 ${
+          active ? "text-[#4d94ff]" : ""
+        }`}
+      >
+        {label}
+      </span>
+    </Link>
   );
 }
