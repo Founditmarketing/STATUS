@@ -56,28 +56,13 @@ export default function BottomNav() {
         transform: showNav ? "translateY(0)" : "translateY(100%)",
         transition: "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
         willChange: "transform",
+        backgroundColor: "#0c0f14",
+        borderTop: "1px solid rgba(255,255,255,0.08)",
+        boxShadow: "0 -4px 30px rgba(0,0,0,0.4)",
       }}
       aria-label="Mobile navigation"
     >
-      {/* Shadow fade above the bar */}
-      <div
-        className="h-6 pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(to top, rgba(0,0,0,0.15), transparent)",
-        }}
-      />
-
-      {/* Main bar */}
-      <div className="relative">
-        <div
-          className="border-t border-white/[0.08] px-1 py-1"
-          style={{
-            backgroundColor: "#0c0f14",
-            boxShadow: "0 -4px 30px rgba(0,0,0,0.4)",
-          }}
-        >
-          <div className="flex items-center justify-around">
+      <div className="flex items-center justify-around px-1 py-1">
             {/* Shop */}
             <NavItem
               href="/products"
@@ -197,8 +182,6 @@ export default function BottomNav() {
               </span>
             </button>
           </div>
-        </div>
-      </div>
     </nav>
   );
 }
