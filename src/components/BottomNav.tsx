@@ -52,13 +52,13 @@ export default function BottomNav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isIOS]);
 
-  // Don't render on iPhone at all
-  if (isIOS) return null;
-
   const isActive = useCallback(
     (path: string) => pathname?.startsWith(path),
     [pathname]
   );
+
+  // Don't render on iPhone at all
+  if (isIOS) return null;
 
   return (
     <nav
