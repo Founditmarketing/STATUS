@@ -1,28 +1,38 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useCart } from "@/lib/cart-context";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showPromo, setShowPromo] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
   const { cartCount, setCartOpen, user } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        setShowPromo(false);
-      } else if (currentScrollY < lastScrollY) {
-        setShowPromo(true);
-      }
-      setLastScrollY(currentScrollY);
+      if (ticking.current) return;
+      ticking.current = true;
+
+      window.requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const delta = y - lastScrollY.current;
+
+        if (delta > 3 && y > 50) {
+          setShowPromo(false);
+        } else if (delta < -3) {
+          setShowPromo(true);
+        }
+
+        lastScrollY.current = y;
+        ticking.current = false;
+      });
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   const links = [
     { href: "/", label: "Home" },
@@ -33,9 +43,19 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-2xl border-b border-border/50">
+    <header
+      className="sticky top-0 z-50 border-b border-border/50"
+      style={{ backgroundColor: "rgba(255,255,255,0.95)" }}
+    >
       {/* Top banner */}
-      <div className={`transition-all duration-300 overflow-hidden ${showPromo ? "max-h-12 opacity-100" : "max-h-0 opacity-0"}`}>
+      <div
+        style={{
+          transform: showPromo ? "translateY(0)" : "translateY(-100%)",
+          maxHeight: showPromo ? "48px" : "0px",
+          transition: "transform 0.3s ease, max-height 0.3s ease",
+          overflow: "hidden",
+        }}
+      >
         <div className="bg-foreground text-white text-center py-2 px-4 text-sm font-medium tracking-wide">
           Free 3-Day Shipping on All Systems &mdash; Order Today
         </div>
