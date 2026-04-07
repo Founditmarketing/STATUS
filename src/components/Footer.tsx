@@ -41,7 +41,11 @@ const bottomLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-foreground text-white pb-20">
+    <footer className="bg-foreground text-white pb-20 relative overflow-hidden">
+      {/* Gradient top border */}
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+      {/* Subtle radial glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
@@ -52,7 +56,7 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <span className="text-xl font-extrabold uppercase">Status</span>
+              <span className="text-xl font-extrabold uppercase tracking-[0.15em]">Status</span>
             </div>
             <p className="text-white/60 text-sm leading-relaxed mb-6">
               Professional HVAC. DIY Prices. Engineered and assembled in the USA. Save thousands with our pre-charged, easy-install mini-split systems.

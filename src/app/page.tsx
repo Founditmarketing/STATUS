@@ -458,57 +458,63 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trust Signals */}
-      <section className="py-12 sm:py-16 border-y border-border bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-3 gap-8">
+      {/* Trust Signals — Glassmorphism Cards */}
+      <section className="py-12 sm:py-16 bg-foreground text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`, backgroundRepeat: 'repeat', backgroundSize: '200px' }} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="grid sm:grid-cols-3 gap-6 sm:gap-8">
             {[
               { title: "Energy Star Certified", description: "All STATUS systems meet or exceed Energy Star requirements for maximum efficiency and rebate eligibility.", icon: "M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" },
               { title: "ETL Safety Listed", description: "Every unit is independently tested and certified to UL safety standards by Intertek (ETL).", icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
               { title: "Assembled in the USA", description: "Engineered and assembled in our state-of-the-art facility, ensuring quality control at every step.", icon: "M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" },
-            ].map((item) => (
-              <div key={item.title} className="text-center">
-                <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary/10 mb-4">
-                  <svg className="w-7 h-7 sm:w-8 sm:h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            ].map((item, idx) => (
+              <div key={item.title} className="text-center p-6 sm:p-8 rounded-2xl bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] hover:bg-white/[0.08] transition-all duration-300 animate-fade-up" style={{ animationDelay: `${0.15 * idx}s` }}>
+                <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary/20 mb-5 relative">
+                  <div className="absolute inset-0 rounded-2xl bg-primary/10 blur-xl" />
+                  <svg className="w-7 h-7 sm:w-8 sm:h-8 text-primary-light relative" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
                   </svg>
                 </div>
-                <h3 className="text-base sm:text-lg font-bold mb-2">{item.title}</h3>
-                <p className="text-muted text-sm leading-relaxed">{item.description}</p>
+                <h3 className="text-base sm:text-lg font-bold mb-2 text-white">{item.title}</h3>
+                <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* How it Works */}
-      <section className="py-16 sm:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
-              How It <span className="gradient-text">Works</span>
+      {/* How it Works — Dark Immersive Editorial */}
+      <section className="py-20 sm:py-28 bg-foreground text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,102,255,0.12),transparent_60%)]" />
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`, backgroundRepeat: 'repeat', backgroundSize: '200px' }} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-20">
+            <span className="text-primary-light font-semibold text-sm uppercase tracking-[0.2em] mb-4 block">The Process</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 text-white">
+              Four Steps to <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Comfort</span>
             </h2>
-            <p className="text-base sm:text-lg text-muted">
+            <p className="text-base sm:text-lg text-white/60">
               From sizing to saving — the whole process takes just a few hours.
             </p>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {howItWorks.map((item) => (
-              <div key={item.step} className="relative">
-                <div className="text-5xl sm:text-6xl font-extrabold text-primary/10 mb-3 sm:mb-4">{item.step}</div>
-                <h3 className="text-base sm:text-lg font-bold mb-2">{item.title}</h3>
-                <p className="text-muted text-sm leading-relaxed">{item.description}</p>
+            {howItWorks.map((item, idx) => (
+              <div key={item.step} className="relative p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.06] transition-all duration-300 animate-fade-up" style={{ animationDelay: `${0.1 * idx}s` }}>
+                <div className="text-5xl sm:text-6xl font-extrabold bg-gradient-to-b from-primary/30 to-transparent bg-clip-text text-transparent mb-3 sm:mb-4">{item.step}</div>
+                <h3 className="text-base sm:text-lg font-bold mb-2 text-white">{item.title}</h3>
+                <p className="text-white/50 text-sm leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-16 sm:py-24 bg-surface">
+      {/* Testimonials — Large Quote Marks, Elevated Cards */}
+      <section className="py-16 sm:py-24 bg-surface noise-overlay">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-6">
+            <span className="text-primary font-semibold text-sm uppercase tracking-[0.2em] mb-3 block">Social Proof</span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
               What Our Customers <span className="gradient-text">Say</span>
             </h2>
@@ -532,8 +538,11 @@ export default function Home() {
 
           {/* Horizontal scroll on mobile, grid on desktop */}
           <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 sm:overflow-visible sm:snap-none sm:pb-0">
-            {testimonials.map((t) => (
-              <div key={t.name} className="bg-white rounded-2xl p-6 sm:p-8 border border-border hover:shadow-lg transition-shadow min-w-[300px] sm:min-w-0 snap-center flex-shrink-0 sm:flex-shrink">
+            {testimonials.map((t, idx) => (
+              <div key={t.name} className="relative bg-white rounded-2xl p-6 sm:p-8 border border-border hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 min-w-[300px] sm:min-w-0 snap-center flex-shrink-0 sm:flex-shrink animate-fade-up" style={{ animationDelay: `${0.12 * idx}s` }}>
+                {/* Decorative large quote mark */}
+                <div className="absolute top-4 right-5 text-6xl sm:text-7xl font-serif text-primary/[0.07] leading-none select-none pointer-events-none">&ldquo;</div>
+
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex gap-1">
                     {Array.from({ length: t.rating }).map((_, i) => (
@@ -552,14 +561,14 @@ export default function Home() {
                   )}
                 </div>
 
-                <p className="text-foreground text-sm sm:text-base leading-relaxed mb-5 sm:mb-6">&ldquo;{t.quote}&rdquo;</p>
+                <p className="text-foreground text-sm sm:text-base leading-relaxed mb-5 sm:mb-6 relative">&ldquo;{t.quote}&rdquo;</p>
 
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="text-xs bg-primary/10 text-primary font-medium px-2 py-1 rounded-full">{t.product}</span>
                   <span className="text-xs bg-surface-2 text-muted font-medium px-2 py-1 rounded-full">Installed in {t.installTime}</span>
                 </div>
 
-                <div>
+                <div className="pt-4 border-t border-border/50">
                   <p className="font-semibold text-sm sm:text-base">{t.name}</p>
                   <p className="text-sm text-muted">{t.location}</p>
                 </div>
