@@ -14,31 +14,34 @@ const stats = [
 
 const products = [
   {
-    title: "Wall Mounted Systems",
-    slug: "wall-mounted",
-    description: "Our most popular option. Sleek, quiet, and efficient. Perfect for bedrooms, living rooms, and home offices.",
-    price: "Starting at $1,899",
-    priceNote: "9K BTU / 300-450 sq ft",
-    specs: ["9K–36K BTU", "Up to 24 SEER2", "WiFi Control Included"],
-    image: "/pomelli-image (15).png",
+    title: "18K 2-Zone (9K+9K)",
+    slug: "2-zone",
+    description: "Two rooms, one system. Perfect starter bundle for bedrooms, offices, or apartments. Includes two 9K air handlers.",
+    price: "$2,899",
+    priceNote: "18,000 BTU / 600–900 sq ft",
+    specs: ["2 Indoor Air Handlers", "Up to 23 SEER2", "WiFi Built-In"],
+    image: "/wall-mount.png",
+    badge: "Best Value",
   },
   {
-    title: "Ceiling Cassette Systems",
-    slug: "ceiling-cassette",
-    description: "Flush-mount design that blends seamlessly with your ceiling. 360° airflow for even temperature distribution.",
-    price: "Starting at $2,699",
-    priceNote: "12K BTU / 450-650 sq ft",
-    specs: ["12K–48K BTU", "Up to 22 SEER2", "4-Way Airflow"],
-    image: "/ceiling-cassette.png",
+    title: "27K 2-Zone (12K+12K)",
+    slug: "2-zone",
+    description: "Our most popular multizone bundle. Two 12K handlers give powerful cooling and heating for larger rooms.",
+    price: "$3,699",
+    priceNote: "27,000 BTU / 900–1,300 sq ft",
+    specs: ["2 Indoor Air Handlers", "Up to 22 SEER2", "Hyper Heat to -13°F"],
+    image: "/wall-mount.png",
+    badge: "Most Popular",
   },
   {
-    title: "Concealed Ducted Systems",
-    slug: "concealed-ducted",
-    description: "Hidden behind walls or ceilings with only a discreet vent visible. Ideal for whole-home solutions.",
-    price: "Starting at $2,299",
-    priceNote: "12K BTU / 450-650 sq ft",
-    specs: ["12K–36K BTU", "Up to 21 SEER2", "Low Profile Design"],
-    image: "/ducted-system.png",
+    title: "27K 3-Zone (9K+9K+12K)",
+    slug: "3-zone",
+    description: "Whole-home comfort. Three independent zones with individual temperature control for every room.",
+    price: "$4,399",
+    priceNote: "27,000 BTU / 1,050–1,550 sq ft",
+    specs: ["3 Indoor Air Handlers", "Up to 22 SEER2", "R454B Refrigerant"],
+    image: "/wall-mount.png",
+    badge: "Whole Home",
   },
 ];
 
@@ -244,10 +247,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
-              Choose Your <span className="gradient-text">System</span>
+              Choose Your <span className="gradient-text">Bundle</span>
             </h2>
             <p className="text-base sm:text-lg text-muted">
-              Every STATUS system comes complete with everything you need for a DIY installation. No extras to buy.
+              Complete multizone packages — one outdoor condenser plus multiple indoor air handlers. Everything ships free with pre-charged linesets included.
             </p>
           </div>
 
