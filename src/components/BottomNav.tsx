@@ -55,14 +55,13 @@ export default function BottomNav() {
         }}
       />
 
-      {/* Main bar — flush to true screen bottom, safe area handled inside */}
-      <div>
+      {/* Main bar */}
+      <div className="relative">
         <div
-          className="border-t border-white/[0.08] px-1 pt-1"
+          className="border-t border-white/[0.08] px-1 py-1"
           style={{
-            backgroundColor: "rgba(12, 15, 20, 0.97)",
+            backgroundColor: "#0c0f14",
             boxShadow: "0 -4px 30px rgba(0,0,0,0.4)",
-            paddingBottom: "max(4px, env(safe-area-inset-bottom, 4px))",
           }}
         >
           <div className="flex items-center justify-around">
@@ -186,6 +185,17 @@ export default function BottomNav() {
             </button>
           </div>
         </div>
+        {/* 
+          iOS Safari gap killer: solid color block that extends 100px below
+          the bar. When Safari hides its toolbar, the viewport grows but 
+          fixed elements don't always reposition — this ensures there's
+          never a visible gap below our bar.
+        */}
+        <div
+          className="h-[100px]"
+          style={{ backgroundColor: "#0c0f14" }}
+          aria-hidden="true"
+        />
       </div>
     </nav>
   );
