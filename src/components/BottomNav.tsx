@@ -9,9 +9,20 @@ export default function BottomNav() {
   const pathname = usePathname();
   const { cartCount, setCartOpen } = useCart();
   const [showNav, setShowNav] = useState(false);
-  // Mirror Safari's toolbar: hide on scroll-down, show on scroll-up.
-  // This means our bar is hidden whenever Safari's gap would appear.
+  const [isIOS, setIsIOS] = useState(false);
+
+  // Detect iPhone/iPad — hide bottom nav on iOS (Safari toolbar conflicts)
   useEffect(() => {
+    const ua = navigator.userAgent;
+    if (/iPhone|iPad|iPod/.test(ua)) {
+      setIsIOS(true);
+    }
+  }, []);
+
+  // Mirror Safari's toolbar: hide on scroll-down, show on scroll-up.
+  useEffect(() => {
+    if (isIOS) return; // Skip scroll logic on iOS
+
     let lastY = window.scrollY;
     let ticking = false;
 
@@ -24,13 +35,10 @@ export default function BottomNav() {
         const delta = y - lastY;
 
         if (y < 100) {
-          // Near top of page — always hide to keep hero clean
           setShowNav(false);
         } else if (delta > 3) {
-          // Scrolling DOWN — hide (matches Safari hiding its toolbar)
           setShowNav(false);
         } else if (delta < -3) {
-          // Scrolling UP — show (matches Safari showing its toolbar)
           setShowNav(true);
         }
 
@@ -42,7 +50,10 @@ export default function BottomNav() {
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isIOS]);
+
+  // Don't render on iPhone at all
+  if (isIOS) return null;
 
   const isActive = useCallback(
     (path: string) => pathname?.startsWith(path),
