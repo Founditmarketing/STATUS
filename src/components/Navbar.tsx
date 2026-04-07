@@ -33,10 +33,10 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-border">
+    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-2xl border-b border-border/50">
       {/* Top banner */}
       <div className={`transition-all duration-300 overflow-hidden ${showPromo ? "max-h-12 opacity-100" : "max-h-0 opacity-0"}`}>
-        <div className="gradient-bg text-white text-center py-2 px-4 text-sm font-medium">
+        <div className="bg-foreground text-white text-center py-2 px-4 text-sm font-medium tracking-wide">
           Free 3-Day Shipping on All Systems &mdash; Order Today
         </div>
       </div>
@@ -45,12 +45,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 min-h-[44px]">
-            <div className="w-9 h-9 rounded-lg gradient-bg flex items-center justify-center">
+            <div className="w-9 h-9 rounded-lg bg-foreground flex items-center justify-center">
               <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <span className="text-xl font-extrabold tracking-tight uppercase">Status</span>
+            <span className="text-xl font-extrabold tracking-[0.15em] uppercase">Status</span>
           </Link>
 
           {/* Desktop nav — 44px min touch targets */}

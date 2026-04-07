@@ -223,12 +223,11 @@ export default function Home() {
       {/* ScrollCTA - appears when hero scrolls out of view */}
       <ScrollCTA />
 
-      {/* Stats Section */}
-      <section className="border-y border-border bg-white">
+      <section className="border-y border-border bg-white noise-overlay">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
+              <div key={stat.label} className="text-center animate-fade-up" style={{ animationDelay: `${0.1 * stats.indexOf(stat)}s` }}>
                 <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 mb-2 sm:mb-3">
                   <svg className="w-5 h-5 sm:w-6 sm:h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d={stat.icon} />
@@ -243,7 +242,7 @@ export default function Home() {
       </section>
 
       {/* Product Categories */}
-      <section className="py-16 sm:py-24 bg-white">
+      <section className="py-16 sm:py-24 bg-white noise-overlay">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
