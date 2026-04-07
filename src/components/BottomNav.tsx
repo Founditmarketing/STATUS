@@ -9,23 +9,36 @@ export default function BottomNav() {
   const pathname = usePathname();
   const { cartCount, setCartOpen } = useCart();
   const [showNav, setShowNav] = useState(false);
-
-  // Simple threshold-based visibility — no scroll-direction detection
-  // which causes iOS momentum scroll jank
+  // Mirror Safari's toolbar: hide on scroll-down, show on scroll-up.
+  // This means our bar is hidden whenever Safari's gap would appear.
   useEffect(() => {
+    let lastY = window.scrollY;
     let ticking = false;
 
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setShowNav(window.scrollY > 200);
-          ticking = false;
-        });
-        ticking = true;
-      }
+      if (ticking) return;
+      ticking = true;
+
+      window.requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const delta = y - lastY;
+
+        if (y < 100) {
+          // Near top of page — always hide to keep hero clean
+          setShowNav(false);
+        } else if (delta > 3) {
+          // Scrolling DOWN — hide (matches Safari hiding its toolbar)
+          setShowNav(false);
+        } else if (delta < -3) {
+          // Scrolling UP — show (matches Safari showing its toolbar)
+          setShowNav(true);
+        }
+
+        lastY = y;
+        ticking = false;
+      });
     };
 
-    // Check on mount
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -185,17 +198,6 @@ export default function BottomNav() {
             </button>
           </div>
         </div>
-        {/* 
-          iOS Safari gap killer: solid color block that extends 100px below
-          the bar. When Safari hides its toolbar, the viewport grows but 
-          fixed elements don't always reposition — this ensures there's
-          never a visible gap below our bar.
-        */}
-        <div
-          className="h-[100px]"
-          style={{ backgroundColor: "#0c0f14" }}
-          aria-hidden="true"
-        />
       </div>
     </nav>
   );
