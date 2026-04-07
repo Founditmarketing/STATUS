@@ -56,13 +56,13 @@ export default function BottomNav() {
         }}
       />
 
-      {/* Main bar — solid dark bg, NO backdrop-blur (causes iOS Safari flicker) */}
-      <div className="mx-2.5 mb-1.5">
+      {/* Main bar — solid dark bg, flush to bottom edge */}
+      <div>
         <div
-          className="rounded-2xl border border-white/[0.08] px-1 py-1"
+          className="border-t border-white/[0.08] px-1 py-1"
           style={{
             backgroundColor: "rgba(12, 15, 20, 0.97)",
-            boxShadow: "0 -2px 30px rgba(0,0,0,0.4)",
+            boxShadow: "0 -4px 30px rgba(0,0,0,0.4)",
           }}
         >
           <div className="flex items-center justify-around">
