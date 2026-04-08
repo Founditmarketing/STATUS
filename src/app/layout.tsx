@@ -70,7 +70,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="min-h-full flex flex-col overflow-x-hidden">
+      <body className="min-h-full flex flex-col">
+        <div className="w-full max-w-[100vw]" style={{ overflowX: 'clip' }}>
         <OrganizationSchema />
         <CartProvider>
           <ToastProvider>
@@ -87,6 +88,7 @@ export default function RootLayout({
             <CartDrawer />
           </ToastProvider>
         </CartProvider>
+        </div>
       </body>
     </html>
   );

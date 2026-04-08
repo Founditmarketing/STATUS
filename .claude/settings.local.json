@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://localhost:3001)",
+      "Bash(curl -s http://localhost:3001/about)",
+      "Bash(curl -s http://localhost:3001/services)",
+      "Bash(curl -s http://localhost:3001/gallery)",
+      "Bash(netstat -tlnp)"
+    ]
+  }
+}
