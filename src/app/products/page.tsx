@@ -30,8 +30,8 @@ export default function Products() {
       {/* Hero — Lifestyle Banner */}
       <section className="relative h-[60vh] sm:h-[70vh] overflow-hidden">
         <Image
-          src="/pomelli-image (11).png"
-          alt="STATUS mini-split installed in modern home"
+          src="/product-hero.png"
+          alt="STATUS mini-split in a modern warm-climate home"
           fill
           className="object-cover"
           sizes="100vw"
