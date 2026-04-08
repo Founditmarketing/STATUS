@@ -25,7 +25,7 @@ export default function Products() {
   const threeZone = bundles.filter((b) => b.zones === 3);
 
   return (
-    <>
+    <div className="overflow-x-hidden">
       {/* Hero — Lifestyle Banner */}
       <section className="relative h-[60vh] sm:h-[70vh] overflow-hidden">
         <Image
@@ -151,7 +151,7 @@ export default function Products() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 

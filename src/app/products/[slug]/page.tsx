@@ -147,7 +147,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
   }, [addToCart, setCartOpen, addToast, product]);
 
   return (
-    <>
+    <div className="overflow-x-hidden">
       {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
         <nav className="flex items-center gap-2 text-sm text-muted">
@@ -171,7 +171,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
               </span>
             )}
 
-            <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold tracking-tight mb-4 leading-tight">
+            <h1 className="text-2xl sm:text-4xl lg:text-[2.75rem] font-extrabold tracking-tight mb-4 leading-tight break-words">
               {product.name}
             </h1>
 
@@ -180,17 +180,19 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
             </p>
 
             {/* Price */}
-            <div className="flex items-baseline gap-3 mb-8">
-              <span className="text-4xl font-extrabold text-foreground">
-                ${product.price.toLocaleString()}
-              </span>
-              {product.comparePrice && (
-                <span className="text-lg text-muted line-through">
-                  ${product.comparePrice.toLocaleString()}
+            <div className="mb-8">
+              <div className="flex items-baseline gap-3 flex-wrap">
+                <span className="text-3xl sm:text-4xl font-extrabold text-foreground">
+                  ${product.price.toLocaleString()}
                 </span>
-              )}
+                {product.comparePrice && (
+                  <span className="text-lg text-muted line-through">
+                    ${product.comparePrice.toLocaleString()}
+                  </span>
+                )}
+              </div>
               {product.category === "bundle" && (
-                <span className="text-sm text-success font-semibold">Save $3,000+ vs. professional install</span>
+                <p className="text-sm text-success font-semibold mt-1">Save $3,000+ vs. professional install</p>
               )}
             </div>
 
@@ -225,10 +227,10 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
             </button>
 
             {/* Trust Signals */}
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted">
+            <div className="grid grid-cols-2 gap-2 text-xs text-muted">
               {["Free Shipping", "7-Year Warranty", "Easy DIY Install", "30-Day Returns"].map((t) => (
                 <span key={t} className="flex items-center gap-1.5">
-                  <svg className="w-3.5 h-3.5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-3.5 h-3.5 text-success flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   {t}
@@ -376,6 +378,6 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
 
       {/* Sticky Bar */}
       <StickyBar product={product} onAdd={handleAdd} />
-    </>
+    </div>
   );
 }
