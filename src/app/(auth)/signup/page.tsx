@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import SocialLogin from "@/components/SocialLogin";
 
 function SignupForm() {
   const [fullName, setFullName] = useState("");
@@ -72,6 +73,16 @@ function SignupForm() {
           </div>
         )}
 
+        {/* Social Login */}
+        <SocialLogin redirectTo={redirect} mode="signup" />
+
+        {/* Divider */}
+        <div className="flex items-center gap-3 my-6">
+          <div className="flex-1 h-px bg-border" />
+          <span className="text-xs text-muted font-medium uppercase tracking-wider">or</span>
+          <div className="flex-1 h-px bg-border" />
+        </div>
+
         <form onSubmit={handleSignup} className="space-y-4">
           <div>
             <label htmlFor="fullName" className="block text-sm font-medium mb-1.5">
@@ -124,7 +135,7 @@ function SignupForm() {
             disabled={loading}
             className="w-full gradient-bg text-white py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 min-h-[48px] text-sm"
           >
-            {loading ? "Creating account..." : "Create Account"}
+            {loading ? "Creating account..." : "Create Account with Email"}
           </button>
         </form>
 

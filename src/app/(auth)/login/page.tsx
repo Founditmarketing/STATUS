@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import SocialLogin from "@/components/SocialLogin";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -58,6 +59,16 @@ function LoginForm() {
           </div>
         )}
 
+        {/* Social Login */}
+        <SocialLogin redirectTo={redirect} mode="login" />
+
+        {/* Divider */}
+        <div className="flex items-center gap-3 my-6">
+          <div className="flex-1 h-px bg-border" />
+          <span className="text-xs text-muted font-medium uppercase tracking-wider">or</span>
+          <div className="flex-1 h-px bg-border" />
+        </div>
+
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
             <label htmlFor="email" className="block text-sm font-medium mb-1.5">
@@ -95,7 +106,7 @@ function LoginForm() {
             disabled={loading}
             className="w-full gradient-bg text-white py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 min-h-[48px] text-sm"
           >
-            {loading ? "Signing in..." : "Sign In"}
+            {loading ? "Signing in..." : "Sign In with Email"}
           </button>
         </form>
 
