@@ -653,3 +653,17 @@ export function getRelatedProducts(product: Product, limit = 4): Product[] {
   }
   return bundles.filter((b) => b.badge).slice(0, limit);
 }
+
+/** Smart upsells: suggest accessories if cart has bundles, bundles if cart only has accessories */
+export function getCartUpsells(cartProductIds: string[]): Product[] {
+  const cartHasBundle = cartProductIds.some((id) =>
+    bundles.some((b) => b.id === id)
+  );
+
+  if (cartHasBundle) {
+    // Suggest accessories not already in cart
+    return accessories.filter((a) => !cartProductIds.includes(a.id));
+  }
+  // If only accessories, suggest top bundles
+  return bundles.filter((b) => b.badge).slice(0, 3);
+}
