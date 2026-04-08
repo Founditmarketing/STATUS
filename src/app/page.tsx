@@ -467,7 +467,7 @@ export default function Home() {
               { title: "ETL Safety Listed", description: "Every unit is independently tested and certified to UL safety standards by Intertek (ETL).", icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
               { title: "Assembled in the USA", description: "Engineered and assembled in our state-of-the-art facility, ensuring quality control at every step.", icon: "M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" },
             ].map((item, idx) => (
-              <div key={item.title} className="text-center p-6 sm:p-8 rounded-2xl bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] hover:bg-white/[0.08] transition-all duration-300 animate-fade-up" style={{ animationDelay: `${0.15 * idx}s` }}>
+              <div key={item.title} className="text-center p-6 sm:p-8 rounded-2xl bg-white/[0.06] backdrop-blur-sm border border-white/[0.12] hover:bg-white/[0.10] transition-all duration-300 animate-fade-up" style={{ animationDelay: `${0.15 * idx}s` }}>
                 <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary/20 mb-5 relative">
                   <div className="absolute inset-0 rounded-2xl bg-primary/10 blur-xl" />
                   <svg className="w-7 h-7 sm:w-8 sm:h-8 text-primary-light relative" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -475,7 +475,7 @@ export default function Home() {
                   </svg>
                 </div>
                 <h3 className="text-base sm:text-lg font-bold mb-2 text-white">{item.title}</h3>
-                <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
+                <p className="text-white/75 text-sm leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>
@@ -491,17 +491,17 @@ export default function Home() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 text-white">
               Four Steps to <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Comfort</span>
             </h2>
-            <p className="text-base sm:text-lg text-white/60">
+            <p className="text-base sm:text-lg text-white/70">
               From sizing to saving — the whole process takes just a few hours.
             </p>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {howItWorks.map((item, idx) => (
-              <div key={item.step} className="relative p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.06] transition-all duration-300 animate-fade-up" style={{ animationDelay: `${0.1 * idx}s` }}>
-                <div className="text-5xl sm:text-6xl font-extrabold bg-gradient-to-b from-primary/30 to-transparent bg-clip-text text-transparent mb-3 sm:mb-4">{item.step}</div>
+              <div key={item.step} className="relative p-5 sm:p-6 rounded-2xl bg-white/[0.05] border border-white/[0.10] hover:bg-white/[0.08] transition-all duration-300 animate-fade-up" style={{ animationDelay: `${0.1 * idx}s` }}>
+                <div className="text-5xl sm:text-6xl font-extrabold bg-gradient-to-b from-primary/40 to-transparent bg-clip-text text-transparent mb-3 sm:mb-4">{item.step}</div>
                 <h3 className="text-base sm:text-lg font-bold mb-2 text-white">{item.title}</h3>
-                <p className="text-white/50 text-sm leading-relaxed">{item.description}</p>
+                <p className="text-white/70 text-sm leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>
