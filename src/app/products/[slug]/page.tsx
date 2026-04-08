@@ -13,7 +13,7 @@ function ImageGallery({ product }: { product: Product }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 min-w-0">
       {/* Main Image */}
       <div className="relative aspect-square bg-surface rounded-3xl overflow-hidden border border-border/50">
         <Image
@@ -33,7 +33,7 @@ function ImageGallery({ product }: { product: Product }) {
 
       {/* Thumbnails */}
       {product.images.length > 1 && (
-        <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-1">
+        <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-1 max-w-full">
           {product.images.map((img, i) => (
             <button
               key={i}
@@ -158,13 +158,13 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
       </div>
 
       {/* Product Hero — Two Column */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-4">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-4 overflow-hidden">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 min-w-0">
           {/* Left — Gallery */}
           <ImageGallery product={product} />
 
           {/* Right — Info */}
-          <div className="lg:pt-4">
+          <div className="lg:pt-4 min-w-0">
             {product.category === "bundle" && product.zones && (
               <span className="text-primary font-semibold text-sm uppercase tracking-[0.15em] mb-2 block">
                 {product.zones}-Zone System · {product.seer}
@@ -198,14 +198,14 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
 
             {/* Quick Specs (bundles only) */}
             {product.category === "bundle" && (
-              <div className="grid grid-cols-2 gap-3 mb-8">
+              <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-8">
                 {[
                   { label: "BTU", value: `${(product.btu! / 1000).toFixed(0)}K`, icon: "M13 10V3L4 14h7v7l9-11h-7z" },
                   { label: "Zones", value: `${product.zones}`, icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" },
                   { label: "Coverage", value: product.coverage!, icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" },
                   { label: "Efficiency", value: product.seer!, icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
                 ].map((s) => (
-                  <div key={s.label} className="flex items-center gap-3 p-3.5 rounded-xl bg-surface border border-border/50">
+                  <div key={s.label} className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3.5 rounded-xl bg-surface border border-border/50 min-w-0">
                     <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d={s.icon} />
                     </svg>
@@ -221,7 +221,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
             {/* Add to Cart */}
             <button
               onClick={handleAdd}
-              className="w-full gradient-bg text-white py-4 rounded-2xl font-bold text-base hover:opacity-90 transition-opacity mb-4"
+              className="w-full gradient-bg text-white py-4 rounded-2xl font-bold text-sm sm:text-base hover:opacity-90 transition-opacity mb-4 box-border"
             >
               Add to Cart — ${product.price.toLocaleString()}
             </button>
