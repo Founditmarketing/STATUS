@@ -123,7 +123,7 @@ export default function Home() {
             muted
             loop
             playsInline
-            poster="/pomelli-image (11).png"
+            poster="/product-hero.png"
             className="absolute inset-0 w-full h-full object-cover"
           >
             <source src="/status-hero.mp4" type="video/mp4" />

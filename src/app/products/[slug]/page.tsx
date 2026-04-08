@@ -266,7 +266,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
       {product.category === "bundle" && (
         <section className="relative h-[50vh] sm:h-[60vh] overflow-hidden">
           <Image
-            src="/pomelli-image (11).png"
+            src="/product-hero.png"
             alt="STATUS mini-split installed in a modern home"
             fill
             className="object-cover"

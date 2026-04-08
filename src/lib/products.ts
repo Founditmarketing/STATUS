@@ -49,7 +49,7 @@ const bundleImages: ProductImage[] = [
   { src: "/pomelli-image (13).png", alt: "STATUS indoor unit — 4-angle product view" },
   { src: "/22url.webp.jpeg.jpg", alt: "STATUS outdoor condenser unit — front view" },
   { src: "/34134.jpg", alt: "STATUS outdoor condenser unit — rear condenser coil detail" },
-  { src: "/pomelli-image (11).png", alt: "STATUS mini-split installed in modern living space" },
+  { src: "/product-hero.png", alt: "STATUS mini-split installed in modern living space" },
 ];
 
 const sharedFeatures = [

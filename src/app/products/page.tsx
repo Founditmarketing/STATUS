@@ -21,7 +21,6 @@ export default function Products() {
     setCartOpen(true);
   }
 
-  const featured = bundles.find((b) => b.badge === "Most Popular")!;
   const twoZone = bundles.filter((b) => b.zones === 2);
   const threeZone = bundles.filter((b) => b.zones === 3);
 
@@ -63,62 +62,6 @@ export default function Products() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
               </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Product — Hero Card */}
-      <section className="py-16 sm:py-24 bg-foreground text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <div className="relative aspect-square max-w-lg mx-auto w-full">
-              <Image
-                src="/pomelli-asset-2.png"
-                alt="STATUS complete mini-split system"
-                fill
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-            <div>
-              <span className="text-primary-light font-semibold text-sm uppercase tracking-[0.2em] mb-3 block">Most Popular</span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">{featured.name}</h2>
-              <p className="text-white/70 text-base sm:text-lg leading-relaxed mb-6">{featured.description}</p>
-              
-              <div className="grid grid-cols-2 gap-3 mb-8">
-                {[
-                  { l: "Capacity", v: `${(featured.btu! / 1000).toFixed(0)}K BTU` },
-                  { l: "Zones", v: `${featured.zones} Rooms` },
-                  { l: "Efficiency", v: featured.seer! },
-                  { l: "Coverage", v: featured.coverage! },
-                ].map((s) => (
-                  <div key={s.l} className="p-3 rounded-xl bg-white/[0.06] border border-white/[0.10]">
-                    <p className="text-white/50 text-xs mb-0.5">{s.l}</p>
-                    <p className="font-bold text-sm">{s.v}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex items-baseline gap-3 mb-6">
-                <span className="text-4xl font-extrabold">${featured.price.toLocaleString()}</span>
-                <span className="text-sm text-success font-semibold">Save $3,000+ vs pro install</span>
-              </div>
-
-              <div className="flex gap-3">
-                <Link
-                  href={`/products/${featured.slug}`}
-                  className="flex-1 bg-white text-foreground text-center py-3.5 rounded-xl font-bold text-sm hover:bg-white/90 transition-colors"
-                >
-                  Learn More
-                </Link>
-                <button
-                  onClick={() => handleAdd(featured)}
-                  className="flex-1 gradient-bg text-white py-3.5 rounded-xl font-bold text-sm hover:opacity-90 transition-opacity"
-                >
-                  Add to Cart
-                </button>
-              </div>
             </div>
           </div>
         </div>
