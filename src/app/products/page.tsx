@@ -1,346 +1,210 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { useCart } from "@/lib/cart-context";
 import { useToast } from "@/components/Toast";
-
-/* ─── Real Product Catalog: 10 Multizone Bundles ─── */
-
-const bundles = [
-  // ── 18K Condenser (2-Zone) ──
-  {
-    id: "mz-18k-9-9",
-    name: "18K 2-Zone (9K+9K)",
-    condenser: "SDIY-MZ-18-230",
-    btu: 18000,
-    zones: 2,
-    handlers: ["9K Air Handler", "9K Air Handler"],
-    handlerModels: ["SDIY-AH-09-230", "SDIY-AH-09-230"],
-    seer: "23 SEER2",
-    coverage: "600–900 sq ft",
-    price: 2899,
-    badge: "Best Value",
-  },
-  {
-    id: "mz-18k-9-12",
-    name: "18K 2-Zone (9K+12K)",
-    condenser: "SDIY-MZ-18-230",
-    btu: 18000,
-    zones: 2,
-    handlers: ["9K Air Handler", "12K Air Handler"],
-    handlerModels: ["SDIY-AH-09-230", "SDIY-AH-12-230"],
-    seer: "22 SEER2",
-    coverage: "750–1,100 sq ft",
-    price: 3099,
-    badge: null,
-  },
-  // ── 27K Condenser (2-Zone) ──
-  {
-    id: "mz-27k-9-9",
-    name: "27K 2-Zone (9K+9K)",
-    condenser: "SDIY-MZ-27-230",
-    btu: 27000,
-    zones: 2,
-    handlers: ["9K Air Handler", "9K Air Handler"],
-    handlerModels: ["SDIY-AH-09-230", "SDIY-AH-09-230"],
-    seer: "23 SEER2",
-    coverage: "600–900 sq ft",
-    price: 3299,
-    badge: null,
-  },
-  {
-    id: "mz-27k-9-12",
-    name: "27K 2-Zone (9K+12K)",
-    condenser: "SDIY-MZ-27-230",
-    btu: 27000,
-    zones: 2,
-    handlers: ["9K Air Handler", "12K Air Handler"],
-    handlerModels: ["SDIY-AH-09-230", "SDIY-AH-12-230"],
-    seer: "22 SEER2",
-    coverage: "750–1,100 sq ft",
-    price: 3499,
-    badge: null,
-  },
-  {
-    id: "mz-27k-9-18",
-    name: "27K 2-Zone (9K+18K)",
-    condenser: "SDIY-MZ-27-230",
-    btu: 27000,
-    zones: 2,
-    handlers: ["9K Air Handler", "18K Air Handler"],
-    handlerModels: ["SDIY-AH-09-230", "SDIY-AH-18-230"],
-    seer: "22 SEER2",
-    coverage: "950–1,350 sq ft",
-    price: 3799,
-    badge: null,
-  },
-  {
-    id: "mz-27k-12-12",
-    name: "27K 2-Zone (12K+12K)",
-    condenser: "SDIY-MZ-27-230",
-    btu: 27000,
-    zones: 2,
-    handlers: ["12K Air Handler", "12K Air Handler"],
-    handlerModels: ["SDIY-AH-12-230", "SDIY-AH-12-230"],
-    seer: "22 SEER2",
-    coverage: "900–1,300 sq ft",
-    price: 3699,
-    badge: "Most Popular",
-  },
-  {
-    id: "mz-27k-12-18",
-    name: "27K 2-Zone (12K+18K)",
-    condenser: "SDIY-MZ-27-230",
-    btu: 27000,
-    zones: 2,
-    handlers: ["12K Air Handler", "18K Air Handler"],
-    handlerModels: ["SDIY-AH-12-230", "SDIY-AH-18-230"],
-    seer: "21 SEER2",
-    coverage: "1,100–1,550 sq ft",
-    price: 3999,
-    badge: null,
-  },
-  // ── 27K Condenser (3-Zone) ──
-  {
-    id: "mz-27k-9-9-9",
-    name: "27K 3-Zone (9K+9K+9K)",
-    condenser: "SDIY-MZ-27-230",
-    btu: 27000,
-    zones: 3,
-    handlers: ["9K Air Handler", "9K Air Handler", "9K Air Handler"],
-    handlerModels: ["SDIY-AH-09-230", "SDIY-AH-09-230", "SDIY-AH-09-230"],
-    seer: "23 SEER2",
-    coverage: "900–1,350 sq ft",
-    price: 4199,
-    badge: null,
-  },
-  {
-    id: "mz-27k-9-9-12",
-    name: "27K 3-Zone (9K+9K+12K)",
-    condenser: "SDIY-MZ-27-230",
-    btu: 27000,
-    zones: 3,
-    handlers: ["9K Air Handler", "9K Air Handler", "12K Air Handler"],
-    handlerModels: ["SDIY-AH-09-230", "SDIY-AH-09-230", "SDIY-AH-12-230"],
-    seer: "22 SEER2",
-    coverage: "1,050–1,550 sq ft",
-    price: 4399,
-    badge: "Whole Home",
-  },
-  {
-    id: "mz-27k-9-12-12",
-    name: "27K 3-Zone (9K+12K+12K)",
-    condenser: "SDIY-MZ-27-230",
-    btu: 27000,
-    zones: 3,
-    handlers: ["9K Air Handler", "12K Air Handler", "12K Air Handler"],
-    handlerModels: ["SDIY-AH-09-230", "SDIY-AH-12-230", "SDIY-AH-12-230"],
-    seer: "22 SEER2",
-    coverage: "1,200–1,750 sq ft",
-    price: 4599,
-    badge: null,
-  },
-];
-
-const sharedFeatures = [
-  "R454B Refrigerant",
-  "WiFi Built-In",
-  "Hyper Heat to -13°F",
-  "Pre-Charged Linesets",
-  "7-Year Warranty",
-];
-
-const accessories = [
-  { name: "25ft Pre-Charged Lineset", price: 249, desc: "Quick-connect, factory sealed with R454B", id: "acc-lineset-25" },
-  { name: "50ft Pre-Charged Lineset", price: 349, desc: "Extended length for remote outdoor unit placement", id: "acc-lineset-50" },
-  { name: "Wall Mounting Bracket", price: 79, desc: "Heavy-duty bracket for outdoor condenser unit", id: "acc-bracket" },
-  { name: "Line Set Cover Kit", price: 89, desc: "Paintable PVC cover to hide exterior lines", id: "acc-cover" },
-  { name: "Condensate Pump", price: 69, desc: "For installations where gravity drain isn't possible", id: "acc-pump" },
-];
+import { bundles, accessories, type Product } from "@/lib/products";
 
 export default function Products() {
   const { addToCart, setCartOpen } = useCart();
   const { addToast } = useToast();
 
-  function handleAddBundle(bundle: typeof bundles[0]) {
+  function handleAdd(product: Product) {
     addToCart({
-      product_id: bundle.id,
-      product_name: bundle.name,
-      price: bundle.price,
-      image_url: "/wall-mount.png",
+      product_id: product.id,
+      product_name: product.name,
+      price: product.price,
+      image_url: product.images[0]?.src || "/wall-mount.png",
     });
-    addToast(`${bundle.name} added to cart`, "success");
+    addToast(`${product.shortName} added to cart`, "success");
     setCartOpen(true);
   }
 
-  function handleAddAccessory(acc: typeof accessories[0]) {
-    addToCart({
-      product_id: acc.id,
-      product_name: acc.name,
-      price: acc.price,
-    });
-    addToast(`${acc.name} added to cart`, "success");
-  }
-
+  const featured = bundles.find((b) => b.badge === "Most Popular")!;
   const twoZone = bundles.filter((b) => b.zones === 2);
   const threeZone = bundles.filter((b) => b.zones === 3);
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 gradient-bg-subtle" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
-            Multizone <span className="gradient-text">Bundle Systems</span>
-          </h1>
-          <p className="text-base sm:text-lg text-muted max-w-2xl mx-auto mb-6">
-            Complete DIY multizone mini-split packages. One outdoor condenser, multiple indoor units. 
-            Heat and cool every room independently.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3 text-sm text-muted">
-            {["Free 3-Day Shipping", "45-Day Returns", "7-Year Warranty", "R454B Refrigerant", "Energy Star Certified"].map((item) => (
-              <span key={item} className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full border border-border">
-                <svg className="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                {item}
+      {/* Hero — Lifestyle Banner */}
+      <section className="relative h-[60vh] sm:h-[70vh] overflow-hidden">
+        <Image
+          src="/pomelli-image (11).png"
+          alt="STATUS mini-split installed in modern home"
+          fill
+          className="object-cover"
+          sizes="100vw"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+        <div className="absolute inset-0 flex items-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div className="max-w-xl">
+              <span className="text-white/60 text-sm uppercase tracking-[0.2em] font-semibold mb-4 block">
+                STATUS Systems
               </span>
-            ))}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6 leading-[1.1]">
+                Comfort.<br />
+                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                  Engineered.
+                </span>
+              </h1>
+              <p className="text-white/80 text-base sm:text-lg leading-relaxed mb-8 max-w-md">
+                Pro-grade ductless mini-split systems you install yourself. 
+                Save $3,000+ and take control of every room.
+              </p>
+              <a
+                href="#systems"
+                className="inline-flex items-center gap-2 bg-white text-foreground px-7 py-3.5 rounded-xl font-bold text-sm hover:bg-white/90 transition-colors"
+              >
+                Shop Systems
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Shared Specs Bar */}
-      <section className="bg-foreground text-white py-4 border-y border-white/10">
+      {/* Featured Product — Hero Card */}
+      <section className="py-16 sm:py-24 bg-foreground text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm font-medium">
-            {sharedFeatures.map((f) => (
-              <span key={f} className="flex items-center gap-2 text-white/80">
-                <svg className="w-4 h-4 text-cyan-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                {f}
-              </span>
-            ))}
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <div className="relative aspect-square max-w-lg mx-auto w-full">
+              <Image
+                src="/pomelli-asset-2.png"
+                alt="STATUS complete mini-split system"
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div>
+              <span className="text-primary-light font-semibold text-sm uppercase tracking-[0.2em] mb-3 block">Most Popular</span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">{featured.name}</h2>
+              <p className="text-white/70 text-base sm:text-lg leading-relaxed mb-6">{featured.description}</p>
+              
+              <div className="grid grid-cols-2 gap-3 mb-8">
+                {[
+                  { l: "Capacity", v: `${(featured.btu! / 1000).toFixed(0)}K BTU` },
+                  { l: "Zones", v: `${featured.zones} Rooms` },
+                  { l: "Efficiency", v: featured.seer! },
+                  { l: "Coverage", v: featured.coverage! },
+                ].map((s) => (
+                  <div key={s.l} className="p-3 rounded-xl bg-white/[0.06] border border-white/[0.10]">
+                    <p className="text-white/50 text-xs mb-0.5">{s.l}</p>
+                    <p className="font-bold text-sm">{s.v}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex items-baseline gap-3 mb-6">
+                <span className="text-4xl font-extrabold">${featured.price.toLocaleString()}</span>
+                <span className="text-sm text-success font-semibold">Save $3,000+ vs pro install</span>
+              </div>
+
+              <div className="flex gap-3">
+                <Link
+                  href={`/products/${featured.slug}`}
+                  className="flex-1 bg-white text-foreground text-center py-3.5 rounded-xl font-bold text-sm hover:bg-white/90 transition-colors"
+                >
+                  Learn More
+                </Link>
+                <button
+                  onClick={() => handleAdd(featured)}
+                  className="flex-1 gradient-bg text-white py-3.5 rounded-xl font-bold text-sm hover:opacity-90 transition-opacity"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* 2-Zone Systems */}
-      <section id="2-zone" className="py-16 bg-white">
+      <section id="systems" className="py-16 sm:py-24 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-10">
-            <div className="flex items-center gap-3 mb-2">
-              <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl gradient-bg text-white text-sm font-bold">2</span>
-              <h2 className="text-3xl font-extrabold">2-Zone <span className="gradient-text">Bundles</span></h2>
-            </div>
-            <p className="text-muted">One condenser, two indoor air handlers. Perfect for apartments, additions, and open-plan homes.</p>
+            <span className="text-primary font-semibold text-sm uppercase tracking-[0.2em] mb-2 block">2-Zone Systems</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+              Two Rooms. One Condenser.
+            </h2>
+            <p className="text-muted mt-3 max-w-xl">
+              Independent temperature control for two separate rooms. One outdoor unit, two indoor units.
+            </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {twoZone.map((bundle) => (
-              <BundleCard key={bundle.id} bundle={bundle} onAdd={handleAddBundle} />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            {twoZone.map((p) => (
+              <ProductCard key={p.id} product={p} onAdd={handleAdd} />
             ))}
           </div>
         </div>
       </section>
 
       {/* 3-Zone Systems */}
-      <section id="3-zone" className="py-16 bg-surface border-t border-border">
+      <section className="py-16 sm:py-24 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-10">
-            <div className="flex items-center gap-3 mb-2">
-              <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl gradient-bg text-white text-sm font-bold">3</span>
-              <h2 className="text-3xl font-extrabold">3-Zone <span className="gradient-text">Bundles</span></h2>
-            </div>
-            <p className="text-muted">One condenser, three indoor air handlers. Whole-home comfort with independent room control.</p>
+            <span className="text-primary font-semibold text-sm uppercase tracking-[0.2em] mb-2 block">3-Zone Systems</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+              Whole Home Comfort.
+            </h2>
+            <p className="text-muted mt-3 max-w-xl">
+              Three zones of independent control. Heat and cool your entire home from a single outdoor unit.
+            </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {threeZone.map((bundle) => (
-              <BundleCard key={bundle.id} bundle={bundle} onAdd={handleAddBundle} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* What's In Every Bundle */}
-      <section className="py-16 bg-white border-t border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold text-center mb-10">
-            What&apos;s In Every <span className="gradient-text">Bundle</span>
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { label: "Outdoor Condenser", desc: "Inverter compressor, R454B pre-charged", icon: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" },
-              { label: "Indoor Air Handlers", desc: "Wall-mount units with WiFi built-in", icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" },
-              { label: "Pre-Charged Linesets", desc: "Quick-connect, no vacuum pump needed", icon: "M13 10V3L4 14h7v7l9-11h-7z" },
-              { label: "Install Hardware", desc: "Brackets, remote controls, everything", icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" },
-            ].map((item) => (
-              <div key={item.label} className="text-center p-6 bg-surface rounded-2xl border border-border">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 mb-4">
-                  <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
-                  </svg>
-                </div>
-                <h3 className="font-bold mb-1">{item.label}</h3>
-                <p className="text-sm text-muted">{item.desc}</p>
-              </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            {threeZone.map((p) => (
+              <ProductCard key={p.id} product={p} onAdd={handleAdd} />
             ))}
           </div>
         </div>
       </section>
 
       {/* Accessories */}
-      <section id="accessories" className="py-16 bg-surface border-t border-border">
+      <section className="py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold mb-2">Accessories &amp; <span className="gradient-text">Add-Ons</span></h2>
-          <p className="text-muted mb-10">Everything else you might need for your installation.</p>
+          <div className="mb-10">
+            <span className="text-primary font-semibold text-sm uppercase tracking-[0.2em] mb-2 block">Accessories</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+              Complete Your Install.
+            </h2>
+            <p className="text-muted mt-3 max-w-xl">
+              Everything you need for a clean, professional installation.
+            </p>
+          </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {accessories.map((acc) => (
-              <div key={acc.name} className="bg-white rounded-xl p-6 border border-border hover:border-primary/30 transition-colors">
-                <h3 className="font-bold mb-1">{acc.name}</h3>
-                <p className="text-sm text-muted mb-4">{acc.desc}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-lg font-bold text-primary">${acc.price}</span>
-                  <button
-                    onClick={() => handleAddAccessory(acc)}
-                    className="text-primary text-sm font-semibold hover:underline min-h-[44px] inline-flex items-center gap-1"
-                  >
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-                    </svg>
-                    Add to Cart
-                  </button>
-                </div>
-              </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            {accessories.map((p) => (
+              <ProductCard key={p.id} product={p} onAdd={handleAdd} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Bottom CTA */}
-      <section className="py-16 bg-white">
+      {/* Trust Bar */}
+      <section className="py-12 bg-foreground text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="gradient-bg rounded-3xl p-8 sm:p-12 text-center text-white relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            <div className="relative">
-              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">Not Sure Which Bundle?</h2>
-              <p className="text-white/80 max-w-lg mx-auto mb-6">
-                Use our free sizing calculator to find the perfect multizone system for your home, or call us for expert advice.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link href="/tools" className="bg-white text-primary font-semibold px-6 py-3 rounded-xl hover:bg-white/90 transition-colors">
-                  Size My System
-                </Link>
-                <a href="tel:+18887828871" className="border-2 border-white/30 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/10 transition-colors">
-                  Call 1-888-STATUS-1
-                </a>
+          <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-14">
+            {[
+              { label: "Free Shipping", icon: "M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" },
+              { label: "7-Year Warranty", icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
+              { label: "Energy Star", icon: "M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" },
+              { label: "ETL Certified", icon: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" },
+              { label: "USA Assembled", icon: "M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" },
+            ].map((item) => (
+              <div key={item.label} className="flex items-center gap-2.5">
+                <svg className="w-5 h-5 text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
+                </svg>
+                <span className="text-sm font-semibold text-white/80">{item.label}</span>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -348,77 +212,64 @@ export default function Products() {
   );
 }
 
-/* ─── Bundle Product Card ─── */
-
-function BundleCard({ bundle, onAdd }: { bundle: typeof bundles[0]; onAdd: (b: typeof bundles[0]) => void }) {
+/* ─── Product Card Component ─── */
+function ProductCard({ product, onAdd }: { product: Product; onAdd: (p: Product) => void }) {
   return (
-    <div className="group bg-white rounded-2xl border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 overflow-hidden flex flex-col">
-      {/* Image + Badge */}
-      <div className="h-44 sm:h-48 relative overflow-hidden bg-gradient-to-br from-slate-50 to-white">
+    <div className="group bg-white rounded-2xl border border-border/50 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col">
+      {/* Image */}
+      <Link href={`/products/${product.slug}`} className="relative aspect-square bg-surface/50 overflow-hidden">
         <Image
-          src="/wall-mount.png"
-          alt={bundle.name}
+          src={product.images[0]?.src || "/wall-mount.png"}
+          alt={product.name}
           fill
-          className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+          className="object-contain p-6 group-hover:scale-105 transition-transform duration-500"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
-        {bundle.badge && (
-          <span className="absolute top-3 left-3 gradient-bg text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-            {bundle.badge}
-          </span>
+        {product.badge && (
+          <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-primary text-white text-[10px] font-bold uppercase tracking-wider">
+            {product.badge}
+          </div>
         )}
-        <span className="absolute top-3 right-3 bg-foreground/90 text-white text-xs font-bold px-2.5 py-1 rounded-full">
-          {bundle.zones}-Zone
-        </span>
-      </div>
+      </Link>
 
-      {/* Content */}
-      <div className="p-5 sm:p-6 flex-1 flex flex-col">
-        <div className="flex items-start justify-between gap-2 mb-2">
-          <h3 className="font-bold text-base leading-tight">{bundle.name}</h3>
-          <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full shrink-0">{bundle.seer}</span>
-        </div>
-
-        <p className="text-sm text-muted mb-3">
-          {bundle.btu.toLocaleString()} BTU · Covers {bundle.coverage}
+      {/* Info */}
+      <div className="p-5 flex-1 flex flex-col">
+        {product.category === "bundle" && (
+          <p className="text-primary text-xs font-semibold uppercase tracking-wider mb-1">
+            {product.zones}-Zone · {product.seer}
+          </p>
+        )}
+        <Link href={`/products/${product.slug}`}>
+          <h3 className="font-bold text-sm sm:text-base mb-1 group-hover:text-primary transition-colors leading-tight">
+            {product.shortName}
+          </h3>
+        </Link>
+        <p className="text-muted text-xs sm:text-sm mb-4 leading-relaxed flex-1">
+          {product.shortDescription}
         </p>
 
-        {/* Air Handler breakdown */}
-        <div className="space-y-1.5 mb-4">
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted">Includes:</p>      
-          <div className="text-sm space-y-1">
-            <div className="flex items-center gap-2">
-              <svg className="w-3.5 h-3.5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-              </svg>
-              <span>1× {bundle.btu >= 27000 ? "27K" : "18K"} Outdoor Condenser</span>
-            </div>
-            {bundle.handlers.map((h, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <svg className="w-3.5 h-3.5 text-success shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span>{h}</span>
-              </div>
-            ))}
+        {/* Price + Actions */}
+        <div>
+          <div className="flex items-baseline gap-2 mb-3">
+            <span className="text-xl font-extrabold">${product.price.toLocaleString()}</span>
+            {product.category === "bundle" && (
+              <span className="text-[10px] text-muted">+ free shipping</span>
+            )}
           </div>
-        </div>
-
-        {/* Price + CTA */}
-        <div className="mt-auto pt-4 border-t border-border flex items-center justify-between gap-3">
-          <div>
-            <span className="text-2xl font-extrabold text-primary">${bundle.price.toLocaleString()}</span>
-            <p className="text-[11px] text-muted">Complete bundle · Free shipping</p>
+          <div className="flex gap-2">
+            <Link
+              href={`/products/${product.slug}`}
+              className="flex-1 text-center py-2.5 rounded-xl border border-border text-sm font-semibold hover:bg-surface transition-colors"
+            >
+              Details
+            </Link>
+            <button
+              onClick={() => onAdd(product)}
+              className="flex-1 gradient-bg text-white py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"
+            >
+              Add to Cart
+            </button>
           </div>
-          <button
-            onClick={() => onAdd(bundle)}
-            className="gradient-bg text-white px-4 sm:px-5 py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity min-h-[44px] inline-flex items-center gap-1.5 shrink-0"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-            </svg>
-            Add to Cart
-          </button>
         </div>
       </div>
     </div>
