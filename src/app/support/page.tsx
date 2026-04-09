@@ -74,7 +74,7 @@ export default function Support() {
                 </div>
                 <h3 className="font-bold mb-2">{option.title}</h3>
                 <p className="text-muted text-sm leading-relaxed mb-4">{option.description}</p>
-                <Link href="#" className="text-primary text-sm font-semibold hover:underline">
+                <Link href={option.title === "Warranty Registration" ? "/warranty" : "#"} className="text-primary text-sm font-semibold hover:underline">
                   {option.cta} &rarr;
                 </Link>
               </div>

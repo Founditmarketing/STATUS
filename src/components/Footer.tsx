@@ -28,6 +28,7 @@ const footerSections = [
       { label: "Contact", href: "/support#contact" },
       { label: "Warranty Info", href: "/about#guarantees" },
       { label: "Rebates & Incentives", href: "/tools#rebates" },
+      { label: "Warranty", href: "/warranty" },
       { label: "Shipping Policy", href: "/support" },
     ],
   },
