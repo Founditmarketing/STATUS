@@ -62,7 +62,8 @@ export default function EmailPopup() {
       />
 
       {/* Modal */}
-      <div className="fixed inset-x-4 bottom-4 sm:inset-auto sm:bottom-auto sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 z-[201] max-w-md w-full">
+      <div className="fixed inset-0 z-[201] flex items-center justify-center p-4 pointer-events-none">
+        <div className="w-full max-w-sm pointer-events-auto">
         <div className="bg-white rounded-2xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-500">
           {/* Header gradient */}
           <div className="gradient-bg px-6 py-8 text-center text-white relative">
@@ -117,6 +118,7 @@ export default function EmailPopup() {
               </>
             )}
           </div>
+        </div>
         </div>
       </div>
     </>
