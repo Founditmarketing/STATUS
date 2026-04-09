@@ -8,6 +8,7 @@ import CartDrawer from "@/components/CartDrawer";
 import { OrganizationSchema } from "@/components/SchemaMarkup";
 import { CartProvider } from "@/lib/cart-context";
 import { ToastProvider } from "@/components/Toast";
+import EmailPopup from "@/components/EmailPopup";
 
 const dmSans = DM_Sans({
   variable: "--font-body",
@@ -86,6 +87,7 @@ export default function RootLayout({
             <main id="main-content" className="flex-1">{children}</main>
             <Footer />
             <CartDrawer />
+            <EmailPopup />
           </ToastProvider>
         </CartProvider>
         </div>

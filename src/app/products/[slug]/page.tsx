@@ -7,6 +7,12 @@ import { notFound } from "next/navigation";
 import { getProductBySlug, getRelatedProducts, type Product } from "@/lib/products";
 import { useCart } from "@/lib/cart-context";
 import { useToast } from "@/components/Toast";
+import { ViewingNow, StockBadge, RecentSales } from "@/components/UrgencyBadge";
+import { RatingBadge } from "@/components/ReviewSection";
+import ReviewSection from "@/components/ReviewSection";
+import ShareButtons from "@/components/ShareButtons";
+import WishlistButton from "@/components/WishlistButton";
+import FinancingBadge from "@/components/FinancingBadge";
 
 /* ─── Image Gallery ─── */
 function ImageGallery({ product }: { product: Product }) {
@@ -171,9 +177,18 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
               </span>
             )}
 
-            <h1 className="text-2xl sm:text-4xl lg:text-[2.75rem] font-extrabold tracking-tight mb-4 leading-tight break-words">
-              {product.name}
-            </h1>
+            <div className="flex items-center justify-between mb-2">
+              <h1 className="text-2xl sm:text-4xl lg:text-[2.75rem] font-extrabold tracking-tight leading-tight break-words">
+                {product.name}
+              </h1>
+              <WishlistButton productId={product.id} />
+            </div>
+
+            {/* Rating + Share */}
+            <div className="flex items-center gap-4 mb-4">
+              <RatingBadge productId={product.id} useBundleAggregate={product.category === "bundle"} />
+              <ShareButtons productName={product.name} productSlug={product.slug} />
+            </div>
 
             <p className="text-muted text-base sm:text-lg leading-relaxed mb-6">
               {product.description}
@@ -194,6 +209,14 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
               {product.category === "bundle" && (
                 <p className="text-sm text-success font-semibold mt-1">Save $3,000+ vs. professional install</p>
               )}
+              {product.category === "bundle" && <FinancingBadge price={product.price} />}
+            </div>
+
+            {/* Urgency Triggers */}
+            <div className="space-y-1.5 mb-6">
+              <ViewingNow productId={product.id} />
+              <StockBadge productId={product.id} />
+              <RecentSales productId={product.id} />
             </div>
 
             {/* Quick Specs (bundles only) */}
@@ -374,6 +397,24 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
             </div>
           </div>
         </section>
+      )}
+
+      {/* Reviews */}
+      <ReviewSection productId={product.id} useBundleAggregate={product.category === "bundle"} />
+
+      {/* Compare Link */}
+      {product.category === "bundle" && (
+        <div className="text-center pb-12">
+          <Link
+            href="/compare"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            Compare All Systems
+          </Link>
+        </div>
       )}
 
       {/* Sticky Bar */}

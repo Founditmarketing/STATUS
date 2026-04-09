@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 3000
+    },
+    {
+      "name": "hogeland-dev",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "start-hogeland.cmd"],
+      "port": 4000
     }
   ]
 }

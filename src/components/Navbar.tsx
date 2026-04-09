@@ -1,15 +1,30 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useCart } from "@/lib/cart-context";
+import SearchModal from "@/components/SearchModal";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showPromo, setShowPromo] = useState(true);
+  const [searchOpen, setSearchOpen] = useState(false);
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
   const { cartCount, setCartOpen, user } = useCart();
+
+  // Cmd+K to open search
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      e.preventDefault();
+      setSearchOpen(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -86,8 +101,19 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* CTA + Cart + Auth */}
+          {/* CTA + Search + Cart + Auth */}
           <div className="hidden md:flex items-center gap-2">
+            {/* Search */}
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="text-muted hover:text-foreground transition-colors px-2 py-3 min-h-[44px] inline-flex items-center gap-1.5 text-sm"
+              aria-label="Search products"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <kbd className="hidden lg:inline-flex items-center px-1.5 py-0.5 rounded bg-surface border border-border text-[10px] text-muted font-mono">⌘K</kbd>
+            </button>
             {/* Account link */}
             {user ? (
               <Link
@@ -219,6 +245,9 @@ export default function Navbar() {
           </div>
         )}
       </nav>
+
+      {/* Search Modal */}
+      {searchOpen && <SearchModal onClose={() => setSearchOpen(false)} />}
     </header>
   );
 }
