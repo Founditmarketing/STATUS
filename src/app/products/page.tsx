@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useCart } from "@/lib/cart-context";
 import { useToast } from "@/components/Toast";
 import { bundles, accessories, type Product } from "@/lib/products";
+import { RatingBadge } from "@/components/ReviewSection";
 
 export default function Products() {
   const { addToCart, setCartOpen } = useCart();
@@ -157,6 +158,9 @@ export default function Products() {
 
 /* ─── Product Card Component ─── */
 function ProductCard({ product, onAdd }: { product: Product; onAdd: (p: Product) => void }) {
+  const isBundle = product.category === "bundle";
+  const monthly = isBundle ? Math.ceil(product.price / 24) : null;
+
   return (
     <div className="group bg-white rounded-2xl border border-border/50 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col">
       {/* Image */}
@@ -173,11 +177,19 @@ function ProductCard({ product, onAdd }: { product: Product; onAdd: (p: Product)
             {product.badge}
           </div>
         )}
+        {isBundle && (
+          <div className="absolute bottom-3 left-3 right-3 flex items-center gap-1.5 bg-emerald-600/90 backdrop-blur-sm text-white px-2.5 py-1.5 rounded-lg">
+            <svg className="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+            <span className="text-[11px] font-bold">Save $3,000+ vs. pro install</span>
+          </div>
+        )}
       </Link>
 
       {/* Info */}
       <div className="p-5 flex-1 flex flex-col">
-        {product.category === "bundle" && (
+        {isBundle && (
           <p className="text-primary text-xs font-semibold uppercase tracking-wider mb-1">
             {product.zones}-Zone · {product.seer}
           </p>
@@ -187,18 +199,47 @@ function ProductCard({ product, onAdd }: { product: Product; onAdd: (p: Product)
             {product.shortName}
           </h3>
         </Link>
-        <p className="text-muted text-xs sm:text-sm mb-4 leading-relaxed flex-1">
+
+        {/* Star rating */}
+        <div className="mb-2">
+          <RatingBadge productId={product.id} useBundleAggregate={isBundle} />
+        </div>
+
+        <p className="text-muted text-xs sm:text-sm mb-3 leading-relaxed flex-1">
           {product.shortDescription}
         </p>
 
-        {/* Price + Actions */}
+        {/* Coverage + specs strip (bundles) */}
+        {isBundle && product.coverage && (
+          <div className="flex flex-wrap gap-2 mb-3">
+            <span className="inline-flex items-center gap-1 text-[10px] font-semibold bg-surface px-2 py-1 rounded-md text-muted">
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+              {product.coverage}
+            </span>
+            <span className="inline-flex items-center gap-1 text-[10px] font-semibold bg-surface px-2 py-1 rounded-md text-muted">
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              {product.seer}
+            </span>
+          </div>
+        )}
+
+        {/* Price + Financing */}
         <div>
-          <div className="flex items-baseline gap-2 mb-3">
+          <div className="flex items-baseline gap-2 mb-1">
             <span className="text-xl font-extrabold">${product.price.toLocaleString()}</span>
-            {product.category === "bundle" && (
-              <span className="text-[10px] text-muted">+ free shipping</span>
+            {isBundle && (
+              <span className="text-[10px] text-emerald-600 font-semibold">FREE shipping</span>
             )}
           </div>
+          {monthly && (
+            <p className="text-xs text-muted mb-3">
+              Or as low as <span className="font-semibold text-foreground">${monthly}/mo</span> with financing
+            </p>
+          )}
           <div className="flex gap-2">
             <Link
               href={`/products/${product.slug}`}
