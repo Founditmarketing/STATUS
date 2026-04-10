@@ -81,7 +81,7 @@ export default function Products() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {twoZone.map((p) => (
               <ProductCard key={p.id} product={p} onAdd={handleAdd} />
             ))}
@@ -102,7 +102,7 @@ export default function Products() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {threeZone.map((p) => (
               <ProductCard key={p.id} product={p} onAdd={handleAdd} />
             ))}
@@ -123,7 +123,7 @@ export default function Products() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {accessories.map((p) => (
               <ProductCard key={p.id} product={p} onAdd={handleAdd} />
             ))}
@@ -162,48 +162,49 @@ function ProductCard({ product, onAdd }: { product: Product; onAdd: (p: Product)
   const monthly = isBundle ? Math.ceil(product.price / 24) : null;
 
   return (
-    <div className="group bg-white rounded-2xl border border-border/50 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col">
-      {/* Image */}
-      <Link href={`/products/${product.slug}`} className="relative aspect-square bg-surface/50 overflow-hidden">
+    <div className="group bg-white rounded-xl sm:rounded-2xl border border-border/50 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col">
+      {/* Image — compact 3:4 on mobile, square on desktop */}
+      <Link href={`/products/${product.slug}`} className="relative aspect-[3/4] sm:aspect-square bg-surface/50 overflow-hidden">
         <Image
           src={product.images[0]?.src || "/wall-mount.png"}
           alt={product.name}
           fill
-          className="object-contain p-6 group-hover:scale-105 transition-transform duration-500"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-contain p-3 sm:p-6 group-hover:scale-105 transition-transform duration-500"
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
         />
         {product.badge && (
-          <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-primary text-white text-[10px] font-bold uppercase tracking-wider">
+          <div className="absolute top-2 left-2 sm:top-3 sm:left-3 px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-primary text-white text-[8px] sm:text-[10px] font-bold uppercase tracking-wider">
             {product.badge}
           </div>
         )}
       </Link>
 
-      {/* Info */}
-      <div className="p-5 flex-1 flex flex-col">
+      {/* Info — compact padding on mobile */}
+      <div className="p-3 sm:p-5 flex-1 flex flex-col">
         {isBundle && (
-          <p className="text-primary text-xs font-semibold uppercase tracking-wider mb-1">
+          <p className="text-primary text-[10px] sm:text-xs font-semibold uppercase tracking-wider mb-0.5 sm:mb-1">
             {product.zones}-Zone · {product.seer}
           </p>
         )}
         <Link href={`/products/${product.slug}`}>
-          <h3 className="font-bold text-sm sm:text-base mb-1 group-hover:text-primary transition-colors leading-tight">
+          <h3 className="font-bold text-xs sm:text-base mb-0.5 sm:mb-1 group-hover:text-primary transition-colors leading-tight line-clamp-2">
             {product.shortName}
           </h3>
         </Link>
 
         {/* Star rating */}
-        <div className="mb-2">
+        <div className="mb-1 sm:mb-2">
           <RatingBadge productId={product.id} useBundleAggregate={isBundle} />
         </div>
 
-        <p className="text-muted text-xs sm:text-sm mb-3 leading-relaxed flex-1">
+        {/* Description — hidden on mobile to save space */}
+        <p className="hidden sm:block text-muted text-sm mb-3 leading-relaxed flex-1">
           {product.shortDescription}
         </p>
 
-        {/* Coverage + specs strip (bundles) */}
+        {/* Coverage + specs strip (bundles) — hidden on mobile */}
         {isBundle && product.coverage && (
-          <div className="flex flex-wrap gap-2 mb-3">
+          <div className="hidden sm:flex flex-wrap gap-2 mb-3">
             <span className="inline-flex items-center gap-1 text-[10px] font-semibold bg-surface px-2 py-1 rounded-md text-muted">
               <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -220,31 +221,33 @@ function ProductCard({ product, onAdd }: { product: Product; onAdd: (p: Product)
         )}
 
         {/* Price + Financing */}
-        <div>
-          <div className="flex items-baseline gap-2 mb-1">
-            <span className="text-xl font-extrabold">${product.price.toLocaleString()}</span>
+        <div className="mt-auto">
+          <div className="flex items-baseline gap-1 sm:gap-2 mb-0.5 sm:mb-1">
+            <span className="text-base sm:text-xl font-extrabold">${product.price.toLocaleString()}</span>
             {isBundle && (
-              <span className="text-[10px] text-emerald-600 font-semibold">FREE shipping</span>
+              <span className="hidden sm:inline text-[10px] text-emerald-600 font-semibold">FREE shipping</span>
             )}
           </div>
           {monthly && (
-            <p className="text-xs text-muted mb-3">
-              Or as low as <span className="font-semibold text-foreground">${monthly}/mo</span> with financing
+            <p className="text-[10px] sm:text-xs text-muted mb-2 sm:mb-3">
+              <span className="font-semibold text-foreground">${monthly}/mo</span>
+              <span className="hidden sm:inline"> with financing</span>
             </p>
           )}
-          <div className="flex gap-2">
-            <Link
-              href={`/products/${product.slug}`}
-              className="flex-1 text-center py-2.5 rounded-xl border border-border text-sm font-semibold hover:bg-surface transition-colors"
-            >
-              Details
-            </Link>
+          {/* Stacked buttons on mobile, side-by-side on desktop */}
+          <div className="flex flex-col sm:flex-row gap-1.5 sm:gap-2">
             <button
               onClick={() => onAdd(product)}
-              className="flex-1 gradient-bg text-white py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"
+              className="sm:flex-1 gradient-bg text-white py-2 sm:py-2.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold hover:opacity-90 transition-opacity"
             >
               Add to Cart
             </button>
+            <Link
+              href={`/products/${product.slug}`}
+              className="sm:flex-1 text-center py-2 sm:py-2.5 rounded-lg sm:rounded-xl border border-border text-xs sm:text-sm font-semibold hover:bg-surface transition-colors"
+            >
+              Details
+            </Link>
           </div>
         </div>
       </div>
